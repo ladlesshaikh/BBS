@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,14 +39,27 @@ namespace BBS.Data
             return retVal;
         }
 
-        public Task<bool> InsertAsync(List<T> models)
+        public async Task<bool> InsertAsync(List<T> models)
         {
-            throw new NotImplementedException();
+            var retVal = false;
+            var entity = dataContext.Set<T>().AddRange(models);
+            var rowsAffected = await dataContext.SaveChangesAsync();
+            retVal = rowsAffected > 0;
+            return retVal;
         }
 
-        public Task<bool> UpdateAsync(T model)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task<bool> UpdateAsync(T model)
         {
-            throw new NotImplementedException();
+            var retVal = false;
+            dataContext.Entry<T>(model).State = System.Data.Entity.EntityState.Modified;
+            var rowsAffected = await dataContext.SaveChangesAsync();
+            retVal = rowsAffected > 0;
+            return retVal;
         }
 
         public Task<bool> UpdateAsync(List<T> models)
@@ -53,9 +67,18 @@ namespace BBS.Data
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(T model)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task<bool> DeleteAsync(T model)
         {
-            throw new NotImplementedException();
+            var retVal = false;
+            dataContext.Set<T>().Remove(model);
+            var rowsAffected = await dataContext.SaveChangesAsync();
+            retVal = rowsAffected > 0;
+            return retVal;
         }
 
         public Task<bool> DeleteAsync(IEnumerable<T> models)
@@ -63,14 +86,19 @@ namespace BBS.Data
             throw new NotImplementedException();
         }
 
-        public Task<T> FindAsync(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public async Task<T> FindAsync(Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return dataContext.Set<T>().FirstOrDefault(predicate);
         }
 
-        public Task<bool> IsExists(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
+        public async Task<bool> IsExists(Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return null != dataContext.Set<T>().FirstOrDefault(predicate);
         }
 
         public Task<List<T>> GetAsync(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
@@ -100,7 +128,6 @@ namespace BBS.Data
 
         public virtual void Dispose()
         {
-            throw new NotImplementedException();
         }
     }
 }

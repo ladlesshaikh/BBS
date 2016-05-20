@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BBS.Data.Repositories
+namespace BBS.Data
 {
     /// <summary>
     /// 

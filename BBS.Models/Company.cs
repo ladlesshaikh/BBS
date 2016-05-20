@@ -18,12 +18,6 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
-        public int TaxDetailId { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [ForeignKey("TaxDetailId")]
         public TaxDetail Tax { get; set; }
 
         /// <summary>

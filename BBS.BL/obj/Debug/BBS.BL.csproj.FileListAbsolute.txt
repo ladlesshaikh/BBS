@@ -1,12 +1,12 @@
+D:\Data\Projects\Pilot\BBS\BBS.BL\bin\Debug\BBS.BL.dll.config
 D:\Data\Projects\Pilot\BBS\BBS.BL\bin\Debug\BBS.BL.dll
 D:\Data\Projects\Pilot\BBS\BBS.BL\bin\Debug\BBS.BL.pdb
 D:\Data\Projects\Pilot\BBS\BBS.BL\bin\Debug\BBS.Models.dll
+D:\Data\Projects\Pilot\BBS\BBS.BL\bin\Debug\EntityFramework.dll
+D:\Data\Projects\Pilot\BBS\BBS.BL\bin\Debug\EntityFramework.SqlServer.dll
 D:\Data\Projects\Pilot\BBS\BBS.BL\bin\Debug\BBS.Models.pdb
+D:\Data\Projects\Pilot\BBS\BBS.BL\bin\Debug\EntityFramework.xml
+D:\Data\Projects\Pilot\BBS\BBS.BL\bin\Debug\EntityFramework.SqlServer.xml
 D:\Data\Projects\Pilot\BBS\BBS.BL\obj\Debug\BBS.BL.csprojResolveAssemblyReference.cache
 D:\Data\Projects\Pilot\BBS\BBS.BL\obj\Debug\BBS.BL.dll
 D:\Data\Projects\Pilot\BBS\BBS.BL\obj\Debug\BBS.BL.pdb
-D:\Data\Projects\Pilot\BBS\BBS.BL\bin\Debug\BBS.BL.dll.config
-D:\Data\Projects\Pilot\BBS\BBS.BL\bin\Debug\EntityFramework.dll
-D:\Data\Projects\Pilot\BBS\BBS.BL\bin\Debug\EntityFramework.SqlServer.dll
-D:\Data\Projects\Pilot\BBS\BBS.BL\bin\Debug\EntityFramework.xml
-D:\Data\Projects\Pilot\BBS\BBS.BL\bin\Debug\EntityFramework.SqlServer.xml

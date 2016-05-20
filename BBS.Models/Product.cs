@@ -8,7 +8,21 @@ using System.Threading.Tasks;
 namespace BBS.Models
 {
     [Table("Products")]
-    public class Product
+    public class Product : ModelBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Value { get; set; }
     }
 }

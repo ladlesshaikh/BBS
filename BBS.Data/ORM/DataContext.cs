@@ -59,6 +59,11 @@ namespace BBS.Data
         /// 
         /// </summary>
         public DbSet<TaxDetail> TaxDetails { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<Product> Products { get; set; }
         #endregion
 
         ///// <summary>

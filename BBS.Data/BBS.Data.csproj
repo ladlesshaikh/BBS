@@ -48,11 +48,21 @@
   <ItemGroup>
     <Compile Include="Base\RepositoryBase.cs" />
     <Compile Include="Interface\IRepository.cs" />
+    <Compile Include="Migrations\201605191211584_InitialCreate.cs" />
+    <Compile Include="Migrations\201605191211584_InitialCreate.Designer.cs">
+      <DependentUpon>201605191211584_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ORM\DataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CompanyRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201605191211584_InitialCreate.resx">
+      <DependentUpon>201605191211584_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BBS.Models\BBS.Models.csproj">
       <Project>{0856315f-bf36-4062-b38d-4b02de8df123}</Project>
