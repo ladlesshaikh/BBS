@@ -60,6 +60,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Xamals\ProductManagementUC.xaml.cs">
+      <DependentUpon>ProductManagementUC.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,6 +75,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Xamals\ProductManagementUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -103,7 +110,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
-    <Folder Include="Xamals\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BBS.BL\BBS.BL.csproj">
+      <Project>{537ec531-6ac7-4bc8-999c-051de35b91e5}</Project>
+      <Name>BBS.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BBS.Models\BBS.Models.csproj">
+      <Project>{0856315f-bf36-4062-b38d-4b02de8df123}</Project>
+      <Name>BBS.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

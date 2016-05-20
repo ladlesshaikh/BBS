@@ -47,13 +47,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\ManagerBase.cs" />
+    <Compile Include="Managers\ProductManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interface\" />
-    <Folder Include="Managers\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BBS.Data\BBS.Data.csproj">
+      <Project>{1a2f0252-5db6-43be-b3b0-47883e1e3cfe}</Project>
+      <Name>BBS.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BBS.Models\BBS.Models.csproj">
       <Project>{0856315f-bf36-4062-b38d-4b02de8df123}</Project>
       <Name>BBS.Models</Name>

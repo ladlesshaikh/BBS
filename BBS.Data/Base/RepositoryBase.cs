@@ -106,9 +106,13 @@ namespace BBS.Data
             throw new NotImplementedException();
         }
 
-        public Task<List<T>> GetAsync()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<T>> GetAsync()
         {
-            throw new NotImplementedException();
+            return dataContext.Set<T>().ToList();
         }
 
         public Task<int> ExecuteQueryAsync(string query)

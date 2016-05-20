@@ -9,7 +9,13 @@ namespace BBS.BL
     /// <summary>
     /// 
     /// </summary>
-    public class ManagerBase
+    public class ManagerBase : IDisposable
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual void Dispose()
+        {
+        }
     }
 }
