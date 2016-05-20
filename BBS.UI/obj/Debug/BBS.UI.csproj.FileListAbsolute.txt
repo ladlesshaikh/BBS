@@ -1,0 +1,17 @@
+D:\Data\Projects\Pilot\BBS\BBS.UI\bin\Debug\BBS.UI.exe.config
+D:\Data\Projects\Pilot\BBS\BBS.UI\bin\Debug\BBS.UI.exe
+D:\Data\Projects\Pilot\BBS\BBS.UI\bin\Debug\BBS.UI.pdb
+D:\Data\Projects\Pilot\BBS\BBS.UI\obj\Debug\MainWindow.baml
+D:\Data\Projects\Pilot\BBS\BBS.UI\obj\Debug\MainWindow.g.cs
+D:\Data\Projects\Pilot\BBS\BBS.UI\obj\Debug\App.g.cs
+D:\Data\Projects\Pilot\BBS\BBS.UI\obj\Debug\BBS.UI_MarkupCompile.cache
+D:\Data\Projects\Pilot\BBS\BBS.UI\obj\Debug\BBS.UI.g.resources
+D:\Data\Projects\Pilot\BBS\BBS.UI\obj\Debug\BBS.UI.Properties.Resources.resources
+D:\Data\Projects\Pilot\BBS\BBS.UI\obj\Debug\BBS.UI.csproj.GenerateResource.Cache
+D:\Data\Projects\Pilot\BBS\BBS.UI\obj\Debug\BBS.UI.exe
+D:\Data\Projects\Pilot\BBS\BBS.UI\obj\Debug\BBS.UI.pdb
+D:\Data\Projects\Pilot\BBS\BBS.UI\bin\Debug\EntityFramework.dll
+D:\Data\Projects\Pilot\BBS\BBS.UI\bin\Debug\EntityFramework.SqlServer.dll
+D:\Data\Projects\Pilot\BBS\BBS.UI\bin\Debug\EntityFramework.xml
+D:\Data\Projects\Pilot\BBS\BBS.UI\bin\Debug\EntityFramework.SqlServer.xml
+D:\Data\Projects\Pilot\BBS\BBS.UI\obj\Debug\BBS.UI.csprojResolveAssemblyReference.cache

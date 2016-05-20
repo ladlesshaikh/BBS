@@ -1,0 +1,16 @@
+D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Debug\BBS.UnitTest.dll
+D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Debug\BBS.UnitTest.pdb
+D:\Data\Projects\Pilot\BBS\BBS.UnitTest\obj\Debug\BBS.UnitTest.csprojResolveAssemblyReference.cache
+D:\Data\Projects\Pilot\BBS\BBS.UnitTest\obj\Debug\BBS.UnitTest.dll
+D:\Data\Projects\Pilot\BBS\BBS.UnitTest\obj\Debug\BBS.UnitTest.pdb
+D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Debug\BBS.BL.dll
+D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Debug\BBS.Data.dll
+D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Debug\BBS.Models.dll
+D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Debug\EntityFramework.dll
+D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Debug\EntityFramework.SqlServer.dll
+D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Debug\BBS.BL.pdb
+D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Debug\BBS.Data.pdb
+D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Debug\BBS.Models.pdb
+D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Debug\EntityFramework.xml
+D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Debug\EntityFramework.SqlServer.xml
+D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Debug\BBS.UnitTest.dll.config
