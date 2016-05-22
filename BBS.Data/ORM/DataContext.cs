@@ -21,7 +21,7 @@ namespace BBS.Data
         public DataContext()
             : base("name=DataContext")
         {
-
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataContext, BBS.Data.Migrations.Configuration>("DataContext"));
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace BBS.Data
         /// <summary>
         /// 
         /// </summary>
-        public DbSet<Address> Address { get; set; }
+        public DbSet<Address> AddressDeatils { get; set; }
 
         /// <summary>
         /// 

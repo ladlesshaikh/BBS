@@ -26,5 +26,35 @@ namespace BBS.BL
             }
             return retVal;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        public async Task<bool> UpdateAsync(Product product)
+        {
+            var retVal = false;
+            using (var repository = new ProductRepository())
+            {
+                retVal = await repository.UpdateAsync(product);
+            }
+            return retVal;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        public async Task<bool> DeleteAsync(Product product)
+        {
+            var retVal = false;
+            using (var repository = new ProductRepository())
+            {
+                retVal = await repository.DeleteAsync(product);
+            }
+            return retVal;
+        }
     }
 }

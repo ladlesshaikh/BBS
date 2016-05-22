@@ -57,7 +57,7 @@ namespace BBS.Data
         {
             var retVal = false;
             dataContext.Entry<T>(model).State = System.Data.Entity.EntityState.Modified;
-            var rowsAffected = await dataContext.SaveChangesAsync();
+            var rowsAffected = dataContext.SaveChanges();
             retVal = rowsAffected > 0;
             return retVal;
         }
@@ -75,8 +75,8 @@ namespace BBS.Data
         public async Task<bool> DeleteAsync(T model)
         {
             var retVal = false;
-            dataContext.Set<T>().Remove(model);
-            var rowsAffected = await dataContext.SaveChangesAsync();
+            dataContext.Entry<T>(model).State = System.Data.Entity.EntityState.Deleted;
+            var rowsAffected = dataContext.SaveChanges();
             retVal = rowsAffected > 0;
             return retVal;
         }

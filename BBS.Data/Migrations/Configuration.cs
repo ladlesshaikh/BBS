@@ -10,8 +10,7 @@ namespace BBS.Data.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = false;
-            ContextKey = "BBS.Data.DataContext";
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(BBS.Data.DataContext context)

@@ -25,10 +25,7 @@ namespace BBS.UI.Xamals
         public ProductManagementUC()
         {
             InitializeComponent();
-            using (var productManager = new ProductManager())
-            {
-                dgProduct.ItemsSource = productManager.GetAllAsync().Result;
-            }
+            dgProduct.DataContext = new ProductViewModel();
         }
 
         private void dgProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)

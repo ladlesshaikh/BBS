@@ -60,6 +60,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Base\ViewModelBase.cs" />
+    <Compile Include="Commands\UserActionOrCommand.cs" />
+    <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="Xamals\ProductManagementUC.xaml.cs">
       <DependentUpon>ProductManagementUC.xaml</DependentUpon>
     </Compile>
@@ -108,9 +111,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\BBS.BL\BBS.BL.csproj">
       <Project>{537ec531-6ac7-4bc8-999c-051de35b91e5}</Project>
