@@ -1,26 +1,25 @@
-﻿using BBS.Models;
+﻿using BBS.BL.Managers;
+using BBS.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BBS.Data
+namespace BBS.UI
 {
     /// <summary>
     /// 
     /// </summary>
-    public class CompanyRepository : RepositoryBase<Company>
+    public class CustomerViewModel : ViewModelBase<Customer>
     {
-        #region Object construction
         /// <summary>
         /// 
         /// </summary>
-        public CompanyRepository()
-            : base(Helper.GetDataContext())
+        public CustomerViewModel()
+            : base(new CustomerManager())
         {
 
         }
-        #endregion
     }
 }

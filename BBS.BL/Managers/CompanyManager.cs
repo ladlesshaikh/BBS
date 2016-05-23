@@ -11,16 +11,16 @@ namespace BBS.BL
     /// <summary>
     /// 
     /// </summary>
-    public class ProductManager : ManagerBase, IManager<Product>
+    public class CompanyManager : ManagerBase, IManager<Company>
     {
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public async Task<List<Product>> GetAllAsync()
+        public async Task<List<Company>> GetAllAsync()
         {
-            List<Product> retVal = null;
-            using (var repository = new ProductRepository())
+            List<Company> retVal = null;
+            using (var repository = new CompanyRepository())
             {
                 retVal = await repository.GetAsync();
             }
@@ -32,10 +32,10 @@ namespace BBS.BL
         /// </summary>
         /// <param name="product"></param>
         /// <returns></returns>
-        public async Task<bool> AddOrUpdateAsync(Product product)
+        public async Task<bool> AddOrUpdateAsync(Company product)
         {
             var retVal = false;
-            using (var repository = new ProductRepository())
+            using (var repository = new CompanyRepository())
             {
                 retVal = product.Id > 0 ? await repository.UpdateAsync(product) : await repository.InsertAsync(product);
             }
@@ -47,10 +47,10 @@ namespace BBS.BL
         /// </summary>
         /// <param name="product"></param>
         /// <returns></returns>
-        public async Task<bool> DeleteAsync(Product product)
+        public async Task<bool> DeleteAsync(Company product)
         {
             var retVal = false;
-            using (var repository = new ProductRepository())
+            using (var repository = new CompanyRepository())
             {
                 retVal = await repository.DeleteAsync(product);
             }

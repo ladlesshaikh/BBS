@@ -18,11 +18,7 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
-        public string Branch { get; set; }
+        public string BranchCode { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Account { get; set; }
     }
 }

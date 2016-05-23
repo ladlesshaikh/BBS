@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="BBS.UI.Xamals.CompanyManagementUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <DataGrid AutoGenerateColumns="False"  Height="200" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+          HorizontalAlignment="Left" Margin="0,0,0,0" Name="dgCompany" VerticalAlignment="Top"  ColumnWidth="*" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Name ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Name" x:Name="dgCompanyName">
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding AddressDetails.StreetNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Street" x:Name="dgCompanyStreet">
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding AddressDetails.SubUrb,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="SubUrb" x:Name="dgCompanySubUrb" >
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding AddressDetails.CityOrTown,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="City" x:Name="dgCompanyCityOrTown" >
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding AddressDetails.PostalCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="PostalCode" x:Name="dgCompanyPostalCode" >
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Path=TaxDetails.TaxNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="TaxNo" x:Name="dgCompanyTaxNo" >
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Path=CKRegNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="CK Reg No" x:Name="dgCompanyCKRegNo" >
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Path=Bank.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Bank Name" x:Name="dgCompanyBankName" >
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Path=Account,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Bank Account" x:Name="dgCompanyBankAccount" >
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Path=Bank.BranchCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Bank Branch Code" x:Name="dgCompanyBankBranchCode" >
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Path=AddressDetails.Telephone,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Telephone" x:Name="dgCompanyTelephone" >
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding AddressDetails.Email,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Email" x:Name="dgCompanyEmail" >
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding AddressDetails.Fax,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Fax" x:Name="dgCompanyFax" >
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Tax.Rate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Tax Rate" x:Name="dgCompanyTaxRate" >
+                </DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="bttnOpenFileDialog" Content="Link Logo"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Update" x:Name="btnUpdate" Command="{Binding Path=DataContext.UpdateCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"  
+                                    CommandParameter="{Binding Path=DataContext.SelectedItem,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" x:Name="btnDelete" Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

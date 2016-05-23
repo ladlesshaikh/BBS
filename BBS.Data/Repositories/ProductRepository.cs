@@ -10,7 +10,7 @@ namespace BBS.Data
     public class ProductRepository : RepositoryBase<Product>
     {
         public ProductRepository()
-            : base(new DataContext())
+            : base(Helper.GetDataContext())
         {
 
         }

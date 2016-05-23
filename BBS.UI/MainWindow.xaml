@@ -4,6 +4,20 @@
         xmlns:Xamals="clr-namespace:BBS.UI.Xamals" x:Class="BBS.UI.MainWindow"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Xamals:ProductManagementUC HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Menu HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Grid.Row="0" Margin="0,0,0,0" >
+            <MenuItem Header="File" Margin="0">
+                <MenuItem x:Name="menuItemHome" Header="Home" />
+                <MenuItem x:Name="menuItemControlPanel" Header="Control panel" />
+                <MenuItem x:Name="menuExit" Header="Exit"/>
+            </MenuItem>
+            <MenuItem Header="Admin" Margin="0">
+                <MenuItem x:Name="menuProductManagement" Header="Manage products" Click="menuProductManagement_Click"/>
+                <MenuItem x:Name="menuCompanyManagement" Header="Manage companies" Click="menuCompanyManagement_Click"/>
+                <MenuItem x:Name="menuCustomerManagement" Header="Manage Customers" Click="menuCustomerManagement_Click"/>
+                <MenuItem x:Name="menuBankManagement" Header="Manage banks" Click="menuBankManagement_Click"/>
+            </MenuItem>
+        </Menu>
+        <ContentControl x:Name="ccParentContainer" Margin="0,25,0,0">
+        </ContentControl>
     </Grid>
 </Window>

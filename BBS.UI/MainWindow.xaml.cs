@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BBS.UI.Xamals;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,26 @@ namespace BBS.UI
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void menuProductManagement_Click(object sender, RoutedEventArgs e)
+        {
+            ccParentContainer.Content = new ProductManagementUC();
+        }
+
+        private void menuCompanyManagement_Click(object sender, RoutedEventArgs e)
+        {
+            ccParentContainer.Content = new CompanyManagementUC();
+        }
+
+        private void menuCustomerManagement_Click(object sender, RoutedEventArgs e)
+        {
+            ccParentContainer.Content = new CustomerManagementUC();
+        }
+
+        private void menuBankManagement_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

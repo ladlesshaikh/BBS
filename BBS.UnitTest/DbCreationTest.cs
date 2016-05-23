@@ -17,10 +17,10 @@ namespace BBS.UnitTest
                 var company = new Company
                 {
                     AddressDetails = new Address { CityOrTown = "Pune", Email = "test@gmail.com", Fax = "fax Number", PostalCode = "121212", StreetNo = "11212", SubUrb = "asasa", Telephone = "1231212" },
-                    Bank = new BankDetail { Account = "12112", Branch = "branch", Name = "Nedbank" },
-                    CKregNo = "1121212",
-                    CompanyName = "TestComapny",
-                    Tax = new TaxDetail { TaxNo = "122345" },
+                    Bank = new BankDetail { BranchCode = "branch", Name = "Nedbank" },
+                    CKRegNo = "1121212",
+                    Name = "TestComapny",
+                    Tax = new TaxDetail { TaxNo = "122345", Rate = 14.5 },
                 };
 
                 ctx.Companies.Add(company);

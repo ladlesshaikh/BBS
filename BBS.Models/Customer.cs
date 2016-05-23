@@ -16,16 +16,25 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
+        public Customer()
+        {
+            AddressDetails = new Address();
+            TaxDetails = new TaxDetail();
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Name { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public Address AddressDetails { get; set; }
+        public virtual Address AddressDetails { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public TaxDetail TaxDetails { get; set; }
+        public virtual TaxDetail TaxDetails { get; set; }
     }
 }

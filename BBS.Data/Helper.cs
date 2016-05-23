@@ -1,26 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BBS.Models
+namespace BBS.Data
 {
     /// <summary>
     /// 
     /// </summary>
-    [Table("TaxDetails")]
-    public class TaxDetail : ModelBase
+    public static class Helper
     {
         /// <summary>
         /// 
         /// </summary>
-        public string TaxNo { get; set; }
+        private static DataContext context = null;
 
         /// <summary>
         /// 
         /// </summary>
-        public Double Rate { get; set; }
+        /// <returns></returns>
+        public static DataContext GetDataContext()
+        {
+            return context ?? (context = new DataContext());
+        }
     }
 }

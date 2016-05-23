@@ -1,4 +1,5 @@
-﻿using BBS.Data;
+﻿using BBS.BL;
+using BBS.Data;
 using BBS.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -17,6 +18,16 @@ namespace BBS.UnitTest
         {
             var productId = AddProductToDb();
             Assert.IsTrue(productId > 0);
+        }
+
+        [TestMethod]
+        public void GetAllProducts()
+        {
+            using (var manager = new ProductManager())
+            {
+                var result = manager.GetAllAsync().Result;
+                Assert.IsTrue(result.Count > 0);
+            }
         }
 
         [TestMethod]

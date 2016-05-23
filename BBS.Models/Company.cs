@@ -13,26 +13,32 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
-        public string CompanyName { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public TaxDetail Tax { get; set; }
+        public virtual TaxDetail Tax { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public Address AddressDetails { get; set; }
+        public virtual Address AddressDetails { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public BankDetail Bank { get; set; }
+        public virtual BankDetail Bank { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public string CKregNo { get; set; }
+        public string CKRegNo { get; set; }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Account { get; set; }
     }
 }

@@ -47,12 +47,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\ManagerBase.cs" />
+    <Compile Include="Interface\IManager.cs" />
+    <Compile Include="Managers\CompanyManager.cs" />
+    <Compile Include="Managers\CustomerManager.cs" />
     <Compile Include="Managers\ProductManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interface\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\BBS.Data\BBS.Data.csproj">
       <Project>{1a2f0252-5db6-43be-b3b0-47883e1e3cfe}</Project>

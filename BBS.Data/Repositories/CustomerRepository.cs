@@ -10,13 +10,13 @@ namespace BBS.Data
     /// <summary>
     /// 
     /// </summary>
-    public class CompanyRepository : RepositoryBase<Company>
+    public class CustomerRepository : RepositoryBase<Customer>
     {
         #region Object construction
         /// <summary>
         /// 
         /// </summary>
-        public CompanyRepository()
+        public CustomerRepository()
             : base(Helper.GetDataContext())
         {
 

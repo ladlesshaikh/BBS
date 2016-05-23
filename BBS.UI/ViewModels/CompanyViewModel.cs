@@ -2,19 +2,20 @@
 using BBS.Models;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BBS.UI
 {
-    public class ProductViewModel : ViewModelBase<Product>
+    public class CompanyViewModel : ViewModelBase<Company>
     {
-        public ProductViewModel()
-            : base(new ProductManager())
+        /// <summary>
+        /// 
+        /// </summary>
+        public CompanyViewModel()
+            : base(new CompanyManager())
         {
-
         }
     }
 }

@@ -17,7 +17,7 @@ namespace BBS.Data
         /// <summary>
         /// 
         /// </summary>
-        DataContext dataContext = null;
+        protected DataContext dataContext = null;
 
 
         public RepositoryBase(DataContext dbContext)
@@ -34,7 +34,7 @@ namespace BBS.Data
         {
             var retVal = false;
             var entity = dataContext.Set<T>().Add(model);
-            var rowsAffected = await dataContext.SaveChangesAsync();
+            var rowsAffected = dataContext.SaveChanges();
             retVal = rowsAffected > 0;
             return retVal;
         }
@@ -43,7 +43,7 @@ namespace BBS.Data
         {
             var retVal = false;
             var entity = dataContext.Set<T>().AddRange(models);
-            var rowsAffected = await dataContext.SaveChangesAsync();
+            var rowsAffected = dataContext.SaveChanges();
             retVal = rowsAffected > 0;
             return retVal;
         }
@@ -101,7 +101,7 @@ namespace BBS.Data
             return null != dataContext.Set<T>().FirstOrDefault(predicate);
         }
 
-        public Task<List<T>> GetAsync(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
+        public Task<List<T>> GetAsync(Expression<Func<T, bool>> predicate)
         {
             throw new NotImplementedException();
         }
@@ -110,7 +110,7 @@ namespace BBS.Data
         /// 
         /// </summary>
         /// <returns></returns>
-        public async Task<List<T>> GetAsync()
+        public virtual async Task<List<T>> GetAsync()
         {
             return dataContext.Set<T>().ToList();
         }
@@ -132,6 +132,10 @@ namespace BBS.Data
 
         public virtual void Dispose()
         {
+            if (null != dataContext)
+            {
+                dataContext = null;
+            }
         }
     }
 }
