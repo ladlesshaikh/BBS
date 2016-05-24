@@ -96,7 +96,7 @@ namespace BBS.Data
             return dataContext.Set<T>().FirstOrDefault(predicate);
         }
 
-        public async Task<bool> IsExists(Expression<Func<T, bool>> predicate)
+        public async Task<bool> IsExistsAsync(Expression<Func<T, bool>> predicate)
         {
             return null != dataContext.Set<T>().FirstOrDefault(predicate);
         }

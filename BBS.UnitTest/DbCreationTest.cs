@@ -3,12 +3,16 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BBS.Data;
 using BBS.Models;
 using System.Configuration;
+using BBS.BL.Managers;
 
 namespace BBS.UnitTest
 {
     [TestClass]
     public class DbCreationTest
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void SetupDb()
         {
@@ -27,6 +31,20 @@ namespace BBS.UnitTest
                 var rowsAffected = ctx.SaveChanges();
                 Assert.IsTrue(rowsAffected > 0);
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [TestMethod]
+        public void SetupData()
+        {
+            var testResult = false;
+            using (var manager = new DataConfigurationManager())
+            {
+                testResult = manager.SetupDataAsync().Result;
+            }
+            Assert.IsTrue(testResult);
         }
     }
 }

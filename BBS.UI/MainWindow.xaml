@@ -7,7 +7,7 @@
         <Menu HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Grid.Row="0" Margin="0,0,0,0" >
             <MenuItem Header="File" Margin="0">
                 <MenuItem x:Name="menuItemHome" Header="Home" />
-                <MenuItem x:Name="menuItemControlPanel" Header="Control panel" />
+                <MenuItem x:Name="menuItemInvoiceManagement" Header="Invoice management" Click="menuItemInvoiceManagement_Click" />
                 <MenuItem x:Name="menuExit" Header="Exit"/>
             </MenuItem>
             <MenuItem Header="Admin" Margin="0">
@@ -17,7 +17,7 @@
                 <MenuItem x:Name="menuBankManagement" Header="Manage banks" Click="menuBankManagement_Click"/>
             </MenuItem>
         </Menu>
-        <ContentControl x:Name="ccParentContainer" Margin="0,25,0,0">
+        <ContentControl x:Name="ccParentContainer" Margin="10,25,10,10">
         </ContentControl>
     </Grid>
 </Window>

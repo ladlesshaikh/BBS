@@ -64,6 +64,26 @@ namespace BBS.Data
         /// 
         /// </summary>
         public DbSet<Product> Products { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<CreditTermsValidityType> CreditTermsValidityTypes { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<InvoiceDocument> InvoiceDocuments { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<InvoiceBillingType> InvoiceBillingTypes { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<PaymentType> PaymentTypes { get; set; }
         #endregion
 
         ///// <summary>

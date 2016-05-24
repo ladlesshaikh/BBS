@@ -49,9 +49,9 @@
     <Compile Include="Base\RepositoryBase.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Interface\IRepository.cs" />
-    <Compile Include="Migrations\201605230919446_Initial.cs" />
-    <Compile Include="Migrations\201605230919446_Initial.Designer.cs">
-      <DependentUpon>201605230919446_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201605240930086_Initial.cs" />
+    <Compile Include="Migrations\201605240930086_Initial.Designer.cs">
+      <DependentUpon>201605240930086_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ORM\DataContext.cs" />
@@ -73,8 +73,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605230919446_Initial.resx">
-      <DependentUpon>201605230919446_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201605240930086_Initial.resx">
+      <DependentUpon>201605240930086_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

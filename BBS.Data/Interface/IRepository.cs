@@ -73,7 +73,7 @@ namespace BBS.Data
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        Task<bool> IsExists(Expression<Func<T, bool>> predicate);
+        Task<bool> IsExistsAsync(Expression<Func<T, bool>> predicate);
 
         /// <summary>
         /// 

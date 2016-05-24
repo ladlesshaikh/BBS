@@ -13,7 +13,7 @@ namespace BBS.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201605230919446_Initial"; }
+            get { return "201605240930086_Initial"; }
         }
         
         string IMigrationMetadata.Source

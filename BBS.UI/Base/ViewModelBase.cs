@@ -94,7 +94,7 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
-        private void PopulateItems()
+        protected virtual void PopulateItems()
         {
             var itemList = manager.GetAllAsync().Result;
             items = new ObservableCollection<T>(itemList);

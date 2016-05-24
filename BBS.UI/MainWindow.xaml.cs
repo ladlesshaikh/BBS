@@ -1,4 +1,5 @@
-﻿using BBS.UI.Xamals;
+﻿using BBS.BL.Managers;
+using BBS.UI.Xamals;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace BBS.UI
         public MainWindow()
         {
             InitializeComponent();
+            SetupData();
         }
 
         private void menuProductManagement_Click(object sender, RoutedEventArgs e)
@@ -44,6 +46,28 @@ namespace BBS.UI
         private void menuBankManagement_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void SetupData()
+        {
+            var testResult = false;
+            using (var manager = new DataConfigurationManager())
+            {
+                testResult = manager.SetupDataAsync().Result;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuItemInvoiceManagement_Click(object sender, RoutedEventArgs e)
+        {
+            ccParentContainer.Content = new InvoiceManagementUC();
         }
     }
 }

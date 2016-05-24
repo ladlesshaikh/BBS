@@ -10,36 +10,41 @@ namespace BBS.Models
     /// <summary>
     /// 
     /// </summary>
-    [Table("Customers")]
-    public class Customer : ModelBase
+    [Table("InvoiceItems")]
+    public class InvoiceItem : ModelBase
     {
         /// <summary>
         /// 
         /// </summary>
-        public Customer()
-        {
-            AddressDetails = new Address();
-            TaxDetails = new TaxDetail();
-
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Name { get; set; }
+        public DateTime Date { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual Address AddressDetails { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual TaxDetail TaxDetails { get; set; }
+        public Double Quantity { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public virtual ICollection<InvoiceItem> InvoiceItems { get; set; }
+        public Double UnitCost { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual InvoiceBillingType InvoiceType { get; set; }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [Table("InvoiceBillingTypes")]
+    public class InvoiceBillingType : KeyValueBase
+    {
+
     }
 }

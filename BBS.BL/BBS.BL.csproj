@@ -49,7 +49,9 @@
     <Compile Include="Base\ManagerBase.cs" />
     <Compile Include="Interface\IManager.cs" />
     <Compile Include="Managers\CompanyManager.cs" />
+    <Compile Include="Managers\DataConfigurationManager.cs" />
     <Compile Include="Managers\CustomerManager.cs" />
+    <Compile Include="Managers\InvoiceDocumentManager.cs" />
     <Compile Include="Managers\ProductManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

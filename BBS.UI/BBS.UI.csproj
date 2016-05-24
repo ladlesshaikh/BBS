@@ -64,12 +64,16 @@
     <Compile Include="Commands\UserActionOrCommand.cs" />
     <Compile Include="ViewModels\CompanyViewModel.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\InvoiceDocumentViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="Xamals\CompanyManagementUC.xaml.cs">
       <DependentUpon>CompanyManagementUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Xamals\CustomerManagementUC.xaml.cs">
       <DependentUpon>CustomerManagementUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Xamals\InvoiceManagementUC.xaml.cs">
+      <DependentUpon>InvoiceManagementUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Xamals\ProductManagementUC.xaml.cs">
       <DependentUpon>ProductManagementUC.xaml</DependentUpon>
@@ -91,6 +95,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Xamals\CustomerManagementUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Xamals\InvoiceManagementUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

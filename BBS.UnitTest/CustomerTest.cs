@@ -1,4 +1,4 @@
-﻿using BBS.BL.Managers;
+﻿using BBS.BL;
 using BBS.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
