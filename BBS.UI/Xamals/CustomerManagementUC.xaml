@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <DataGrid AutoGenerateColumns="False" Height="226" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
@@ -15,7 +16,7 @@
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding AddressDetails.SubUrb,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="SubUrb" x:Name="dgCustomerSubUrb" >
                 </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding AddressDetailsPostalCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="PostalCode" x:Name="dgCustomerPostalCode" >
+                <DataGridTextColumn Binding="{Binding AddressDetails.PostalCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="PostalCode" x:Name="dgCustomerPostalCode" >
                 </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding Path=TaxDetails.TaxNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="TaxNo" x:Name="dgCustomerTaxNo" >
                 </DataGridTextColumn>
@@ -37,6 +38,11 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="BeginningEdit">
+                    <i:InvokeCommandAction Command="{Binding Path=DataContext.ItemBeginningEditCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </DataGrid>
     </Grid>
 </UserControl>

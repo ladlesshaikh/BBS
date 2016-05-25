@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BBS.Data;
 using BBS.Models;
 using System.Configuration;
-using BBS.BL.Managers;
+using BBS.BL;
 
 namespace BBS.UnitTest
 {

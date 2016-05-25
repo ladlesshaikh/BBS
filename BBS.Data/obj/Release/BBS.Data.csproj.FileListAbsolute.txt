@@ -1,0 +1,13 @@
+D:\Data\Projects\Pilot\BBS\BBS.Data\bin\Release\BBS.Data.dll
+D:\Data\Projects\Pilot\BBS\BBS.Data\bin\Release\BBS.Data.pdb
+D:\Data\Projects\Pilot\BBS\BBS.Data\bin\Release\BBS.Models.dll
+D:\Data\Projects\Pilot\BBS\BBS.Data\bin\Release\EntityFramework.dll
+D:\Data\Projects\Pilot\BBS\BBS.Data\bin\Release\EntityFramework.SqlServer.dll
+D:\Data\Projects\Pilot\BBS\BBS.Data\bin\Release\BBS.Models.pdb
+D:\Data\Projects\Pilot\BBS\BBS.Data\bin\Release\EntityFramework.xml
+D:\Data\Projects\Pilot\BBS\BBS.Data\bin\Release\EntityFramework.SqlServer.xml
+D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Release\BBS.Data.csprojResolveAssemblyReference.cache
+D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Release\BBS.Data.Migrations.Initial.resources
+D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Release\BBS.Data.csproj.GenerateResource.Cache
+D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Release\BBS.Data.dll
+D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Release\BBS.Data.pdb

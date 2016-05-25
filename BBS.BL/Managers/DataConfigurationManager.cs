@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BBS.BL.Managers
+namespace BBS.BL
 {
     /// <summary>
     /// 
@@ -27,6 +27,20 @@ namespace BBS.BL.Managers
             return retVal;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<T>> GetDataConfigurationAsync<T>() where T : ModelBase
+        {
+            IEnumerable<T> retVal = null;
+            using (var repository = new RepositoryBase<T>(Helper.GetDataContext()))
+            {
+                retVal = await repository.GetAsync();
+            }
+            return retVal;
+        }
+        
         /// <summary>
         /// 
         /// </summary>

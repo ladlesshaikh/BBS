@@ -1,10 +1,9 @@
+D:\Data\Projects\Pilot\BBS\BBS.Models\bin\Debug\BBS.Models.dll.config
 D:\Data\Projects\Pilot\BBS\BBS.Models\bin\Debug\BBS.Models.dll
 D:\Data\Projects\Pilot\BBS\BBS.Models\bin\Debug\BBS.Models.pdb
-D:\Data\Projects\Pilot\BBS\BBS.Models\obj\Debug\BBS.Models.dll
-D:\Data\Projects\Pilot\BBS\BBS.Models\obj\Debug\BBS.Models.pdb
-D:\Data\Projects\Pilot\BBS\BBS.Models\bin\Debug\BBS.Models.dll.config
 D:\Data\Projects\Pilot\BBS\BBS.Models\bin\Debug\EntityFramework.dll
 D:\Data\Projects\Pilot\BBS\BBS.Models\bin\Debug\EntityFramework.SqlServer.dll
 D:\Data\Projects\Pilot\BBS\BBS.Models\bin\Debug\EntityFramework.xml
 D:\Data\Projects\Pilot\BBS\BBS.Models\bin\Debug\EntityFramework.SqlServer.xml
-D:\Data\Projects\Pilot\BBS\BBS.Models\obj\Debug\BBS.Models.csprojResolveAssemblyReference.cache
+D:\Data\Projects\Pilot\BBS\BBS.Models\obj\Debug\BBS.Models.dll
+D:\Data\Projects\Pilot\BBS\BBS.Models\obj\Debug\BBS.Models.pdb

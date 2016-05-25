@@ -16,15 +16,6 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
-        public Customer()
-        {
-            AddressDetails = new Address();
-            TaxDetails = new TaxDetail();
-
-        }
-        /// <summary>
-        /// 
-        /// </summary>
         public string Name { get; set; }
 
         /// <summary>

@@ -90,6 +90,10 @@ namespace BBS.UI
         /// </summary>
         public UserActionOrCommand CanceCommand { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public UserActionOrCommand ItemBeginningEditCommand { get; set; }
 
         /// <summary>
         /// 
@@ -107,6 +111,7 @@ namespace BBS.UI
         {
             UpdateCommand = new UserActionOrCommand(UpdateCommandHandler);
             DeleteCommand = new UserActionOrCommand(DeleteCommandHandler);
+            ItemBeginningEditCommand = new UserActionOrCommand(ItemBeginningEditCommandHandler);
         }
         #region Command handlers
         /// <summary>
@@ -136,6 +141,18 @@ namespace BBS.UI
             if (updateResult)
             {
                 Items.Remove(SelectedItem);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="param"></param>
+        public virtual void ItemBeginningEditCommandHandler(object param)
+        {
+            if (null == SelectedItem)
+            {
+                SelectedItem = default(T);
             }
         }
         #endregion

@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="1024" d:DesignWidth="1024">
+             d:DesignHeight="1024" d:DesignWidth="1024"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
     <Grid x:Name="grdInvoiceManagement">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -84,7 +85,7 @@
                 </GroupBox>
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="0">
-                <Grid>
+                <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
@@ -94,7 +95,7 @@
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
                     <GroupBox Header="Doc details" Grid.Column="0" Grid.Row="0">
-                        <Grid>
+                        <Grid >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
@@ -109,7 +110,16 @@
                             <Label Content="Reference :" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right"/>
                             <TextBox x:Name="txtReference"  Grid.Column="1" Grid.Row="1"/>
                             <Label Content="Credit terms/validity:" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right"/>
-                            <ComboBox x:Name="ddCreditTermsValidity" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left"/>
+                            <ComboBox x:Name="ddCreditTermsValidity" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" ItemsSource="{Binding Path=DataContext.CreditTermsOrValidityTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay}"
+                   SelectedItem="{Binding SelectedCreditTermsOrValidityType}" >
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Value}"></TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Billing details" Grid.Column="0" Grid.Row="1">
@@ -154,7 +164,16 @@
                             <Label Content="Email:" Grid.Column="0" Grid.Row="6" HorizontalContentAlignment="Right"/>
                             <TextBox x:Name="lblCustomerEmail" Grid.Column="1" Grid.Row="6" Text="{Binding Path=DataContext.SelectedCustomer.AddressDetails.Email,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
                             <Label Content="Form of Payment:" Grid.Column="0" Grid.Row="7" HorizontalContentAlignment="Right"/>
-                            <ComboBox x:Name="ddPaymentType" Grid.Column="1" Grid.Row="7"></ComboBox>
+                            <ComboBox x:Name="ddPaymentType" Grid.Column="1" Grid.Row="7" ItemsSource="{Binding Path=DataContext.PaymentTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"
+                               SelectedItem="{Binding SelectedPaymentType}" >
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Value}"></TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
                             <Button Content="Save Customer"  Grid.Column="2" Grid.Row="0" Margin="5,0,5,2"></Button>
                             <Button Content="Update"  Grid.Column="2" Grid.Row="1" Margin="5,0,5,2"></Button>
                             <Button Content="Delete"  Grid.Column="2" Grid.Row="2" Margin="5,0,5,2"></Button>
@@ -167,16 +186,22 @@
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="2*" />
                         </Grid.RowDefinitions>
                         <GroupBox Header="Type" Grid.Column="0" Grid.Row="0">
-                            <ListBox ItemsSource="{Binding temp}" SelectedItem="{Binding temp}">
+                            <ListBox Margin="2" 
+                                ItemsSource="{Binding Path=DataContext.InvoiceDocumentTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" SelectedItem="{Binding temp}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel IsItemsHost="True" />
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
                                 <ListBox.ItemContainerStyle>
                                     <Style TargetType="{x:Type ListBoxItem}">
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                                    <RadioButton Content="{TemplateBinding Content}"
+                                                    <RadioButton Content="{Binding Value}"
                                                     IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsSelected}"/>
                                                 </ControlTemplate>
                                             </Setter.Value>
@@ -186,13 +211,13 @@
                             </ListBox>
                         </GroupBox>
                         <GroupBox Header="Measurement and Charge" Grid.Column="1" Grid.Row="0">
-                            <ListBox ItemsSource="{Binding temp1}" SelectedItem="{Binding temp1}">
+                            <ListBox ItemsSource="{Binding Path=DataContext.InvoiceBillingTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" SelectedItem="{Binding temp1}">
                                 <ListBox.ItemContainerStyle>
                                     <Style TargetType="{x:Type ListBoxItem}">
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                                    <CheckBox Content="{Binding}" Margin="3" IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" />
+                                                    <CheckBox Content="{Binding Value}" Margin="3" IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" />
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
@@ -206,21 +231,45 @@
 
             </StackPanel>
         </Grid>
-        <DataGrid Grid.Column="0" Grid.Row="1" AutoGenerateColumns="False" Height="226" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
-          HorizontalAlignment="Left" Margin="0,0,0,0" Name="dgCustomer" VerticalAlignment="Top"  ColumnWidth="*" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Date" x:Name="dgCustomerName">
-                </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding AddressDetails.StreetNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Description" x:Name="dgCustomerStreet">
-                </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding AddressDetails.SubUrb,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Qty" x:Name="dgCustomerSubUrb" >
-                </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding AddressDetailsPostalCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Cost" x:Name="dgCustomerPostalCode" >
-                </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Path=TaxDetails.TaxNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Anmount" x:Name="dgCustomerTaxNo" >
-                </DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.Resources>
+                <!--DataTemplate for Published Date column defined in Grid.Resources.  PublishDate is a property on the ItemsSource of type DateTime -->
+                <DataTemplate x:Key="DateTemplate" >
+                    <StackPanel>
+                        <!--<Border Background="LightBlue" BorderBrush="Black" BorderThickness="1">-->
+                        <!--<TextBlock Text="{Binding Date, StringFormat={}{0:MMM}}" FontSize="8" HorizontalAlignment="Center" />-->
+                        <TextBlock Text="{Binding Date}" />
+                        <!--</Border>-->
+                        <!--<Border Background="White" BorderBrush="Black" BorderThickness="1">
+                            <TextBlock Text="{Binding Date, StringFormat={}{0:yyyy}}" FontSize="8" FontWeight="Bold" HorizontalAlignment="Center" />
+                        </Border>-->
+                    </StackPanel>
+                </DataTemplate>
+                <!--DataTemplate for the Published Date column when in edit mode. -->
+                <DataTemplate x:Key="EditingDateTemplate">
+                    <DatePicker SelectedDate="{Binding Date}"  />
+                </DataTemplate>
+            </Grid.Resources>
+            <DataGrid  AutoGenerateColumns="False" Height="226" ItemsSource="{Binding DataContext.InvoiceItems,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay}"  
+           HorizontalAlignment="Left" Margin="0,0,0,0" Name="dgInvoiceItems" VerticalAlignment="Top"  ColumnWidth="*" RowEditEnding="dgInvoiceItems_RowEditEnding">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Date" CellTemplate="{StaticResource DateTemplate}" CellEditingTemplate="{StaticResource EditingDateTemplate}" />
+                    <DataGridTextColumn Binding="{Binding Description,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Description" x:Name="dgInvoiceDescription">
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Quantity,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Qty" x:Name="dgInvoiceQuantity" >
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding UnitCost,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Cost" x:Name="dgInvoiceUnitCost" >
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Path=Amount,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Anmount" x:Name="dgInvoiceAmount" >
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="RowEditEnding">
+                        <i:InvokeCommandAction Command="{Binding Path=DataContext.InvoiceItemAddedUpdatedCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </DataGrid>
+        </Grid>
         <Grid Grid.Column="0" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
@@ -248,11 +297,11 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <Label Content="Sub Total :" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Right"></Label>
-                <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Width="150"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Width="150" Text="{Binding DataContext.InvoiceTotals.SubTotal,Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>
                 <Label Content="Tax :" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right"></Label>
-                <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Width="150"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Width="150" Text="{Binding DataContext.InvoiceTotals.Tax,Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>
                 <Label Content="Total" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right"></Label>
-                <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Width="150"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Width="150" Text="{Binding DataContext.InvoiceTotals.Total, Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>
             </Grid>
         </Grid>
     </Grid>
