@@ -4,10 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" Background="#FFACDDE2">
     <Grid>
         <DataGrid AutoGenerateColumns="False"  Height="200" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
-          HorizontalAlignment="Left" Margin="0,0,0,0" Name="dgCompany" VerticalAlignment="Top"  ColumnWidth="*" >
+          HorizontalAlignment="Left" Margin="0,0,0,0" Name="dgCompany" VerticalAlignment="Top"  ColumnWidth="*" Background="#FFACDDE2">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Name" x:Name="dgCompanyName">
                 </DataGridTextColumn>

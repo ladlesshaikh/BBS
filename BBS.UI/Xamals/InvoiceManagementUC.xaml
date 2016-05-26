@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="1024" d:DesignWidth="1024"
-             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" Background="#FFACDDE2">
+
     <Grid x:Name="grdInvoiceManagement">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -106,12 +107,12 @@
                                 <RowDefinition Height="1*" />
                             </Grid.RowDefinitions>
                             <Label Content="Doc Date:" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Right"/>
-                            <DatePicker x:Name="dateDocDate" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"/>
+                            <DatePicker x:Name="dateDocDate" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Text="{Binding DataContext.SelectedItem.DocDate,Mode=TwoWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" />
                             <Label Content="Reference :" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right"/>
-                            <TextBox x:Name="txtReference"  Grid.Column="1" Grid.Row="1"/>
+                            <TextBox x:Name="txtReference"  Grid.Column="1" Grid.Row="1" Text="{Binding DataContext.SelectedItem.Reference,Mode=TwoWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
                             <Label Content="Credit terms/validity:" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right"/>
-                            <ComboBox x:Name="ddCreditTermsValidity" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" ItemsSource="{Binding Path=DataContext.CreditTermsOrValidityTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay}"
-                   SelectedItem="{Binding SelectedCreditTermsOrValidityType}" >
+                            <ComboBox x:Name="ddCreditTermsValidity" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Path=DataContext.CreditTermsOrValidityTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay}"
+                                        SelectedItem="{Binding SelectedCreditTermsOrValidityType}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
@@ -152,19 +153,19 @@
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                             <Label Content="Customer Name:" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right"/>
-                            <TextBox x:Name="lCustomerName" Grid.Column="1" Grid.Row="1" Text="{Binding Path=DataContext.SelectedCustomer.Name,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                            <TextBox x:Name="lCustomerName" Grid.Column="1" Grid.Row="1" Text="{Binding Path=DataContext.SelectedCustomer.Name,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <Label Content="Suburb:" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right"/>
-                            <TextBox x:Name="lblCustomerSuburb" Grid.Column="1" Grid.Row="2" Text="{Binding Path=DataContext.SelectedCustomer.AddressDetails.SubUrb,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                            <TextBox x:Name="lblCustomerSuburb" Grid.Column="1" Grid.Row="2" Text="{Binding Path=DataContext.SelectedCustomer.AddressDetails.SubUrb,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <Label Content="Postal code:" Grid.Column="0" Grid.Row="3" HorizontalContentAlignment="Right"/>
-                            <TextBox x:Name="lblCustomerPostalCode" Grid.Column="1" Grid.Row="3" Text="{Binding Path=DataContext.SelectedCustomer.AddressDetails.PostalCode,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                            <TextBox x:Name="lblCustomerPostalCode" Grid.Column="1" Grid.Row="3" Text="{Binding Path=DataContext.SelectedCustomer.AddressDetails.PostalCode,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <Label Content="Tax No:" Grid.Column="0" Grid.Row="4" HorizontalContentAlignment="Right"/>
-                            <TextBox x:Name="lblCustomerTaxNo" Grid.Column="1" Grid.Row="4" Text="{Binding Path=DataContext.SelectedCustomer.TaxDetails.TaxNo,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                            <TextBox x:Name="lblCustomerTaxNo" Grid.Column="1" Grid.Row="4" Text="{Binding Path=DataContext.SelectedCustomer.TaxDetails.TaxNo,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <Label Content="Line 6 :" Grid.Column="0" Grid.Row="5" HorizontalContentAlignment="Right"/>
                             <TextBox x:Name="lblLine6" Grid.Column="1" Grid.Row="5"/>
                             <Label Content="Email:" Grid.Column="0" Grid.Row="6" HorizontalContentAlignment="Right"/>
-                            <TextBox x:Name="lblCustomerEmail" Grid.Column="1" Grid.Row="6" Text="{Binding Path=DataContext.SelectedCustomer.AddressDetails.Email,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                            <TextBox x:Name="lblCustomerEmail" Grid.Column="1" Grid.Row="6" Text="{Binding Path=DataContext.SelectedCustomer.AddressDetails.Email,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <Label Content="Form of Payment:" Grid.Column="0" Grid.Row="7" HorizontalContentAlignment="Right"/>
-                            <ComboBox x:Name="ddPaymentType" Grid.Column="1" Grid.Row="7" ItemsSource="{Binding Path=DataContext.PaymentTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"
+                            <ComboBox x:Name="ddPaymentType" Grid.Column="1" Grid.Row="7" ItemsSource="{Binding Path=DataContext.PaymentTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                SelectedItem="{Binding SelectedPaymentType}" >
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -174,10 +175,22 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <Button Content="Save Customer"  Grid.Column="2" Grid.Row="0" Margin="5,0,5,2"></Button>
-                            <Button Content="Update"  Grid.Column="2" Grid.Row="1" Margin="5,0,5,2"></Button>
-                            <Button Content="Delete"  Grid.Column="2" Grid.Row="2" Margin="5,0,5,2"></Button>
-                            <Button Content="Add"  Grid.Column="2" Grid.Row="3" Margin="5,0,5,2"></Button>
+                            <Button Content="Save Customer"  Grid.Column="2" Grid.Row="0" Margin="5,0,5,2" 
+                                    Command="{Binding DataContext.UpdateOrSaveCustomerCommand,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" 
+                                    CommandParameter="{Binding DataContext.SelectedCustomer,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}">
+                            </Button>
+                            <Button Content="Update"  Grid.Column="2" Grid.Row="1" Margin="5,0,5,2"
+                                    Command="{Binding DataContext.UpdateOrSaveCustomerCommand,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" 
+                                    CommandParameter="{Binding DataContext.SelectedCustomer,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}">
+                            </Button>
+                            <Button Content="Delete"  Grid.Column="2" Grid.Row="2" Margin="5,0,5,2"
+                                    Command="{Binding DataContext.DeleteCustomerCommand,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" 
+                                    CommandParameter="{Binding DataContext.SelectedCustomer,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}">
+                            </Button>
+                            <!--<Button Content="Add"  Grid.Column="2" Grid.Row="3" Margin="5,0,5,2"
+                                    Command="{Binding DataContext.AddCustomerCommand,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" 
+                                    CommandParameter="{Binding DataContext.SelectedCustomer,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}">
+                            </Button>-->
                         </Grid>
                     </GroupBox>
                     <Grid Grid.Column="0" Grid.Row="2">
@@ -190,7 +203,7 @@
                         </Grid.RowDefinitions>
                         <GroupBox Header="Type" Grid.Column="0" Grid.Row="0">
                             <ListBox Margin="2" 
-                                ItemsSource="{Binding Path=DataContext.InvoiceDocumentTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" SelectedItem="{Binding temp}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                ItemsSource="{Binding Path=DataContext.InvoiceDocumentTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" SelectedItem="{Binding temp}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Background="#FFACDDE2">
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <WrapPanel IsItemsHost="True" />
@@ -211,13 +224,15 @@
                             </ListBox>
                         </GroupBox>
                         <GroupBox Header="Measurement and Charge" Grid.Column="1" Grid.Row="0">
-                            <ListBox ItemsSource="{Binding Path=DataContext.InvoiceBillingTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" SelectedItem="{Binding temp1}">
+                            <ListBox ItemsSource="{Binding Path=DataContext.InvoiceBillingTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" SelectedItem="{Binding SelectedInvoiceBillingType}" BorderThickness="0" Background="#FFACDDE2">
                                 <ListBox.ItemContainerStyle>
                                     <Style TargetType="{x:Type ListBoxItem}">
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                                    <CheckBox Content="{Binding Value}" Margin="3" IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" />
+                                                    <CheckBox Content="{Binding Value}" Margin="3" IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" 
+                                                              Command="{Binding DataContext.InvoiceBillingTypeSelectionChangedCommand,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" 
+                                                              CommandParameter="{Binding DataContext.SelectedInvoiceBillingType,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" />
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
@@ -251,16 +266,21 @@
                 </DataTemplate>
             </Grid.Resources>
             <DataGrid  AutoGenerateColumns="False" Height="226" ItemsSource="{Binding DataContext.InvoiceItems,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay}"  
-           HorizontalAlignment="Left" Margin="0,0,0,0" Name="dgInvoiceItems" VerticalAlignment="Top"  ColumnWidth="*" RowEditEnding="dgInvoiceItems_RowEditEnding">
+           HorizontalAlignment="Left" Margin="0,0,0,0" Name="dgInvoiceItems" VerticalAlignment="Top"  ColumnWidth="*" RowEditEnding="dgInvoiceItems_RowEditEnding" Background="#FFACDDE2" BorderBrush="#FF85B8EA" Foreground="#FF5A656A">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Date" CellTemplate="{StaticResource DateTemplate}" CellEditingTemplate="{StaticResource EditingDateTemplate}" />
+                    <DataGridTemplateColumn Header="{Binding DataContext.InvoiceItemDataGridHeaders.Date,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" CellTemplate="{StaticResource DateTemplate}" CellEditingTemplate="{StaticResource EditingDateTemplate}" />
                     <DataGridTextColumn Binding="{Binding Description,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Description" x:Name="dgInvoiceDescription">
+                        <!--<DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DataContext.InvoiceItemDataGridHeaders.Description, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>-->
                     </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Quantity,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Qty" x:Name="dgInvoiceQuantity" >
+                    <DataGridTextColumn Binding="{Binding Quantity,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Quanitiy" x:Name="dgInvoiceQuantity" >
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding UnitCost,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Cost" x:Name="dgInvoiceUnitCost" >
                     </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Path=Amount,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Anmount" x:Name="dgInvoiceAmount" >
+                    <DataGridTextColumn Binding="{Binding Path=Amount,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True" Header="Anmount" x:Name="dgInvoiceAmount" >
                     </DataGridTextColumn>
                 </DataGrid.Columns>
                 <i:Interaction.Triggers>
@@ -283,8 +303,12 @@
             <TextBox Grid.Column="0" Margin="10,0,0,10"></TextBox>
             <Label Content="Total Items :" Grid.Column="1"></Label>
             <StackPanel Grid.Column="2">
-                <Button Content="Save and Preview" Width="100"></Button>
-                <Button Content="Delete Doc" Width="100" Margin="0,10,0,0"></Button>
+                <Button Content="Save and Preview" Width="100" 
+                        Command="{Binding Path=DataContext.UpdateCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"  
+                        CommandParameter="{Binding Path=DataContext.SelectedItem,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}">
+                </Button>
+                <Button Content="Delete Doc" Width="100" Margin="0,10,0,0">
+                </Button>
             </StackPanel>
             <Grid Grid.Column="3" HorizontalAlignment="Left">
                 <Grid.ColumnDefinitions>
@@ -292,16 +316,16 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
+                    <RowDefinition Height=".1*" />
+                    <RowDefinition Height=".1*" />
+                    <RowDefinition Height=".1*" />
                 </Grid.RowDefinitions>
                 <Label Content="Sub Total :" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Right"></Label>
-                <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Width="150" Text="{Binding DataContext.InvoiceTotals.SubTotal,Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="30" IsReadOnly="True" Text="{Binding DataContext.InvoiceTotals.SubTotal,Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>
                 <Label Content="Tax :" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right"></Label>
-                <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Width="150" Text="{Binding DataContext.InvoiceTotals.Tax,Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="30" IsReadOnly="True" Text="{Binding DataContext.InvoiceTotals.Tax,Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>
                 <Label Content="Total" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right"></Label>
-                <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Width="150" Text="{Binding DataContext.InvoiceTotals.Total, Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="30" IsReadOnly="True" Text="{Binding DataContext.InvoiceTotals.Total, Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>
             </Grid>
         </Grid>
     </Grid>

@@ -120,7 +120,7 @@ namespace BBS.UI
         /// <param name="param"></param>
         public void UpdateCommandHandler(object param)
         {
-            var updateResult = manager.AddOrUpdateAsync(SelectedItem).Result;
+            var updateResult = manager.AddOrUpdateAsync((T)param).Result;
             if (updateResult)
             {
                 // RaisePropertyChanged("Name");
@@ -137,7 +137,7 @@ namespace BBS.UI
         /// <param name="param"></param>
         public void DeleteCommandHandler(object param)
         {
-            var updateResult = manager.DeleteAsync(SelectedItem).Result;
+            var updateResult = manager.DeleteAsync((T)param).Result;
             if (updateResult)
             {
                 Items.Remove(SelectedItem);

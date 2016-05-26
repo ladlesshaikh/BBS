@@ -1,4 +1,0 @@
-D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Debug\BBS.Data.pdb
-D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Debug\BBS.Data.csprojResolveAssemblyReference.cache
-D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Debug\BBS.Data.Migrations.Initial.resources
-D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Debug\BBS.Data.csproj.GenerateResource.Cache

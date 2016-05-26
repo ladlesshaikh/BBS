@@ -23,6 +23,11 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
+        public virtual Company Company { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public virtual CreditTermsValidityType CreditTermsOrValidity { get; set; }
 
         /// <summary>

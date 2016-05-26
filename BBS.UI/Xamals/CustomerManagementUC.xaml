@@ -5,10 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" Background="#FFACDDE2">
     <Grid>
         <DataGrid AutoGenerateColumns="False" Height="226" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
-          HorizontalAlignment="Left" Margin="0,0,0,0" Name="dgCustomer" VerticalAlignment="Top"  ColumnWidth="*" >
+          HorizontalAlignment="Left" Margin="0,0,0,0" Name="dgCustomer" VerticalAlignment="Top"  ColumnWidth="*" Background="#FFACDDE2">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Name" x:Name="dgCustomerName">
                 </DataGridTextColumn>
@@ -26,14 +26,17 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Update" x:Name="btnUpdate" Command="{Binding Path=DataContext.UpdateCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"  
-                                    CommandParameter="{Binding Path=DataContext.SelectedItem,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"></Button>
+                                    CommandParameter="{Binding Path=SelectedItem,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"></Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Delete" x:Name="btnDelete" Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"></Button>
+                            <Button Content="Delete" x:Name="btnDelete" 
+                                    Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"
+                                    CommandParameter="{Binding Path=SelectedItem,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}">
+                            </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
