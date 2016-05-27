@@ -6,7 +6,7 @@
     <Grid>
         <Menu HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Margin="0,0,0,0" Background="#FFACDDE2" >
             <MenuItem Header="File" Margin="0">
-                <MenuItem x:Name="menuItemHome" Header="Home" Background="#FFACDDE2" />
+                <MenuItem x:Name="menuItemHome" Header="Home" Background="#FFACDDE2" Click="menuItemHome_Click" />
                 <MenuItem x:Name="menuItemInvoiceManagement" Header="Invoice management" Click="menuItemInvoiceManagement_Click" Background="#FFACDDE2" />
                 <MenuItem x:Name="menuExit" Header="Exit" Background="#FFACDDE2" />
             </MenuItem>

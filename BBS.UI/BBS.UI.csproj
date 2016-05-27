@@ -67,6 +67,7 @@
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\InvoiceDocumentViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
+    <Compile Include="ViewModels\PureTestViewModel.cs" />
     <Compile Include="Xamals\CompanyManagementUC.xaml.cs">
       <DependentUpon>CompanyManagementUC.xaml</DependentUpon>
     </Compile>
@@ -78,6 +79,9 @@
     </Compile>
     <Compile Include="Xamals\ProductManagementUC.xaml.cs">
       <DependentUpon>ProductManagementUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Xamals\PureTestUC.xaml.cs">
+      <DependentUpon>PureTestUC.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -104,6 +108,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Xamals\ProductManagementUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Xamals\PureTestUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

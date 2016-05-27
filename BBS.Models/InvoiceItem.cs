@@ -69,5 +69,16 @@ namespace BBS.Models
     public class InvoiceBillingType : KeyValueBase
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
+        [NotMapped]
+        public bool IsHourlyBased
+        {
+            get
+            {
+                return Key == "hourlybased";
+            }
+        }
     }
 }

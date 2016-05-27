@@ -69,5 +69,15 @@ namespace BBS.UI
         {
             ccParentContainer.Content = new InvoiceManagementUC();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuItemHome_Click(object sender, RoutedEventArgs e)
+        {
+            ccParentContainer.Content = new PureTestUC();
+        }
     }
 }

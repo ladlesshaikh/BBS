@@ -232,7 +232,7 @@
                                                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                                                     <CheckBox Content="{Binding Value}" Margin="3" IsChecked="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" 
                                                               Command="{Binding DataContext.InvoiceBillingTypeSelectionChangedCommand,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" 
-                                                              CommandParameter="{Binding DataContext.SelectedInvoiceBillingType,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" />
+                                                              CommandParameter="{Binding SelectedInvoiceBillingType}" />
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
@@ -268,20 +268,46 @@
             <DataGrid  AutoGenerateColumns="False" Height="226" ItemsSource="{Binding DataContext.InvoiceItems,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay}"  
            HorizontalAlignment="Left" Margin="0,0,0,0" Name="dgInvoiceItems" VerticalAlignment="Top"  ColumnWidth="*" RowEditEnding="dgInvoiceItems_RowEditEnding" Background="#FFACDDE2" BorderBrush="#FF85B8EA" Foreground="#FF5A656A">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="{Binding DataContext.InvoiceItemDataGridHeaders.Date,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" CellTemplate="{StaticResource DateTemplate}" CellEditingTemplate="{StaticResource EditingDateTemplate}" />
-                    <DataGridTextColumn Binding="{Binding Description,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Description" x:Name="dgInvoiceDescription">
-                        <!--<DataGridTextColumn.HeaderTemplate>
+                    <DataGridTemplateColumn  CellTemplate="{StaticResource DateTemplate}" CellEditingTemplate="{StaticResource EditingDateTemplate}" >
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="{Binding DataContext.InvoiceItemDataGridHeaders.Date, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"/>
+                        </DataGridTemplateColumn.Header>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Binding="{Binding Description,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="dgInvoiceDescription">
+                        <DataGridTextColumn.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding DataContext.InvoiceItemDataGridHeaders.Description, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                                <TextBlock Text="{Binding DataContext.InvoiceItemDataGridHeaders.Description, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"/>
                             </DataTemplate>
-                        </DataGridTextColumn.HeaderTemplate>-->
+                        </DataGridTextColumn.HeaderTemplate>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Quantity,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Quanitiy" x:Name="dgInvoiceQuantity" >
+                    <DataGridTextColumn Binding="{Binding Quantity,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  x:Name="dgInvoiceQuantity" >
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DataContext.InvoiceItemDataGridHeaders.Quantity, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"/>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding UnitCost,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Cost" x:Name="dgInvoiceUnitCost" >
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DataContext.InvoiceItemDataGridHeaders.Cost, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"/>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding Path=Amount,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True" Header="Anmount" x:Name="dgInvoiceAmount" >
                     </DataGridTextColumn>
+                    <!--<DataGridTextColumn>
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DataContext.InvoiceItemDataGridHeaders.Quantity, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="{Binding DataContext.TestColumn, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                        </DataGridTemplateColumn.Header>
+                    </DataGridTemplateColumn>-->
                 </DataGrid.Columns>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="RowEditEnding">

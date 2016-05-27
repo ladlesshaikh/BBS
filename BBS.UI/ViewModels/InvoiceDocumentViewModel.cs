@@ -16,10 +16,7 @@ namespace BBS.UI
     {
         #region Local resoucre declarations
 
-        /// <summary>
-        /// 
-        /// </summary>
-        private InvoiceItemDataGridHeader InvoiceItemDataGridHeaders { get; set; }
+
 
         /// <summary>
         /// 
@@ -71,6 +68,10 @@ namespace BBS.UI
         #endregion
 
         #region Public properties
+        /// <summary>
+        /// 
+        /// </summary>
+        public InvoiceItemDataGridHeader InvoiceItemDataGridHeaders { get; set; }
 
         /// <summary>
         /// 
@@ -187,7 +188,7 @@ namespace BBS.UI
         /// 
         /// </summary>
         public InvoiceTotal InvoiceTotals { get; set; }
-      
+
         #endregion
 
         #region UserActionOrCommands
@@ -343,7 +344,8 @@ namespace BBS.UI
         public void InvoiceBillingTypeSelectionChangedCommandHandler(object param)
         {
             int i = 0;
-            RaisePropertyChanged("InvoiceItemDataGridHeaders");
+
+            ResetInvoiceItemGridToSelectedBillingType();
         }
         /// <summary>
         /// 
@@ -387,6 +389,15 @@ namespace BBS.UI
         public void InvoiceItemAddedUpdatedCommandHandler(object param)
         {
             CalculateInvoiceTotals();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void ResetInvoiceItemGridToSelectedBillingType()
+        {
+            InvoiceItemDataGridHeaders.IsBillingTypeHourBased = SelectedInvoiceBillingType.IsHourlyBased;
+            RaisePropertyChanged("InvoiceItemDataGridHeaders");
         }
         #endregion
     }
@@ -467,7 +478,7 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
-        public string Quanitiy { get { return IsBillingTypeHourBased ? hours : quantitiy; } set { } }
+        public string Quantity { get { return IsBillingTypeHourBased ? hours : quantitiy; } set { } }
 
         /// <summary>
         /// 
