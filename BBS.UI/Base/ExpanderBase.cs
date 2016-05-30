@@ -51,15 +51,22 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
-        public T NewProduct { get; set; }
+        public T NewItem { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void InitializeNewItem()
+        {
+            NewItem = NewItem ?? new T();
+        }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="param"></param>
         public void ExpandedCommandhandler(object param)
         {
-            NewProduct = NewProduct ?? new T();
+            InitializeNewItem();
             RaiseOnNewProductChanged();
         }
 
@@ -69,7 +76,7 @@ namespace BBS.UI
         /// <param name="param"></param>
         public void CollapsedCommandHandler(object param)
         {
-            NewProduct = null;
+            NewItem = null;
             RaiseOnNewProductChanged();
         }
 
@@ -79,7 +86,7 @@ namespace BBS.UI
         /// <param name="param"></param>
         public override void ItemSelectionChangedCommandHandler(object param)
         {
-            NewProduct = SelectedItem;
+            NewItem = SelectedItem;
             RaiseOnNewProductChanged();
             OpenExpander();
         }
@@ -138,7 +145,7 @@ namespace BBS.UI
         /// </summary>
         private void RaiseOnNewProductChanged()
         {
-            RaisePropertyChanged("NewProduct");
+            RaisePropertyChanged("NewItem");
         }
     }
 }

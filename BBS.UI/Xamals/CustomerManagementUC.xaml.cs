@@ -23,7 +23,7 @@ namespace BBS.UI.Xamals
         public CustomerManagementUC()
         {
             InitializeComponent();
-            dgCustomer.DataContext = new CustomerViewModel();
+            mainGrid.DataContext = new CustomerViewModel();
         }
     }
 }
