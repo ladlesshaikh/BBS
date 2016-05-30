@@ -61,6 +61,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Base\ExpanderBase.cs" />
     <Compile Include="Base\ViewModelBase.cs" />
     <Compile Include="Commands\UserActionOrCommand.cs" />
     <Compile Include="ViewModels\CompanyViewModel.cs" />
