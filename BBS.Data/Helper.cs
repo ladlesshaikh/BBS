@@ -24,5 +24,13 @@ namespace BBS.Data
         {
             return context ?? (context = new DataContext());
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void ReleaseDataContext()
+        {
+            context = null;
+        }
     }
 }

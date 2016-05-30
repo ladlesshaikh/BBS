@@ -31,6 +31,17 @@ namespace BBS.BL
         /// 
         /// </summary>
         /// <returns></returns>
+        public async Task<bool> ReleaseDataContextAsync()
+        {
+            var retVal = false;
+            Helper.ReleaseDataContext();
+            retVal = true;
+            return retVal;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<T>> GetDataConfigurationAsync<T>() where T : ModelBase
         {
             IEnumerable<T> retVal = null;
@@ -40,7 +51,7 @@ namespace BBS.BL
             }
             return retVal;
         }
-        
+
         /// <summary>
         /// 
         /// </summary>

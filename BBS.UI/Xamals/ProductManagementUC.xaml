@@ -38,18 +38,19 @@
                                     <RowDefinition Height="1*"></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <Label Grid.Column="0" Grid.Row="0" Content="Name : " HorizontalContentAlignment="Right"></Label>
-                                <TextBox x:Name="txtProductName" Grid.Column="1" Grid.Row="0" Height="25" Width="200" VerticalAlignment="Top" Text="{Binding DataContext.SelectedItem.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></TextBox>
+                                <TextBox x:Name="txtProductName" Grid.Column="1" Grid.Row="0" Height="25" Width="200" VerticalAlignment="Top" Text="{Binding DataContext.NewProduct.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></TextBox>
                                 <Label Grid.Column="0" Grid.Row="1" Content="Description: " HorizontalContentAlignment="Right" ></Label>
-                                <TextBox Grid.Column="1" Grid.Row="1" Height="25" VerticalAlignment="Top" Text="{Binding DataContext.SelectedItem.Description,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></TextBox>
+                                <TextBox Grid.Column="1" Grid.Row="1" Height="25" VerticalAlignment="Top" Text="{Binding DataContext.NewProduct.Description,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></TextBox>
                                 <Label Grid.Column="0" Grid.Row="2" Content="Value : " HorizontalContentAlignment="Right"></Label>
-                                <TextBox Grid.Column="1" Grid.Row="2" Height="25" VerticalAlignment="Top" Text="{Binding DataContext.SelectedItem.Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></TextBox>
+                                <TextBox Grid.Column="1" Grid.Row="2" Height="25" VerticalAlignment="Top" Text="{Binding DataContext.NewProduct.Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></TextBox>
                             </Grid>
                             <WrapPanel Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Right">
                                 <Button Content="Save" Margin="2" Height="20" Width="50" Command="{Binding Path=DataContext.UpdateCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"  
-                                    CommandParameter="{Binding Path=DataContext.SelectedItem, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></Button>
+                                    CommandParameter="{Binding Path=DataContext.NewProduct, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></Button>
                                 <Button Content="Delete" Margin="2" Height="20" Width="50" Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"  
-                                    CommandParameter="{Binding Path=DataContext.SelectedItem,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></Button>
-                                <Button x:Name="bttnCancel" Content="Cancel" Margin="2" Height="20" Width="50" Click="bttnCancel_Click"></Button>
+                                    CommandParameter="{Binding Path=DataContext.NewProduct,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></Button>
+                                <Button Content="Cancel" Margin="2" Height="20" Width="50" Command="{Binding Path=DataContext.CancelCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"  
+                                    CommandParameter="{Binding Path=DataContext.NewProduct,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></Button>
                             </WrapPanel>
 
                         </Grid>

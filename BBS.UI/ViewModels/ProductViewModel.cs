@@ -42,7 +42,7 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
-        public bool IsNewProduct { get { return true; } set { } }
+        public Product NewProduct { get; set; }
 
         /// <summary>
         /// 
@@ -60,8 +60,8 @@ namespace BBS.UI
         /// <param name="param"></param>
         public void ExpandedCommandhandler(object param)
         {
-            SelectedItem = SelectedItem ?? new Product();
-            RaisePropertyChanged("SelectedItem");
+            NewProduct = NewProduct ?? new Product();
+            RaisePropertyChanged("NewProduct");
         }
 
         /// <summary>
@@ -70,8 +70,8 @@ namespace BBS.UI
         /// <param name="param"></param>
         public void CollapsedCommandHandler(object param)
         {
-            SelectedItem = null;
-            RaisePropertyChanged("SelectedItem");
+            NewProduct = null;
+            RaisePropertyChanged("NewProduct");
         }
 
         /// <summary>
@@ -80,7 +80,8 @@ namespace BBS.UI
         /// <param name="param"></param>
         public override void ItemSelectionChangedCommandHandler(object param)
         {
-            RaisePropertyChanged("SelectedItem");
+            NewProduct = SelectedItem;
+            RaisePropertyChanged("NewProduct");
             OpenExpander();
         }
 
@@ -104,6 +105,19 @@ namespace BBS.UI
             CollapseExpander();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="param"></param>
+        public override void CancelCommandHandler(object param)
+        {
+            using (var dataConfigurationManger = new DataConfigurationManager())
+            {
+                var result = dataConfigurationManger.ReleaseDataContextAsync().Result;
+            }
+            CollapseExpander();
+            base.CancelCommandHandler(param);
+        }
         /// <summary>
         /// 
         /// </summary>

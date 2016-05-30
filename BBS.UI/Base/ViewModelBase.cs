@@ -88,7 +88,7 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
-        public UserActionOrCommand CanceCommand { get; set; }
+        public UserActionOrCommand CancelCommand { get; set; }
 
         /// <summary>
         /// 
@@ -106,6 +106,7 @@ namespace BBS.UI
         {
             var itemList = manager.GetAllAsync().Result;
             items = new ObservableCollection<T>(itemList);
+            RaisePropertyChanged("Items");
         }
 
         /// <summary>
@@ -115,6 +116,7 @@ namespace BBS.UI
         {
             UpdateCommand = new UserActionOrCommand(UpdateCommandHandler);
             DeleteCommand = new UserActionOrCommand(DeleteCommandHandler);
+            CancelCommand = new UserActionOrCommand(CancelCommandHandler);
             ItemBeginningEditCommand = new UserActionOrCommand(ItemBeginningEditCommandHandler);
             ItemSelectionChangedCommand = new UserActionOrCommand(ItemSelectionChangedCommandHandler);
         }
@@ -136,10 +138,23 @@ namespace BBS.UI
             var updateResult = manager.AddOrUpdateAsync((T)param).Result;
             if (updateResult)
             {
-                items.Add((T)param);
+                PopulateItems();
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="param"></param>
+        public virtual void CancelCommandHandler(object param)
+        {
+            PopulateItems();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public bool CanDeleted()
         {
             return null != SelectedItem;
