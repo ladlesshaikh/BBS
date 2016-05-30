@@ -4,40 +4,85 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Background="#FFACDDE2">
-    <Grid>
-        <DataGrid AutoGenerateColumns="False"  ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+             d:DesignHeight="300" d:DesignWidth="300" Background="#FFACDDE2"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+    <Grid Margin="10" x:Name="mainGrid">
+        <StackPanel>
+            <Expander x:Name="expander" Header="Add Product" Grid.Column="0" Grid.Row="0" IsExpanded="{Binding IsExpanded}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Expanded" >
+                        <i:InvokeCommandAction Command="{Binding Path=DataContext.ExpandedCommand, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Grid}}}" CommandParameter="{Binding SelectedItem}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="Collapsed" >
+                        <i:InvokeCommandAction Command="{Binding Path=DataContext.CollapsedCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}" CommandParameter="{Binding SelectedItem}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <StackPanel Margin="10,4,0,0">
+                    <GroupBox  Header="Product details">
+                        <Grid HorizontalAlignment="Left">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="3.5*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Column="0" Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Content="Name : " HorizontalContentAlignment="Right"></Label>
+                                <TextBox x:Name="txtProductName" Grid.Column="1" Grid.Row="0" Height="25" Width="200" VerticalAlignment="Top" Text="{Binding DataContext.SelectedItem.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></TextBox>
+                                <Label Grid.Column="0" Grid.Row="1" Content="Description: " HorizontalContentAlignment="Right" ></Label>
+                                <TextBox Grid.Column="1" Grid.Row="1" Height="25" VerticalAlignment="Top" Text="{Binding DataContext.SelectedItem.Description,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></TextBox>
+                                <Label Grid.Column="0" Grid.Row="2" Content="Value : " HorizontalContentAlignment="Right"></Label>
+                                <TextBox Grid.Column="1" Grid.Row="2" Height="25" VerticalAlignment="Top" Text="{Binding DataContext.SelectedItem.Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></TextBox>
+                            </Grid>
+                            <WrapPanel Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Right">
+                                <Button Content="Save" Margin="2" Height="20" Width="50" Command="{Binding Path=DataContext.UpdateCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"  
+                                    CommandParameter="{Binding Path=DataContext.SelectedItem, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></Button>
+                                <Button Content="Delete" Margin="2" Height="20" Width="50" Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"  
+                                    CommandParameter="{Binding Path=DataContext.SelectedItem,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></Button>
+                                <Button x:Name="bttnCancel" Content="Cancel" Margin="2" Height="20" Width="50" Click="bttnCancel_Click"></Button>
+                            </WrapPanel>
+
+                        </Grid>
+                    </GroupBox>
+                </StackPanel>
+            </Expander>
+            <DataGrid AutoGenerateColumns="False"  ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
           HorizontalAlignment="Left" Margin="0,0,0,0"
-          Name="dgProduct" VerticalAlignment="Top"  ColumnWidth="*"
-          RowEditEnding="dgProduct_RowEditEnding"  CellEditEnding="dgProduct_CellEditEnding"
-          SelectionChanged="dgProduct_SelectionChanged" Background="#FFACDDE2">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Name" x:Name="dgProductName">
-                </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Description,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Description" x:Name="dgProductDescription">
-                </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Value" x:Name="dgProductSalary" >
-                </DataGridTextColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Update" x:Name="btnUpdate" Command="{Binding Path=DataContext.UpdateCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"  
+          Name="dgProduct" VerticalAlignment="Top"  ColumnWidth="*" CanUserAddRows="False" IsReadOnly="True" Background="#FFACDDE2">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Name" x:Name="dgProductName">
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Description,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Description" x:Name="dgProductDescription">
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Value,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Value" x:Name="dgProductSalary" >
+                    </DataGridTextColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Select" x:Name="btnUpdate" Command="{Binding Path=DataContext.ItemSelectionChangedCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"  
                                     CommandParameter="{Binding Path=SelectedItem,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"></Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--<DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Delete" x:Name="btnDelete" Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"></Button>
+                            <Button Content="Delete" x:Name="btnDelete" Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        <!--<TextBlock Height="55" HorizontalAlignment="Left" Margin="1,50,0,0"
-               Name="textBlock1" VerticalAlignment="Top" Width="693"
-                Text="WPF DataGrid for Update and Delete Operations"               
-                TextAlignment="Center" FontFamily="Verdana" FontSize="28" />-->
+                </DataGridTemplateColumn>-->
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
     </Grid>
 </UserControl>

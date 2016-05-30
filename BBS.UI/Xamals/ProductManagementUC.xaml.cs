@@ -25,7 +25,7 @@ namespace BBS.UI.Xamals
         public ProductManagementUC()
         {
             InitializeComponent();
-            dgProduct.DataContext = new ProductViewModel();
+            mainGrid.DataContext = new ProductViewModel();
         }
 
         private void dgProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -84,6 +84,16 @@ namespace BBS.UI.Xamals
             //    objContext.SaveChanges();
             //    MessageBox.Show("Record Deleted..");
             //}
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bttnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            expander.IsExpanded = false;
         }
     }
 }

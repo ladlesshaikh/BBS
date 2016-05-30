@@ -98,6 +98,10 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
+        public UserActionOrCommand ItemSelectionChangedCommand { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual void PopulateItems()
         {
             var itemList = manager.GetAllAsync().Result;
@@ -112,18 +116,27 @@ namespace BBS.UI
             UpdateCommand = new UserActionOrCommand(UpdateCommandHandler);
             DeleteCommand = new UserActionOrCommand(DeleteCommandHandler);
             ItemBeginningEditCommand = new UserActionOrCommand(ItemBeginningEditCommandHandler);
+            ItemSelectionChangedCommand = new UserActionOrCommand(ItemSelectionChangedCommandHandler);
         }
         #region Command handlers
         /// <summary>
         /// 
         /// </summary>
         /// <param name="param"></param>
-        public void UpdateCommandHandler(object param)
+        public virtual void ItemSelectionChangedCommandHandler(object param)
+        {
+            RaisePropertyChanged("SelectedItem");
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="param"></param>
+        public virtual void UpdateCommandHandler(object param)
         {
             var updateResult = manager.AddOrUpdateAsync((T)param).Result;
             if (updateResult)
             {
-                // RaisePropertyChanged("Name");
+                items.Add((T)param);
             }
         }
 
@@ -135,7 +148,7 @@ namespace BBS.UI
         /// 
         /// </summary>
         /// <param name="param"></param>
-        public void DeleteCommandHandler(object param)
+        public virtual void DeleteCommandHandler(object param)
         {
             var updateResult = manager.DeleteAsync((T)param).Result;
             if (updateResult)
