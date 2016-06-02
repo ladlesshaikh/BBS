@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BBS.UI
 {
-    public class CompanyViewModel : ViewModelBase<Company>
+    public class CompanyViewModel : ExpanderBase<Company>
     {
         /// <summary>
         /// 

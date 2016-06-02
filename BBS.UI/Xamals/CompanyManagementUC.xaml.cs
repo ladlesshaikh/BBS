@@ -23,7 +23,7 @@ namespace BBS.UI.Xamals
         public CompanyManagementUC()
         {
             InitializeComponent();
-            dgCompany.DataContext = new CompanyViewModel();
+            mainGrid.DataContext = new CompanyViewModel();
         }
     }
 }
