@@ -40,5 +40,10 @@ namespace BBS.Models
         /// 
         /// </summary>
         public string Account { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string LogoImage { get; set; }
     }
 }

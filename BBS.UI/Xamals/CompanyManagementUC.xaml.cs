@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,21 @@ namespace BBS.UI.Xamals
         {
             InitializeComponent();
             mainGrid.DataContext = new CompanyViewModel();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bttnLogoImage_Click(object sender, RoutedEventArgs e)
+        {
+            var fileDialuge = new OpenFileDialog();
+
+            if (fileDialuge.ShowDialog() == true)
+            {
+                txtCompanyLogo.Text = fileDialuge.FileName;
+            }
         }
     }
 }

@@ -7,4 +7,3 @@ D:\Data\Projects\Pilot\BBS\BBS.Models\bin\Release\EntityFramework.xml
 D:\Data\Projects\Pilot\BBS\BBS.Models\bin\Release\EntityFramework.SqlServer.xml
 D:\Data\Projects\Pilot\BBS\BBS.Models\obj\Release\BBS.Models.dll
 D:\Data\Projects\Pilot\BBS\BBS.Models\obj\Release\BBS.Models.pdb
-D:\Data\Projects\Pilot\BBS\BBS.Models\obj\Release\BBS.Models.csprojResolveAssemblyReference.cache

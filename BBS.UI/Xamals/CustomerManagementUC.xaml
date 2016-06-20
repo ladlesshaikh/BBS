@@ -30,7 +30,7 @@
                             <Grid Grid.Column="0" Grid.Row="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1*"></ColumnDefinition>
-                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="5*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="1*"></RowDefinition>
@@ -77,7 +77,7 @@
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding AddressDetails.PostalCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="PostalCode" x:Name="dgCustomerPostalCode" >
                     </DataGridTextColumn>
-                    <DataGridTextColumn Binding="{Binding Path=TaxDetails.TaxNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="TaxNo" x:Name="dgCustomerTaxNo" >
+                    <DataGridTextColumn Binding="{Binding Path=Tax.TaxNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="TaxNo" x:Name="dgCustomerTaxNo" >
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding AddressDetails.Email,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Header="Email" x:Name="dgCustomerEmail" >
                     </DataGridTextColumn>

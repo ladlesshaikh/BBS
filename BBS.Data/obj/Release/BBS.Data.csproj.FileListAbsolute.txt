@@ -12,3 +12,4 @@ D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Release\BBS.Data.Migrations.Initial1.res
 D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Release\BBS.Data.csproj.GenerateResource.Cache
 D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Release\BBS.Data.dll
 D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Release\BBS.Data.pdb
+D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Release\BBS.Data.Migrations.LogoPropertyToCompany.resources
