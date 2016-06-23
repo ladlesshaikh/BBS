@@ -36,7 +36,6 @@ namespace BBS.Models
         /// </summary>
         public string CKRegNo { get; set; }
 
-
         /// <summary>
         /// 
         /// </summary>

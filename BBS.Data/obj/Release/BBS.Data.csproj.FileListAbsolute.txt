@@ -1,7 +1,7 @@
+D:\Data\Projects\Pilot\BBS\BBS.Data\bin\Release\EntityFramework.dll
 D:\Data\Projects\Pilot\BBS\BBS.Data\bin\Release\BBS.Data.dll
 D:\Data\Projects\Pilot\BBS\BBS.Data\bin\Release\BBS.Data.pdb
 D:\Data\Projects\Pilot\BBS\BBS.Data\bin\Release\BBS.Models.dll
-D:\Data\Projects\Pilot\BBS\BBS.Data\bin\Release\EntityFramework.dll
 D:\Data\Projects\Pilot\BBS\BBS.Data\bin\Release\EntityFramework.SqlServer.dll
 D:\Data\Projects\Pilot\BBS\BBS.Data\bin\Release\BBS.Models.pdb
 D:\Data\Projects\Pilot\BBS\BBS.Data\bin\Release\EntityFramework.xml
@@ -10,6 +10,8 @@ D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Release\BBS.Data.csprojResolveAssemblyRe
 D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Release\BBS.Data.Migrations.Initial.resources
 D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Release\BBS.Data.Migrations.Initial1.resources
 D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Release\BBS.Data.Migrations.LogoPropertyToCompany.resources
+D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Release\BBS.Data.Migrations.LogoPropertyToCompany1.resources
 D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Release\BBS.Data.csproj.GenerateResource.Cache
 D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Release\BBS.Data.dll
 D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Release\BBS.Data.pdb
+D:\Data\Projects\Pilot\BBS\BBS.Data\obj\Release\BBS.Data.Migrations.LogoPropertyToCompany2.resources

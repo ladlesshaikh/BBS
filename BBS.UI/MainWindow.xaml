@@ -13,7 +13,10 @@
                 <MenuItem x:Name="menuItemCreateInvoice" Header="New" Background="#FFACDDE2" Click="menuItemCreateInvoice_Click" />
                 <MenuItem x:Name="menuItemViewInvoices" Header="View" Click="menuItemViewInvoices_Click" Background="#FFACDDE2" />
             </MenuItem>
-            <MenuItem Header="Admin" Margin="0">
+            <MenuItem Header="Payment" Margin="0">
+                <MenuItem x:Name="menuPaymentCollection" Header="Collection" Background="#FFACDDE2" Click="menuPaymentCollection_Click" />
+            </MenuItem>
+            <MenuItem Header="Configuration" Margin="0">
                 <MenuItem x:Name="menuProductManagement" Header="Products" Click="menuProductManagement_Click" Background="#FFACDDE2" />
                 <MenuItem x:Name="menuCompanyManagement" Header="Companies" Click="menuCompanyManagement_Click" Background="#FFACDDE2" />
                 <MenuItem x:Name="menuCustomerManagement" Header="Customers" Click="menuCustomerManagement_Click" Background="#FFACDDE2" />

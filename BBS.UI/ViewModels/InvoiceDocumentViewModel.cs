@@ -174,6 +174,7 @@ namespace BBS.UI
                 SelectedItem.Customer = value;
                 NotifyPropertyChanged("SelectedCustomer");
                 NotifyPropertyChanged("InvoiceItems");
+                NotifySelectedItemChange();
             }
         }
 
@@ -267,12 +268,6 @@ namespace BBS.UI
                 SelectedItem.Customer.InvoiceItems = value;
             }
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public InvoiceTotal InvoiceTotals { get; set; }
-
         #endregion
 
         #region UserActionOrCommands
@@ -492,11 +487,8 @@ namespace BBS.UI
         /// <returns></returns>
         private void CalculateInvoiceTotals()
         {
-            InvoiceTotals = new InvoiceTotal();
-            InvoiceTotals.SubTotal = InvoiceItems.Sum(i => i.Amount);
-            InvoiceTotals.Tax = null == SelectedItem.Company ? 0.0 : SelectedItem.Company.Tax.Rate;
             SelectedItem.Customer.InvoiceItems = InvoiceItems;
-            NotifyPropertyChanged("InvoiceTotals");
+            NotifySelectedItemChange();
         }
 
         /// <summary>
@@ -599,29 +591,29 @@ namespace BBS.UI
     /// <summary>
     /// 
     /// </summary>
-    public class InvoiceTotal
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        public Double SubTotal { get; set; }
+    //public class InvoiceTotal
+    //{
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    public Double SubTotal { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public Double Tax { get; set; }
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    public Double Tax { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public Double Total
-        {
-            get
-            {
-                return SubTotal + Tax;
-            }
-        }
-    }
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    public Double Total
+    //    {
+    //        get
+    //        {
+    //            return SubTotal + Tax;
+    //        }
+    //    }
+    //}
 
     /// <summary>
     /// 

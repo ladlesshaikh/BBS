@@ -83,6 +83,9 @@
     <Compile Include="Xamals\InvoiceManagementUC.xaml.cs">
       <DependentUpon>InvoiceManagementUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Xamals\PaymentCollectionUC.xaml.cs">
+      <DependentUpon>PaymentCollectionUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Xamals\ProductManagementUC.xaml.cs">
       <DependentUpon>ProductManagementUC.xaml</DependentUpon>
     </Compile>
@@ -110,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Xamals\InvoiceManagementUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Xamals\PaymentCollectionUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

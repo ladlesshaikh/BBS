@@ -50,6 +50,16 @@ namespace BBS.UI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        private void menuPaymentCollection_Click(object sender, RoutedEventArgs e)
+        {
+            ccParentContainer.Content = new PaymentCollectionUC();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void menuItemViewInvoices_Click(object sender, RoutedEventArgs e)
         {
 

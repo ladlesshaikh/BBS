@@ -257,6 +257,8 @@
         </Grid>
         <Grid Grid.Column="0" Grid.Row="1">
             <Grid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#808080"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent" />
                 <!--DataTemplate for Published Date column defined in Grid.Resources.  PublishDate is a property on the ItemsSource of type DateTime -->
                 <DataTemplate x:Key="DateTemplate" >
                     <StackPanel>
@@ -392,11 +394,11 @@
                     <RowDefinition Height=".1*" />
                 </Grid.RowDefinitions>
                 <Label Content="Sub Total :" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Right"></Label>
-                <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="30" IsReadOnly="True" Text="{Binding DataContext.InvoiceTotals.SubTotal,Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="30" IsReadOnly="True" Text="{Binding DataContext.SelectedItem.SubTotal,Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>
                 <Label Content="Tax :" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right"></Label>
-                <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="30" IsReadOnly="True" Text="{Binding DataContext.InvoiceTotals.Tax,Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="30" IsReadOnly="True" Text="{Binding DataContext.SelectedItem.Tax,Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>
                 <Label Content="Total" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right"></Label>
-                <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="30" IsReadOnly="True" Text="{Binding DataContext.InvoiceTotals.Total, Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="30" IsReadOnly="True" Text="{Binding DataContext.SelectedItem.TotalAmount, Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>
             </Grid>
         </Grid>
     </Grid>

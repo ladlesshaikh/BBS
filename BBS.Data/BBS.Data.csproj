@@ -61,6 +61,14 @@
     <Compile Include="Migrations\201606201130231_LogoPropertyToCompany.Designer.cs">
       <DependentUpon>201606201130231_LogoPropertyToCompany.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606230912038_LogoPropertyToCompany1.cs" />
+    <Compile Include="Migrations\201606230912038_LogoPropertyToCompany1.Designer.cs">
+      <DependentUpon>201606230912038_LogoPropertyToCompany1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606230925155_LogoPropertyToCompany2.cs" />
+    <Compile Include="Migrations\201606230925155_LogoPropertyToCompany2.Designer.cs">
+      <DependentUpon>201606230925155_LogoPropertyToCompany2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ORM\DataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,6 +98,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606201130231_LogoPropertyToCompany.resx">
       <DependentUpon>201606201130231_LogoPropertyToCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606230912038_LogoPropertyToCompany1.resx">
+      <DependentUpon>201606230912038_LogoPropertyToCompany1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606230925155_LogoPropertyToCompany2.resx">
+      <DependentUpon>201606230925155_LogoPropertyToCompany2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

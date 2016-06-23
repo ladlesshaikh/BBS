@@ -60,6 +60,13 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
+        protected void NotifySelectedItemChange()
+        {
+            NotifyPropertyChanged("SelectedItem");
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         public ObservableCollection<T> Items
         {
             get
