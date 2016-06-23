@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
+             xmlns:behaviors="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
              d:DesignHeight="1024" d:DesignWidth="1024"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" Background="#FFACDDE2">
 
@@ -25,6 +27,10 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <StackPanel  Grid.Column="0" Grid.Row="0">
+                <!--<TextBox Width="250" HorizontalAlignment="Center"
+                            Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" 
+                            behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding DataContext.ProductCatlauge,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" 
+                            behaviors:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase" />-->
                 <ComboBox x:Name="ddCompanyList" ItemsSource="{Binding Path=DataContext.Companies,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"
                    SelectedItem="{Binding SelectedCompany}" >
                     <ComboBox.ItemTemplate>
@@ -107,9 +113,11 @@
                                 <RowDefinition Height="1*" />
                             </Grid.RowDefinitions>
                             <Label Content="Doc Date:" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Right"/>
-                            <DatePicker x:Name="dateDocDate" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Text="{Binding DataContext.SelectedItem.DocDate,Mode=TwoWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" />
+                            <DatePicker x:Name="dateDocDate" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" SelectedDate="{ Binding SelectedDocDate}"
+                                        Text="{Binding DataContext.SelectedItem.DocDate,Mode=TwoWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" 
+                             />
                             <Label Content="Reference :" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right"/>
-                            <TextBox x:Name="txtReference"  Grid.Column="1" Grid.Row="1" Text="{Binding DataContext.SelectedItem.Reference,Mode=TwoWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                            <TextBox x:Name="txtReference"  Grid.Column="1" Grid.Row="1" Text="{Binding DataContext.Reference,Mode=TwoWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
                             <Label Content="Credit terms/validity:" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right"/>
                             <ComboBox x:Name="ddCreditTermsValidity" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Path=DataContext.CreditTermsOrValidityTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay}"
                                         SelectedItem="{Binding SelectedCreditTermsOrValidityType}">
@@ -264,8 +272,35 @@
                 <DataTemplate x:Key="EditingDateTemplate">
                     <DatePicker SelectedDate="{Binding Date}"  />
                 </DataTemplate>
+                <DataTemplate x:Key="DescriptionTemplate" >
+                    <Label Content="{Binding Description}" />
+                </DataTemplate>
+                <DataTemplate x:Key="EditingDescriptionTemplate">
+                    <StackPanel>
+                        <TextBox x:Name="inputBox"
+                            Text="{Binding Description,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Focusable="True"  >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="KeyUp">
+                                    <i:InvokeCommandAction Command="{Binding Path=DataContext.OnInvoiceItemDescriptionChange, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"
+                                                           CommandParameter="{Binding Text, ElementName=inputBox}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBox>
+                        <!--behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding DataContext.ProductCatlauge,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}" 
+                            behaviors:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase"/>-->
+                        <ListBox MaxHeight="40" x:Name="productList" 
+                                 ItemsSource="{Binding DataContext.FilteredProductCatlauge,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding Path=DataContext.OnProductSuggestionSelectionChanged, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"
+                                                           CommandParameter="{Binding SelectedItem, ElementName=productList}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ListBox>
+                    </StackPanel>
+                </DataTemplate>
             </Grid.Resources>
-            <DataGrid  AutoGenerateColumns="False" Height="226" ItemsSource="{Binding DataContext.InvoiceItems,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay}"  
+            <DataGrid  AutoGenerateColumns="False" Height="226" ItemsSource="{Binding DataContext.InvoiceItems,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay}" SelectedItem="{Binding SelectedInvoiceItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  
            HorizontalAlignment="Left" Margin="0,0,0,0" Name="dgInvoiceItems" VerticalAlignment="Top"  ColumnWidth="*" RowEditEnding="dgInvoiceItems_RowEditEnding" Background="#FFACDDE2" BorderBrush="#FF85B8EA" Foreground="#FF5A656A">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn  CellTemplate="{StaticResource DateTemplate}" CellEditingTemplate="{StaticResource EditingDateTemplate}" >
@@ -273,13 +308,20 @@
                             <TextBlock Text="{Binding DataContext.InvoiceItemDataGridHeaders.Date, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"/>
                         </DataGridTemplateColumn.Header>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Binding="{Binding Description,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="dgInvoiceDescription">
+                    <DataGridTemplateColumn  CellTemplate="{StaticResource DescriptionTemplate}" CellEditingTemplate="{StaticResource EditingDescriptionTemplate}" >
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="{Binding DataContext.InvoiceItemDataGridHeaders.Description, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"/>
+                        </DataGridTemplateColumn.Header>
+                    </DataGridTemplateColumn>
+                    <!--<DataGridTextColumn Binding="{Binding Description,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="dgInvoiceDescription"
+                                        behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding DataContext.ProductCatlauge, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}" behaviors:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase">
                         <DataGridTextColumn.HeaderTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding DataContext.InvoiceItemDataGridHeaders.Description, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"/>
+                                <TextBlock Text="{Binding DataContext.InvoiceItemDataGridHeaders.Description, Mode=TwoWay, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}">
+                                </TextBlock>
                             </DataTemplate>
                         </DataGridTextColumn.HeaderTemplate>
-                    </DataGridTextColumn>
+                    </DataGridTextColumn>-->
                     <DataGridTextColumn Binding="{Binding Quantity,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  x:Name="dgInvoiceQuantity" >
                         <DataGridTextColumn.HeaderTemplate>
                             <DataTemplate>

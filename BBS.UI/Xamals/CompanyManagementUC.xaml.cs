@@ -21,10 +21,18 @@ namespace BBS.UI.Xamals
     /// </summary>
     public partial class CompanyManagementUC : UserControl
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        private CompanyViewModel companyViewModel = null;
+        /// <summary>
+        /// 
+        /// </summary>
         public CompanyManagementUC()
         {
             InitializeComponent();
-            mainGrid.DataContext = new CompanyViewModel();
+            companyViewModel = new CompanyViewModel();
+            mainGrid.DataContext = companyViewModel;
         }
 
         /// <summary>
@@ -39,6 +47,31 @@ namespace BBS.UI.Xamals
             if (fileDialuge.ShowDialog() == true)
             {
                 txtCompanyLogo.Text = fileDialuge.FileName;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnErrorEvent(object sender, RoutedEventArgs e)
+        {
+            var validationEventArgs = e as ValidationErrorEventArgs;
+            if (validationEventArgs == null)
+                throw new Exception("Unexpected event args");
+            switch (validationEventArgs.Action)
+            {
+                case ValidationErrorEventAction.Added:
+                    companyViewModel.ErrorCount++;
+                    break;
+                case ValidationErrorEventAction.Removed:
+                    companyViewModel.ErrorCount--;
+                    break;
+                default:
+                    {
+                        throw new Exception("Unknown action");
+                    }
             }
         }
     }

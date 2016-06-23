@@ -96,14 +96,24 @@ namespace BBS.Data
             return dataContext.Set<T>().FirstOrDefault(predicate);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public async Task<bool> IsExistsAsync(Expression<Func<T, bool>> predicate)
         {
             return null != dataContext.Set<T>().FirstOrDefault(predicate);
         }
 
-        public Task<List<T>> GetAsync(Expression<Func<T, bool>> predicate)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public async Task<List<T>> GetAsync(Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return dataContext.Set<T>().Where(predicate).ToList();
         }
 
         /// <summary>

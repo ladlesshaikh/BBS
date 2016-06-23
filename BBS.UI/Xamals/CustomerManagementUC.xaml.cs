@@ -20,10 +20,43 @@ namespace BBS.UI.Xamals
     /// </summary>
     public partial class CustomerManagementUC : UserControl
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        private CustomerViewModel customerViewModel = null;
+
         public CustomerManagementUC()
         {
             InitializeComponent();
-            mainGrid.DataContext = new CustomerViewModel();
+            customerViewModel = new CustomerViewModel();
+            mainGrid.DataContext = customerViewModel;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnErrorEvent(object sender, RoutedEventArgs e)
+        {
+            var validationEventArgs = e as ValidationErrorEventArgs;
+            if (validationEventArgs == null)
+                throw new Exception("Unexpected event args");
+            switch (validationEventArgs.Action)
+            {
+                case ValidationErrorEventAction.Added:
+                    customerViewModel.ErrorCount++;
+                    break;
+                case ValidationErrorEventAction.Removed:
+                    customerViewModel.ErrorCount--;
+                    break;
+                default:
+                    {
+                        throw new Exception("Unknown action");
+                    }
+            }
         }
     }
+
+
 }

@@ -22,68 +22,18 @@ namespace BBS.UI.Xamals
     /// </summary>
     public partial class ProductManagementUC : UserControl
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        private ProductViewModel productViewModel=null;
+        /// <summary>
+        /// 
+        /// </summary>
         public ProductManagementUC()
         {
             InitializeComponent();
-            mainGrid.DataContext = new ProductViewModel();
-        }
-
-        private void dgProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //objEmpToEdit = dgProduct.SelectedItem as Employee;
-        }
-
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            //isUpdateMode = true;
-            //dgProduct.Columns[2].IsReadOnly = false;
-            //dgProduct.Columns[3].IsReadOnly = false;
-        }
-
-        private void dgProduct_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-
-            //if (isUpdateMode) //The Row is edited
-            //{
-            //    Employee TempEmp = (from emp in objContext.Employee
-            //                        where emp.EmpNo == objEmpToEdit.EmpNo
-            //                        select emp).First();
-
-
-            //    FrameworkElement element_1 = dgProduct.Columns[2].GetCellContent(e.Row);
-            //    if (element_1.GetType() == typeof(TextBox))
-            //    {
-            //        var xxSalary = ((TextBox)element_1).Text;
-            //        objEmpToEdit.Salary = Convert.ToInt32(xxSalary);
-            //    }
-            //    FrameworkElement element_2 = dgProduct.Columns[3].GetCellContent(e.Row);
-            //    if (element_2.GetType() == typeof(TextBox))
-            //    {
-            //        var yyDeptNo = ((TextBox)element_2).Text;
-            //        objEmpToEdit.DeptNo = Convert.ToInt32(yyDeptNo);
-            //    }
-            //}
-
-        }
-
-        private void dgProduct_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
-        {
-            //objContext.SaveChanges();
-            MessageBox.Show("The Current row updation is complete..");
-        }
-
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            //if (objEmpToEdit == null)
-            //{
-            //    MessageBox.Show("Cannot delete the blank Entry");
-            //}
-            //else
-            //{
-            //    objContext.DeleteObject(objEmpToEdit);
-            //    objContext.SaveChanges();
-            //    MessageBox.Show("Record Deleted..");
-            //}
+            productViewModel = new ProductViewModel();
+            mainGrid.DataContext = productViewModel;
         }
 
         /// <summary>
@@ -91,9 +41,24 @@ namespace BBS.UI.Xamals
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void bttnCancel_Click(object sender, RoutedEventArgs e)
+        private void OnErrorEvent(object sender, RoutedEventArgs e)
         {
-            expander.IsExpanded = false;
+            var validationEventArgs = e as ValidationErrorEventArgs;
+            if (validationEventArgs == null)
+                throw new Exception("Unexpected event args");
+            switch (validationEventArgs.Action)
+            {
+                case ValidationErrorEventAction.Added:
+                    productViewModel.ErrorCount++;
+                    break;
+                case ValidationErrorEventAction.Removed:
+                    productViewModel.ErrorCount--;
+                    break;
+                default:
+                    {
+                        throw new Exception("Unknown action");
+                    }
+            }
         }
     }
 }

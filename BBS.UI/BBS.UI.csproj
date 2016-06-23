@@ -55,6 +55,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFTextBoxAutoComplete">
+      <HintPath>..\packages\WPFTextBoxAutoComplete.1.0.2\lib\net40\WPFTextBoxAutoComplete.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -62,8 +65,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Base\ExpanderBase.cs" />
+    <Compile Include="Base\PropertyChangedNotificationBase.cs" />
     <Compile Include="Base\ViewModelBase.cs" />
     <Compile Include="Commands\UserActionOrCommand.cs" />
+    <Compile Include="Validators\RequiredFieldValidator.cs" />
     <Compile Include="ViewModels\CompanyViewModel.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\InvoiceDocumentViewModel.cs" />

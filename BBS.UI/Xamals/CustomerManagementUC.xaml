@@ -4,9 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
+             xmlns:c="clr-namespace:BBS.UI" 
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              d:DesignHeight="300" d:DesignWidth="300" Background="#FFACDDE2">
     <Grid Margin="10" x:Name="mainGrid">
+        <Grid.Resources>
+            <ControlTemplate x:Key="validationTemplate">
+                <DockPanel>
+                    <TextBlock Foreground="Red" FontSize="25" Text="*" DockPanel.Dock="Right">
+                    </TextBlock>
+                    <AdornedElementPlaceholder/>
+                </DockPanel>
+            </ControlTemplate>
+            <Style x:Key="InputControlErrors" TargetType="{x:Type TextBox}">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="true">
+                        <Setter Property="ToolTip"  Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
         <StackPanel>
             <Expander x:Name="expander" Header="Add Customer" Grid.Column="0" Grid.Row="0" IsExpanded="{Binding IsExpanded}">
                 <i:Interaction.Triggers>
@@ -18,7 +35,7 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <StackPanel Margin="10,4,0,0">
-                    <GroupBox  Header="Product details">
+                    <GroupBox  Header="Customer details">
                         <Grid HorizontalAlignment="Left">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -41,9 +58,26 @@
                                     <RowDefinition Height="1*"></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <Label Grid.Column="0" Grid.Row="0" Content="Name : " HorizontalContentAlignment="Right"></Label>
-                                <TextBox  Grid.Column="1" Grid.Row="0" Height="25" Width="200" VerticalAlignment="Top" Text="{Binding DataContext.NewItem.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></TextBox>
+                                <!--<TextBox  Grid.Column="1" Grid.Row="0" Height="25" Width="200" VerticalAlignment="Top" MaxLength="100" Text="{Binding DataContext.NewItem.Name,Mode=TwoWay,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></TextBox>-->
+                                <TextBox  Grid.Column="1" Grid.Row="0" Height="25" Width="200" VerticalAlignment="Top" MaxLength="100" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource InputControlErrors}" Validation.Error="OnErrorEvent" Margin="0,1,0,0" Grid.RowSpan="2">
+                                    <TextBox.Text>
+                                        <Binding Path="DataContext.NewItem.Name" Mode="TwoWay" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}">
+                                            <Binding.ValidationRules>
+                                                <c:RequiredFieldValidator></c:RequiredFieldValidator>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </TextBox.Text>
+                                </TextBox>
                                 <Label Grid.Column="0" Grid.Row="1" Content="Street: " HorizontalContentAlignment="Right" ></Label>
-                                <TextBox Grid.Column="1" Grid.Row="1" Height="25" VerticalAlignment="Top" Text="{Binding DataContext.NewItem.AddressDetails.StreetNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></TextBox>
+                                <TextBox Grid.Column="1" Grid.Row="1" Height="25" VerticalAlignment="Top" MaxLength="100" Validation.ErrorTemplate="{StaticResource validationTemplate}" Style="{StaticResource InputControlErrors}" Validation.Error="OnErrorEvent">
+                                    <TextBox.Text>
+                                        <Binding Path="DataContext.NewItem.AddressDetails.StreetNo" Mode="TwoWay" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" RelativeSource="{RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}">
+                                            <Binding.ValidationRules>
+                                                <c:RequiredFieldValidator></c:RequiredFieldValidator>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </TextBox.Text>
+                                </TextBox>
                                 <Label Grid.Column="0" Grid.Row="2" Content="SubUrb : " HorizontalContentAlignment="Right"></Label>
                                 <TextBox Grid.Column="1" Grid.Row="2" Height="25" VerticalAlignment="Top" Text="{Binding DataContext.NewItem.AddressDetails.SubUrb,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Expander}}}"></TextBox>
                                 <Label Grid.Column="0" Grid.Row="3" Content="Postal code: " HorizontalContentAlignment="Right"></Label>

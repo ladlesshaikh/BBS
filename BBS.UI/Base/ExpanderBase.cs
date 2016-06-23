@@ -44,7 +44,7 @@ namespace BBS.UI
             set
             {
                 isExpanded = value;
-                RaisePropertyChanged("IsExpanded");
+                NotifyPropertyChanged("IsExpanded");
             }
         }
 
@@ -60,6 +60,14 @@ namespace BBS.UI
         {
             NewItem = NewItem ?? new T();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected void RaiseOnNewItemChanged()
+        {
+            NotifyPropertyChanged("NewItem");
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -67,7 +75,7 @@ namespace BBS.UI
         public void ExpandedCommandhandler(object param)
         {
             InitializeNewItem();
-            RaiseOnNewProductChanged();
+            RaiseOnNewItemChanged();
         }
 
         /// <summary>
@@ -77,7 +85,7 @@ namespace BBS.UI
         public void CollapsedCommandHandler(object param)
         {
             NewItem = null;
-            RaiseOnNewProductChanged();
+            RaiseOnNewItemChanged();
         }
 
         /// <summary>
@@ -87,7 +95,7 @@ namespace BBS.UI
         public override void ItemSelectionChangedCommandHandler(object param)
         {
             NewItem = SelectedItem;
-            RaiseOnNewProductChanged();
+            RaiseOnNewItemChanged();
             OpenExpander();
         }
 
@@ -138,14 +146,6 @@ namespace BBS.UI
         private void CollapseExpander()
         {
             IsExpanded = false;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private void RaiseOnNewProductChanged()
-        {
-            RaisePropertyChanged("NewItem");
         }
     }
 }

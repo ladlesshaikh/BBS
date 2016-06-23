@@ -20,18 +20,22 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
-        IManager<T> manager = null;
+        protected IManager<T> manager = null;
 
         /// <summary>
         /// 
         /// </summary>
         private ObservableCollection<T> items = null;
 
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>
         /// 
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        public int ErrorCount = 0;
         #endregion
 
         #region Object constructions
@@ -48,7 +52,7 @@ namespace BBS.UI
         #endregion
 
         //basic ViewModelBase
-        protected void RaisePropertyChanged(string propertyName)
+        protected void NotifyPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null) { PropertyChanged(this, new PropertyChangedEventArgs(propertyName)); }
         }
@@ -106,7 +110,7 @@ namespace BBS.UI
         {
             var itemList = manager.GetAllAsync().Result;
             items = new ObservableCollection<T>(itemList);
-            RaisePropertyChanged("Items");
+            NotifyPropertyChanged("Items");
         }
 
         /// <summary>
@@ -114,8 +118,8 @@ namespace BBS.UI
         /// </summary>
         private void SetupCommandHandlers()
         {
-            UpdateCommand = new UserActionOrCommand(UpdateCommandHandler);
-            DeleteCommand = new UserActionOrCommand(DeleteCommandHandler);
+            UpdateCommand = new UserActionOrCommand(UpdateCommandHandler, CanSave);
+            DeleteCommand = new UserActionOrCommand(DeleteCommandHandler, CanDeleted);
             CancelCommand = new UserActionOrCommand(CancelCommandHandler);
             ItemBeginningEditCommand = new UserActionOrCommand(ItemBeginningEditCommandHandler);
             ItemSelectionChangedCommand = new UserActionOrCommand(ItemSelectionChangedCommandHandler);
@@ -127,7 +131,7 @@ namespace BBS.UI
         /// <param name="param"></param>
         public virtual void ItemSelectionChangedCommandHandler(object param)
         {
-            RaisePropertyChanged("SelectedItem");
+            NotifyPropertyChanged("SelectedItem");
         }
         /// <summary>
         /// 
@@ -155,9 +159,21 @@ namespace BBS.UI
         /// 
         /// </summary>
         /// <returns></returns>
-        public bool CanDeleted()
+        public bool CanDeleted(object parameter)
         {
-            return null != SelectedItem;
+            return null != SelectedItem && SelectedItem.Id > 0;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        protected virtual bool CanSave(object parameter)
+        {
+            var retVal = false;
+            retVal = ErrorCount == 0;
+            return retVal;
         }
         /// <summary>
         /// 
