@@ -18,6 +18,10 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
+        private InvoiceItem selectedInvoiceItem = null;
+        /// <summary>
+        /// 
+        /// </summary>
         private CustomerViewModel customerViewModel = null;
 
         /// <summary>
@@ -53,7 +57,44 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
-        public InvoiceItem SelectedInvoiceItem { get; set; }
+        public string SelectedInvoiceItemDescription
+        {
+            get
+            {
+                var retVal = string.Empty;
+                if (null != SelectedInvoiceItem)
+                {
+                    retVal = SelectedInvoiceItem.Description;
+                }
+                return retVal;
+            }
+            set
+            {
+                if (null != SelectedInvoiceItem)
+                {
+                    SelectedInvoiceItem.Description = value;
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public InvoiceItem SelectedInvoiceItem
+        {
+            get
+            {
+                if (null != selectedInvoiceItem && null == selectedInvoiceItem.InvoiceType)
+                {
+                    selectedInvoiceItem.Date = DateTime.Now;
+                    selectedInvoiceItem.InvoiceType = SelectedInvoiceBillingType;
+                }
+                return selectedInvoiceItem;
+            }
+            set
+            {
+                selectedInvoiceItem = value;
+            }
+        }
 
         /// <summary>
         /// 
@@ -101,6 +142,21 @@ namespace BBS.UI
             {
                 SelectedItem.Company = value;
                 NotifyPropertyChanged("SelectedCompany");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public InvoiceDocumentType SelectedInvoiceDocumentType
+        {
+            get
+            {
+                return SelectedItem.InvoiceDocumentType;
+            }
+            set
+            {
+                SelectedItem.InvoiceDocumentType = value;
             }
         }
 
@@ -163,6 +219,7 @@ namespace BBS.UI
             set
             {
                 SelectedItem.CreditTermsOrValidity = value;
+                PopulateFormOfPaymentOnCreditTermsOrValidityChange();
                 NotifyPropertyChanged("SelectedCreditTermsOrValidityType");
             }
         }
@@ -268,13 +325,38 @@ namespace BBS.UI
         {
             SetupOrCreateInvoiceTemplate();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        protected override bool CanSave(object parameter)
+        {
+            return null != SelectedCompany & null != SelectedCustomer;
+        }
         #endregion
 
         #region Private helper methods
         /// <summary>
         /// 
         /// </summary>
-        private void NotifySelectedInvoiceItemDescription()
+        private void PopulateFormOfPaymentOnCreditTermsOrValidityChange()
+        {
+            switch (SelectedCreditTermsOrValidityType.Key)
+            {
+                case "cod":
+                    SelectedPaymentType = PaymentTypes.FirstOrDefault(i => i.Key == "cash");
+                    break;
+                default:
+                    SelectedPaymentType = PaymentTypes.FirstOrDefault(i => i.Key == "account");
+                    break;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        private void NotifySelectedInvoiceItemDescriptionChange()
         {
             NotifyPropertyChanged("SelectedInvoiceItemDescription");
         }
@@ -285,7 +367,7 @@ namespace BBS.UI
         /// <param name="seachText"></param>
         private void PopulatFilteredProductCatlauge(string seachText)
         {
-            FilteredProductCatlauge = ProductCatlauge.Where(i => i.StartsWith(seachText));
+            FilteredProductCatlauge = ProductCatlauge.Where(i => i.StartsWith(seachText, StringComparison.OrdinalIgnoreCase));
             NotifyFilteredProductCatlauge();
         }
 
@@ -318,7 +400,12 @@ namespace BBS.UI
         private void InitializeInvoiceDocument()
         {
             SelectedItem.DocDate = DateTime.Today;
-            ProductCatlauge = new List<string> { "Product one", "Product", "Three", "two", "Four" };
+            SelectedInvoiceDocumentType = InvoiceDocumentTypes.FirstOrDefault(i => i.Key == "taxinvoice");
+            SelectedInvoiceBillingType = InvoiceBillingTypes.FirstOrDefault(i => i.Key == "quantitybased");
+            using (var manager = new ProductManager())
+            {
+                ProductCatlauge = from i in manager.GetAllAsync().Result select i.Name;
+            }
             UpdateDocReference();
         }
         /// <summary>
@@ -430,8 +517,6 @@ namespace BBS.UI
         /// <param name="param"></param>
         public void InvoiceBillingTypeSelectionChangedCommandHandler(object param)
         {
-            int i = 0;
-
             ResetInvoiceItemGridToSelectedBillingType();
         }
         /// <summary>
@@ -475,9 +560,13 @@ namespace BBS.UI
         /// <param name="param"></param>
         public void OnProductSuggestionSelectionChangedHandler(object param)
         {
-            var existingInvoice = InvoiceItems.FirstOrDefault(i => i.Id == SelectedInvoiceItem.Id);
-            existingInvoice.Description = param as string;
+            SelectedInvoiceItemDescription = param as string;
+            NotifySelectedInvoiceItemDescriptionChange();
+            //var existingInvoice = InvoiceItems.FirstOrDefault(i => i.Id == SelectedInvoiceItem.Id);
+            //existingInvoice.Description = param as string;
         }
+
+
         /// <summary>
         /// 
         /// </summary>

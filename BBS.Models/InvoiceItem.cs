@@ -16,7 +16,7 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
-        private Double quantity = 0.0;
+        private Double quantity = 1.0;
 
         /// <summary>
         /// 

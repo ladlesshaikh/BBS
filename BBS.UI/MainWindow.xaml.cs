@@ -2,8 +2,10 @@
 using BBS.UI.Xamals;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -43,7 +45,12 @@ namespace BBS.UI
             ccParentContainer.Content = new CustomerManagementUC();
         }
 
-        private void menuBankManagement_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuItemViewInvoices_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -65,7 +72,7 @@ namespace BBS.UI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void menuItemInvoiceManagement_Click(object sender, RoutedEventArgs e)
+        private void menuItemCreateInvoice_Click(object sender, RoutedEventArgs e)
         {
             ccParentContainer.Content = new InvoiceManagementUC();
         }

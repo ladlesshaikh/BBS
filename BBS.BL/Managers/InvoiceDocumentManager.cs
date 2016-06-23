@@ -17,9 +17,14 @@ namespace BBS.BL
         /// 
         /// </summary>
         /// <returns></returns>
-        public Task<List<InvoiceDocument>> GetAllAsync()
+        public async Task<List<InvoiceDocument>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            List<InvoiceDocument> retVal = null;
+            using (var repository = new InvoiceDocumentRepository())
+            {
+                retVal = await repository.GetAsync();
+            }
+            return retVal;
         }
 
         /// <summary>
@@ -27,9 +32,14 @@ namespace BBS.BL
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public Task<bool> AddOrUpdateAsync(InvoiceDocument item)
+        public async Task<bool> AddOrUpdateAsync(InvoiceDocument item)
         {
-            throw new NotImplementedException();
+            var retVal = false;
+            using (var repository = new InvoiceDocumentRepository())
+            {
+                retVal = item.Id > 0 ? await repository.UpdateAsync(item) : await repository.InsertAsync(item);
+            }
+            return retVal;
         }
 
         /// <summary>
@@ -37,9 +47,14 @@ namespace BBS.BL
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public Task<bool> DeleteAsync(InvoiceDocument item)
+        public async Task<bool> DeleteAsync(InvoiceDocument item)
         {
-            throw new NotImplementedException();
+            var retVal = false;
+            using (var repository = new InvoiceDocumentRepository())
+            {
+                retVal = await repository.DeleteAsync(item);
+            }
+            return retVal;
         }
 
         /// <summary>
@@ -56,7 +71,7 @@ namespace BBS.BL
                 var invoicesForGivenDate = (await repository.GetAsync()).Where(i => i.DocDate.ToString("yyyyMM") == formattedInputDate);
                 if (null != invoicesForGivenDate && invoicesForGivenDate.Count() > 0)
                 {
-                    invoiceOffset = invoicesForGivenDate.Count();
+                    invoiceOffset = invoiceOffset + invoicesForGivenDate.Count();
                 }
 
                 retVal = retVal + invoiceOffset.ToString();

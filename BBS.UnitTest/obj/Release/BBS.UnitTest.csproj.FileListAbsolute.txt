@@ -1,3 +1,4 @@
+D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Release\EntityFramework.xml
 D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Release\BBS.UnitTest.dll.config
 D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Release\BBS.UnitTest.dll
 D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Release\BBS.UnitTest.pdb
@@ -9,7 +10,6 @@ D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Release\EntityFramework.SqlServer.dl
 D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Release\BBS.BL.pdb
 D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Release\BBS.Data.pdb
 D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Release\BBS.Models.pdb
-D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Release\EntityFramework.xml
 D:\Data\Projects\Pilot\BBS\BBS.UnitTest\bin\Release\EntityFramework.SqlServer.xml
 D:\Data\Projects\Pilot\BBS\BBS.UnitTest\obj\Release\BBS.UnitTest.csprojResolveAssemblyReference.cache
 D:\Data\Projects\Pilot\BBS\BBS.UnitTest\obj\Release\BBS.UnitTest.dll

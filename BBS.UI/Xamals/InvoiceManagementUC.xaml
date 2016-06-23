@@ -113,9 +113,10 @@
                                 <RowDefinition Height="1*" />
                             </Grid.RowDefinitions>
                             <Label Content="Doc Date:" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Right"/>
-                            <DatePicker x:Name="dateDocDate" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" SelectedDate="{ Binding SelectedDocDate}"
-                                        Text="{Binding DataContext.SelectedItem.DocDate,Mode=TwoWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" 
-                             />
+                            <DatePicker x:Name="dateDocDate" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" 
+                                        SelectedDate="{ Binding SelectedDocDate,StringFormat='dd-MM-yyyy'}"
+                                        Text="{Binding DataContext.SelectedItem.DocDate,Mode=TwoWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" Height="24" VerticalAlignment="Top"
+                                        Validation.ErrorTemplate="{x:Null}" />
                             <Label Content="Reference :" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right"/>
                             <TextBox x:Name="txtReference"  Grid.Column="1" Grid.Row="1" Text="{Binding DataContext.Reference,Mode=TwoWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
                             <Label Content="Credit terms/validity:" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right"/>
@@ -174,7 +175,7 @@
                             <TextBox x:Name="lblCustomerEmail" Grid.Column="1" Grid.Row="6" Text="{Binding Path=DataContext.SelectedCustomer.AddressDetails.Email,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                             <Label Content="Form of Payment:" Grid.Column="0" Grid.Row="7" HorizontalContentAlignment="Right"/>
                             <ComboBox x:Name="ddPaymentType" Grid.Column="1" Grid.Row="7" ItemsSource="{Binding Path=DataContext.PaymentTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                               SelectedItem="{Binding SelectedPaymentType}" >
+                               SelectedItem="{Binding SelectedPaymentType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
@@ -211,7 +212,7 @@
                         </Grid.RowDefinitions>
                         <GroupBox Header="Type" Grid.Column="0" Grid.Row="0">
                             <ListBox Margin="2" 
-                                ItemsSource="{Binding Path=DataContext.InvoiceDocumentTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" SelectedItem="{Binding temp}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Background="#FFACDDE2">
+                                ItemsSource="{Binding Path=DataContext.InvoiceDocumentTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" SelectedItem="{Binding SelectedInvoiceDocumentType}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Background="#FFACDDE2">
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <WrapPanel IsItemsHost="True" />
@@ -261,7 +262,7 @@
                     <StackPanel>
                         <!--<Border Background="LightBlue" BorderBrush="Black" BorderThickness="1">-->
                         <!--<TextBlock Text="{Binding Date, StringFormat={}{0:MMM}}" FontSize="8" HorizontalAlignment="Center" />-->
-                        <TextBlock Text="{Binding Date}" />
+                        <TextBlock Text="{Binding Date,StringFormat='dd-MM-yyy'}" />
                         <!--</Border>-->
                         <!--<Border Background="White" BorderBrush="Black" BorderThickness="1">
                             <TextBlock Text="{Binding Date, StringFormat={}{0:yyyy}}" FontSize="8" FontWeight="Bold" HorizontalAlignment="Center" />
@@ -270,7 +271,7 @@
                 </DataTemplate>
                 <!--DataTemplate for the Published Date column when in edit mode. -->
                 <DataTemplate x:Key="EditingDateTemplate">
-                    <DatePicker SelectedDate="{Binding Date}"  />
+                    <DatePicker SelectedDate="{Binding Date,StringFormat='dd/MM/yyy'}" SelectedDateFormat="Short" />
                 </DataTemplate>
                 <DataTemplate x:Key="DescriptionTemplate" >
                     <Label Content="{Binding Description}" />
@@ -278,7 +279,7 @@
                 <DataTemplate x:Key="EditingDescriptionTemplate">
                     <StackPanel>
                         <TextBox x:Name="inputBox"
-                            Text="{Binding Description,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Focusable="True"  >
+                            Text="{Binding DataContext.SelectedInvoiceItemDescription,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}" Focusable="True"  >
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="KeyUp">
                                     <i:InvokeCommandAction Command="{Binding Path=DataContext.OnInvoiceItemDescriptionChange, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}"
@@ -300,8 +301,10 @@
                     </StackPanel>
                 </DataTemplate>
             </Grid.Resources>
-            <DataGrid  AutoGenerateColumns="False" Height="226" ItemsSource="{Binding DataContext.InvoiceItems,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay}" SelectedItem="{Binding SelectedInvoiceItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  
-           HorizontalAlignment="Left" Margin="0,0,0,0" Name="dgInvoiceItems" VerticalAlignment="Top"  ColumnWidth="*" RowEditEnding="dgInvoiceItems_RowEditEnding" Background="#FFACDDE2" BorderBrush="#FF85B8EA" Foreground="#FF5A656A">
+            <DataGrid  AutoGenerateColumns="False" Height="226" 
+                       ItemsSource="{Binding DataContext.InvoiceItems,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay}" SelectedItem="{Binding SelectedInvoiceItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  
+                       HorizontalAlignment="Left" Margin="0,0,0,0" Name="dgInvoiceItems" VerticalAlignment="Top"  ColumnWidth="*" Background="#FFACDDE2" BorderBrush="#FF85B8EA" Foreground="#FF5A656A"
+                       Validation.ErrorTemplate="{x:Null}">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn  CellTemplate="{StaticResource DateTemplate}" CellEditingTemplate="{StaticResource EditingDateTemplate}" >
                         <DataGridTemplateColumn.Header>
