@@ -51,6 +51,14 @@ namespace BBS.UI
         }
         #endregion
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public void NotifySelectedCustomerChange()
+        {
+            NotifyPropertyChanged("SelectedCustomer");
+            NotifyPropertyChanged("InvoiceItem");
+        }
         //basic ViewModelBase
         protected void NotifyPropertyChanged(string propertyName)
         {

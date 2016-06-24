@@ -45,6 +45,7 @@ namespace BBS.UI
         {
             customerViewModel = new CustomerViewModel();
             InitializeInvoiceDocumentScreen();
+            OnCompanySelectionChanged = new UserActionOrCommand(OnCompanySelectionChangedHandler);
             OnCustomerSelectionChanged = new UserActionOrCommand(OnCustomerSelectionChangedHandler);
             OnInvoiceItemDescriptionChange = new UserActionOrCommand(OnInvoiceItemDescriptionChangeHandler);
             OnProductSuggestionSelectionChanged = new UserActionOrCommand(OnProductSuggestionSelectionChangedHandler);
@@ -135,7 +136,11 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
-        public InvoiceBillingType SelectedInvoiceBillingType { get; set; }
+        public InvoiceBillingType SelectedInvoiceBillingType
+        {
+            get { return invoiceDocument.InvoiceBillingType; }
+            set { invoiceDocument.InvoiceBillingType = value; }
+        }
 
 
         /// <summary>
@@ -238,9 +243,17 @@ namespace BBS.UI
         /// </summary>
         public IEnumerable<CreditTermsValidityType> CreditTermsOrValidityTypes { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public IEnumerable<InvoiceItem> InvoiceItems { get { return invoiceDocument.InvoiceItems; } set { } }
         #endregion
 
         #region UserActionOrCommands
+        /// <summary>
+        /// 
+        /// </summary>
+        public UserActionOrCommand OnCompanySelectionChanged { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -288,6 +301,11 @@ namespace BBS.UI
         #endregion
 
         #region Overrirde methods
+        public override void UpdateCommandHandler(object param)
+        {
+            AddCustomerToSelectedCompany(SelectedCustomer);
+            base.UpdateCommandHandler(param);
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -494,6 +512,20 @@ namespace BBS.UI
             //SelectedItem.Customer = new Customer { AddressDetails = new Address(), InvoiceItems = new List<InvoiceItem>(), TaxDetails = new TaxDetail() };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="customer"></param>
+        private void AddCustomerToSelectedCompany(Customer customer)
+        {
+            var isExist = SelectedItem.Customers.FirstOrDefault(i => i.Id == customer.Id);
+            if (null == isExist)
+            {
+                var customers = SelectedItem.Customers.ToList();
+                customers.Add(customer);
+                SelectedItem.Customers = customers;
+            }
+        }
         #endregion
 
         #region Command Hnadlers
@@ -557,9 +589,32 @@ namespace BBS.UI
         /// 
         /// </summary>
         /// <param name="param"></param>
+        public void OnCompanySelectionChangedHandler(object param)
+        {
+            if (null == SelectedItem.Customers)
+            {
+                SelectedItem.Customers = new List<Customer>();
+            }
+            NotifySelectedItemChange();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="param"></param>
         public void OnCustomerSelectionChangedHandler(object param)
         {
-            int i = 0;
+            CreateInvoiceDocumentTemplate();
+            var invoice = (param as Customer).InvoiceDocuments.FirstOrDefault(i => i.Reference == invoiceDocument.Reference);
+            if (null == invoice)
+            {
+                (param as Customer).InvoiceDocuments.Add(invoiceDocument);
+            }
+            else
+            {
+                invoice = invoiceDocument;
+            }
+            NotifySelectedCustomerChange();
         }
 
         /// <summary>

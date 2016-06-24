@@ -32,7 +32,7 @@
                             behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding DataContext.ProductCatlauge,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" 
                             behaviors:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase" />-->
                 <ComboBox x:Name="ddCompanyList" ItemsSource="{Binding Path=DataContext.Companies,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"
-                   SelectedItem="{Binding SelectedCompany}" >
+                   SelectedItem="{Binding SelectedItem}" >
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -40,6 +40,11 @@
                             </StackPanel>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding OnCompanySelectionChanged}" CommandParameter="{Binding SelectedItem,ElementName=ddCompanyList}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </ComboBox>
                 <GroupBox Header="Comapny details" >
                     <Grid>
@@ -63,31 +68,31 @@
                             <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
                         <Label Content="Company Name:" Grid.Column="0" Grid.Row="0"/>
-                        <Label x:Name="lblCompanyName" Content="{Binding Path=DataContext.SelectedCompany.Name,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay}" Grid.Column="1" Grid.Row="0"/>
+                        <Label x:Name="lblCompanyName" Content="{Binding Path=DataContext.SelectedItem.Name,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay}" Grid.Column="1" Grid.Row="0"/>
                         <Label Content="Street No:" Grid.Column="0" Grid.Row="1"/>
-                        <Label x:Name="lblStreetNo" Grid.Column="1" Grid.Row="1" Content="{Binding Path=DataContext.SelectedCompany.AddressDetails.StreetNo,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                        <Label x:Name="lblStreetNo" Grid.Column="1" Grid.Row="1" Content="{Binding Path=DataContext.SelectedItem.AddressDetails.StreetNo,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
                         <Label Content="Suburb:" Grid.Column="0" Grid.Row="2"/>
-                        <Label x:Name="lblSuburb" Grid.Column="1" Grid.Row="2" Content="{Binding Path=DataContext.SelectedCompany.AddressDetails.SubUrb,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                        <Label x:Name="lblSuburb" Grid.Column="1" Grid.Row="2" Content="{Binding Path=DataContext.SelectedItem.AddressDetails.SubUrb,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
                         <Label Content="City/Town:" Grid.Column="0" Grid.Row="3"/>
-                        <Label x:Name="lblCityTown" Grid.Column="1" Grid.Row="3" Content="{Binding Path=DataContext.SelectedCompany.AddressDetails.CityOrTown,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                        <Label x:Name="lblCityTown" Grid.Column="1" Grid.Row="3" Content="{Binding Path=DataContext.SelectedItem.AddressDetails.CityOrTown,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
                         <Label Content="Postal code:" Grid.Column="0" Grid.Row="4"/>
-                        <Label x:Name="lblPostalCode" Grid.Column="1" Grid.Row="4" Content="{Binding Path=DataContext.SelectedCompany.AddressDetails.PostalCode,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                        <Label x:Name="lblPostalCode" Grid.Column="1" Grid.Row="4" Content="{Binding Path=DataContext.SelectedItem.AddressDetails.PostalCode,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
                         <Label Content="Tax No:" Grid.Column="0" Grid.Row="5"/>
-                        <Label x:Name="lblTaxNo" Grid.Column="1" Grid.Row="5" Content="{Binding Path=DataContext.SelectedCompany.Tax.TaxNo,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                        <Label x:Name="lblTaxNo" Grid.Column="1" Grid.Row="5" Content="{Binding Path=DataContext.SelectedItem.Tax.TaxNo,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
                         <Label Content="CK Reg No:" Grid.Column="0" Grid.Row="6"/>
-                        <Label x:Name="lblCKRegNo" Grid.Column="1" Grid.Row="6" Content="{Binding Path=DataContext.SelectedCompany.CKRegNo,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                        <Label x:Name="lblCKRegNo" Grid.Column="1" Grid.Row="6" Content="{Binding Path=DataContext.SelectedItem.CKRegNo,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
                         <Label Content="Tel:" Grid.Column="0" Grid.Row="7"/>
-                        <Label x:Name="lblTel" Grid.Column="1" Grid.Row="7" Content="{Binding Path=DataContext.SelectedCompany.AddressDetails.Telephone,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                        <Label x:Name="lblTel" Grid.Column="1" Grid.Row="7" Content="{Binding Path=DataContext.SelectedItem.AddressDetails.Telephone,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
                         <Label Content="Email:" Grid.Column="0" Grid.Row="8"/>
-                        <Label x:Name="lblEmail" Grid.Column="1" Grid.Row="8" Content="{Binding Path=DataContext.SelectedCompany.AddressDetails.Email,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                        <Label x:Name="lblEmail" Grid.Column="1" Grid.Row="8" Content="{Binding Path=DataContext.SelectedItem.AddressDetails.Email,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
                         <Label Content="Fax:" Grid.Column="0" Grid.Row="9"/>
-                        <Label x:Name="lblFax" Grid.Column="1" Grid.Row="9" Content="{Binding Path=DataContext.SelectedCompany.AddressDetails.Fax,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                        <Label x:Name="lblFax" Grid.Column="1" Grid.Row="9" Content="{Binding Path=DataContext.SelectedItem.AddressDetails.Fax,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
                         <Label Content="Bank:" Grid.Column="0" Grid.Row="10"/>
-                        <Label x:Name="lblBank" Grid.Column="1" Grid.Row="10" Content="{Binding Path=DataContext.SelectedCompany.Bank.Name,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                        <Label x:Name="lblBank" Grid.Column="1" Grid.Row="10" Content="{Binding Path=DataContext.SelectedItem.Bank.Name,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
                         <Label Content="Branch:" Grid.Column="0" Grid.Row="11"/>
-                        <Label x:Name="lblBranch" Grid.Column="1" Grid.Row="11" Content="{Binding Path=DataContext.SelectedCompany.Bank.BranchCode,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                        <Label x:Name="lblBranch" Grid.Column="1" Grid.Row="11" Content="{Binding Path=DataContext.SelectedItem.Bank.BranchCode,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
                         <Label Content="Acc No:" Grid.Column="0" Grid.Row="12"/>
-                        <Label x:Name="lblAccNo" Grid.Column="1" Grid.Row="12" Content="{Binding Path=DataContext.SelectedCompany.Account,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                        <Label x:Name="lblAccNo" Grid.Column="1" Grid.Row="12" Content="{Binding Path=DataContext.SelectedItem.Account,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
                     </Grid>
                 </GroupBox>
             </StackPanel>
@@ -153,6 +158,16 @@
                             <Label Content="Customers:" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Right"/>
                             <ComboBox x:Name="ddCustomers" Grid.Column="1" Grid.Row="0"  ItemsSource="{Binding Path=DataContext.Customers,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay}"
                    SelectedItem="{Binding SelectedCustomer}" >
+                                <ComboBox.Style>
+                                    <Style TargetType="{x:Type ComboBox}">
+                                        <Setter Property="IsEnabled" Value="True" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SelectedItem,ElementName=ddCompanyList}" Value="{x:Null}">
+                                                <Setter Property="IsEnabled" Value="False" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ComboBox.Style>
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
