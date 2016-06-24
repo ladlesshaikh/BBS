@@ -49,27 +49,6 @@
     <Compile Include="Base\RepositoryBase.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Interface\IRepository.cs" />
-    <Compile Include="Migrations\201605240930086_Initial.cs" />
-    <Compile Include="Migrations\201605240930086_Initial.Designer.cs">
-      <DependentUpon>201605240930086_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605260958118_Initial1.cs" />
-    <Compile Include="Migrations\201605260958118_Initial1.Designer.cs">
-      <DependentUpon>201605260958118_Initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606201130231_LogoPropertyToCompany.cs" />
-    <Compile Include="Migrations\201606201130231_LogoPropertyToCompany.Designer.cs">
-      <DependentUpon>201606201130231_LogoPropertyToCompany.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606230912038_LogoPropertyToCompany1.cs" />
-    <Compile Include="Migrations\201606230912038_LogoPropertyToCompany1.Designer.cs">
-      <DependentUpon>201606230912038_LogoPropertyToCompany1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606230925155_LogoPropertyToCompany2.cs" />
-    <Compile Include="Migrations\201606230925155_LogoPropertyToCompany2.Designer.cs">
-      <DependentUpon>201606230925155_LogoPropertyToCompany2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ORM\DataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CompanyRepository.cs" />
@@ -88,23 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605240930086_Initial.resx">
-      <DependentUpon>201605240930086_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605260958118_Initial1.resx">
-      <DependentUpon>201605260958118_Initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606201130231_LogoPropertyToCompany.resx">
-      <DependentUpon>201606201130231_LogoPropertyToCompany.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606230912038_LogoPropertyToCompany1.resx">
-      <DependentUpon>201606230912038_LogoPropertyToCompany1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606230925155_LogoPropertyToCompany2.resx">
-      <DependentUpon>201606230925155_LogoPropertyToCompany2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

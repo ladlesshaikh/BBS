@@ -21,7 +21,7 @@ namespace BBS.Data
         public DataContext()
             : base("name=DataContext")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataContext, BBS.Data.Migrations.Configuration>("DataContext"));
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataContext, BBS.Data.Migrations.Configuration>("DataContext"));
         }
 
         /// <summary>

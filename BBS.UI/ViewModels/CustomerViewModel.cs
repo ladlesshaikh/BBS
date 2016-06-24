@@ -29,16 +29,15 @@ namespace BBS.UI
         {
             if (null == NewItem)
             {
-                NewItem = new Customer { AddressDetails = new Address(), InvoiceItems = new List<InvoiceItem>(), TaxDetails = new TaxDetail() };
+                NewItem = new Customer { AddressDetails = new Address(), TaxDetails = new TaxDetail() };
             }
             else
             {
                 NewItem.AddressDetails = null == SelectedItem.AddressDetails ? new Address() : SelectedItem.AddressDetails;
-                NewItem.InvoiceItems = null == SelectedItem.InvoiceItems ? new List<InvoiceItem>() : SelectedItem.InvoiceItems;
                 NewItem.TaxDetails = null == SelectedItem.TaxDetails ? new TaxDetail() : SelectedItem.TaxDetails;
             }
         }
 
-        
+
     }
 }

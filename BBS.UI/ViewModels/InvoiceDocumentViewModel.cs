@@ -12,13 +12,19 @@ namespace BBS.UI
     /// <summary>
     /// 
     /// </summary>
-    public class InvoiceDocumentViewModel : ViewModelBase<InvoiceDocument>
+    public class InvoiceDocumentViewModel : ViewModelBase<Company>
     {
         #region Local resoucre declarations
         /// <summary>
         /// 
         /// </summary>
+        private InvoiceDocument invoiceDocument = null;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private InvoiceItem selectedInvoiceItem = null;
+
         /// <summary>
         /// 
         /// </summary>
@@ -27,8 +33,7 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
-        private ObservableCollection<InvoiceItem> invoiceItems = null;
-
+        private Customer selectedCustomer = null;
         #endregion
 
         #region Object construction
@@ -36,11 +41,11 @@ namespace BBS.UI
         /// 
         /// </summary>
         public InvoiceDocumentViewModel()
-            : base(new InvoiceDocumentManager())
+            : base(new CompanyManager())
         {
             customerViewModel = new CustomerViewModel();
-            SelectedItem = new InvoiceDocument();
-            InitializeInvoiceDocument();
+            InitializeInvoiceDocumentScreen();
+            OnCustomerSelectionChanged = new UserActionOrCommand(OnCustomerSelectionChangedHandler);
             OnInvoiceItemDescriptionChange = new UserActionOrCommand(OnInvoiceItemDescriptionChangeHandler);
             OnProductSuggestionSelectionChanged = new UserActionOrCommand(OnProductSuggestionSelectionChangedHandler);
             InvoiceItemAddedUpdatedCommand = new UserActionOrCommand(InvoiceItemAddedUpdatedCommandHandler);
@@ -113,11 +118,11 @@ namespace BBS.UI
         {
             get
             {
-                return SelectedItem.DocDate;
+                return invoiceDocument.DocDate;
             }
             set
             {
-                SelectedItem.DocDate = value;
+                invoiceDocument.DocDate = value;
                 UpdateDocReference();
                 NotifyInvoiceReferenceChange();
             }
@@ -132,18 +137,6 @@ namespace BBS.UI
         /// </summary>
         public InvoiceBillingType SelectedInvoiceBillingType { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public Company SelectedCompany
-        {
-            get { return SelectedItem.Company; }
-            set
-            {
-                SelectedItem.Company = value;
-                NotifyPropertyChanged("SelectedCompany");
-            }
-        }
 
         /// <summary>
         /// 
@@ -152,11 +145,11 @@ namespace BBS.UI
         {
             get
             {
-                return SelectedItem.InvoiceDocumentType;
+                return invoiceDocument.InvoiceDocumentType;
             }
             set
             {
-                SelectedItem.InvoiceDocumentType = value;
+                invoiceDocument.InvoiceDocumentType = value;
             }
         }
 
@@ -165,17 +158,8 @@ namespace BBS.UI
         /// </summary>
         public Customer SelectedCustomer
         {
-            get
-            {
-                return SelectedItem.Customer;
-            }
-            set
-            {
-                SelectedItem.Customer = value;
-                NotifyPropertyChanged("SelectedCustomer");
-                NotifyPropertyChanged("InvoiceItems");
-                NotifySelectedItemChange();
-            }
+            get { return selectedCustomer; }
+            set { selectedCustomer = value; }
         }
 
         /// <summary>
@@ -185,11 +169,11 @@ namespace BBS.UI
         {
             get
             {
-                return SelectedItem.PaymentBy;
+                return invoiceDocument.PaymentBy;
             }
             set
             {
-                SelectedItem.PaymentBy = value;
+                invoiceDocument.PaymentBy = value;
                 NotifyPropertyChanged("SelectedPaymentType");
             }
         }
@@ -201,11 +185,11 @@ namespace BBS.UI
         {
             get
             {
-                return SelectedItem.Reference;
+                return invoiceDocument.Reference;
             }
             set
             {
-                SelectedItem.Reference = value;
+                invoiceDocument.Reference = value;
             }
         }
         /// <summary>
@@ -215,11 +199,11 @@ namespace BBS.UI
         {
             get
             {
-                return SelectedItem.CreditTermsOrValidity;
+                return invoiceDocument.CreditTermsOrValidity;
             }
             set
             {
-                SelectedItem.CreditTermsOrValidity = value;
+                invoiceDocument.CreditTermsOrValidity = value;
                 PopulateFormOfPaymentOnCreditTermsOrValidityChange();
                 NotifyPropertyChanged("SelectedCreditTermsOrValidityType");
             }
@@ -254,23 +238,14 @@ namespace BBS.UI
         /// </summary>
         public IEnumerable<CreditTermsValidityType> CreditTermsOrValidityTypes { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public ObservableCollection<InvoiceItem> InvoiceItems
-        {
-            get
-            {
-                return invoiceItems ?? (invoiceItems = null == SelectedItem.Customer ? null : new ObservableCollection<InvoiceItem>(SelectedItem.Customer.InvoiceItems ?? new List<InvoiceItem>()));
-            }
-            set
-            {
-                SelectedItem.Customer.InvoiceItems = value;
-            }
-        }
         #endregion
 
         #region UserActionOrCommands
+        /// <summary>
+        /// 
+        /// </summary>
+        public UserActionOrCommand OnCustomerSelectionChanged { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -328,11 +303,31 @@ namespace BBS.UI
         /// <returns></returns>
         protected override bool CanSave(object parameter)
         {
-            return null != SelectedCompany & null != SelectedCustomer;
+            return null != SelectedItem && null != SelectedCustomer;
         }
         #endregion
 
         #region Private helper methods
+        /// <summary>
+        /// 
+        /// </summary>
+        private void CreateInvoiceDocumentTemplate()
+        {
+            if (null == invoiceDocument)
+            {
+                invoiceDocument = new InvoiceDocument
+                {
+                    InvoiceItems = new List<InvoiceItem>(),
+                    DocDate = DateTime.Today,
+                    InvoiceDocumentType = InvoiceDocumentTypes.FirstOrDefault(i => i.Key == "taxinvoice"),
+                    InvoiceBillingType = InvoiceBillingTypes.FirstOrDefault(i => i.Key == "quantitybased"),
+                };
+            }
+            else
+            {
+                invoiceDocument.InvoiceItems.ToList().Clear();
+            }
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -386,17 +381,18 @@ namespace BBS.UI
         /// </summary>
         private void UpdateDocReference()
         {
-            SelectedItem.Reference = (manager as InvoiceDocumentManager).GenerateInvoiceReferenceForDateAsync(SelectedItem.DocDate).Result;
+            using (var invoiceDocumentManager = new InvoiceDocumentManager())
+            {
+                invoiceDocument.Reference = invoiceDocumentManager.GenerateInvoiceReferenceForDateAsync(invoiceDocument.DocDate).Result;
+            }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        private void InitializeInvoiceDocument()
+        private void InitializeInvoiceDocumentScreen()
         {
-            SelectedItem.DocDate = DateTime.Today;
-            SelectedInvoiceDocumentType = InvoiceDocumentTypes.FirstOrDefault(i => i.Key == "taxinvoice");
-            SelectedInvoiceBillingType = InvoiceBillingTypes.FirstOrDefault(i => i.Key == "quantitybased");
+            CreateInvoiceDocumentTemplate();
             using (var manager = new ProductManager())
             {
                 ProductCatlauge = from i in manager.GetAllAsync().Result select i.Name;
@@ -487,7 +483,6 @@ namespace BBS.UI
         /// <returns></returns>
         private void CalculateInvoiceTotals()
         {
-            SelectedItem.Customer.InvoiceItems = InvoiceItems;
             NotifySelectedItemChange();
         }
 
@@ -496,7 +491,7 @@ namespace BBS.UI
         /// </summary>
         private void DefaultSelectedCustomer()
         {
-            SelectedItem.Customer = new Customer { AddressDetails = new Address(), InvoiceItems = new List<InvoiceItem>(), TaxDetails = new TaxDetail() };
+            //SelectedItem.Customer = new Customer { AddressDetails = new Address(), InvoiceItems = new List<InvoiceItem>(), TaxDetails = new TaxDetail() };
         }
 
         #endregion
@@ -558,6 +553,14 @@ namespace BBS.UI
             //existingInvoice.Description = param as string;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="param"></param>
+        public void OnCustomerSelectionChangedHandler(object param)
+        {
+            int i = 0;
+        }
 
         /// <summary>
         /// 
@@ -587,33 +590,6 @@ namespace BBS.UI
         }
         #endregion
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    //public class InvoiceTotal
-    //{
-    //    /// <summary>
-    //    /// 
-    //    /// </summary>
-    //    public Double SubTotal { get; set; }
-
-    //    /// <summary>
-    //    /// 
-    //    /// </summary>
-    //    public Double Tax { get; set; }
-
-    //    /// <summary>
-    //    /// 
-    //    /// </summary>
-    //    public Double Total
-    //    {
-    //        get
-    //        {
-    //            return SubTotal + Tax;
-    //        }
-    //    }
-    //}
 
     /// <summary>
     /// 

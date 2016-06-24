@@ -160,6 +160,11 @@
                                         </StackPanel>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding OnCustomerSelectionChanged}" CommandParameter="{Binding SelectedItem,ElementName=ddCustomers}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </ComboBox>
                             <Label Content="Customer Name:" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right"/>
                             <TextBox x:Name="lCustomerName" Grid.Column="1" Grid.Row="1" Text="{Binding Path=DataContext.SelectedCustomer.Name,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>

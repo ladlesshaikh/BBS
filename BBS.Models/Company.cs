@@ -45,5 +45,10 @@ namespace BBS.Models
         /// 
         /// </summary>
         public string LogoImage { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual IEnumerable<Customer> Customers { get; set; }
     }
 }

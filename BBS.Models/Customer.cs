@@ -31,6 +31,6 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
-        public virtual ICollection<InvoiceItem> InvoiceItems { get; set; }
+        public virtual ICollection<InvoiceDocument> InvoiceDocuments { get; set; }
     }
 }

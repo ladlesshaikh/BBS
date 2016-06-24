@@ -24,17 +24,7 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
-        public virtual Company Company { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public virtual CreditTermsValidityType CreditTermsOrValidity { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual Customer Customer { get; set; }
 
         /// <summary>
         /// 
@@ -59,44 +49,7 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
-        [NotMapped]
-        public Double Tax
-        {
-            get
-            {
-                var retVal = 0.0;
-                if (null != Company)
-                {
-                    retVal = Company.Tax.Rate;
-                }
-                return retVal;
-            }
-            set { }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [NotMapped]
-        public Double TotalAmount { get { return SubTotal + Tax; } set { } }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [NotMapped]
-        public Double SubTotal
-        {
-            get
-            {
-                var retVal = 0.0;
-                if (null != Customer && null != Customer.InvoiceItems)
-                {
-                    retVal = Customer.InvoiceItems.Sum(i => i.Amount);
-                }
-                return retVal;
-            }
-            set { }
-        }
+        public virtual IEnumerable<InvoiceItem> InvoiceItems { get; set; }
     }
 
 
