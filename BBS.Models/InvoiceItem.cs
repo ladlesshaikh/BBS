@@ -16,6 +16,13 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
+        public InvoiceItem()
+        {
+            Date = DateTime.Today;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         private Double quantity = 1.0;
 
         /// <summary>
@@ -48,10 +55,11 @@ namespace BBS.Models
         /// </summary>
         [NotMapped]
         public Double Amount { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public virtual InvoiceBillingType InvoiceType { get; set; }
+        public virtual InvoiceDocument InvoiceDocument { get; set; }
 
         /// <summary>
         /// 

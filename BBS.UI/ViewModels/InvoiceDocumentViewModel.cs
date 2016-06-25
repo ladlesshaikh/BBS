@@ -18,11 +18,6 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
-        private InvoiceDocument invoiceDocument = null;
-
-        /// <summary>
-        /// 
-        /// </summary>
         private InvoiceItem selectedInvoiceItem = null;
 
         /// <summary>
@@ -63,6 +58,13 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
+        public InvoiceDocument InvoiceDocument
+        {
+            get; set;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         public string SelectedInvoiceItemDescription
         {
             get
@@ -89,10 +91,9 @@ namespace BBS.UI
         {
             get
             {
-                if (null != selectedInvoiceItem && null == selectedInvoiceItem.InvoiceType)
+                if (null != InvoiceDocument && null == InvoiceDocument.InvoiceBillingType)
                 {
                     selectedInvoiceItem.Date = DateTime.Now;
-                    selectedInvoiceItem.InvoiceType = SelectedInvoiceBillingType;
                 }
                 return selectedInvoiceItem;
             }
@@ -119,11 +120,11 @@ namespace BBS.UI
         {
             get
             {
-                return invoiceDocument.DocDate;
+                return InvoiceDocument.DocDate;
             }
             set
             {
-                invoiceDocument.DocDate = value;
+                InvoiceDocument.DocDate = value;
                 UpdateDocReference();
                 NotifyInvoiceReferenceChange();
             }
@@ -138,8 +139,8 @@ namespace BBS.UI
         /// </summary>
         public InvoiceBillingType SelectedInvoiceBillingType
         {
-            get { return invoiceDocument.InvoiceBillingType; }
-            set { invoiceDocument.InvoiceBillingType = value; }
+            get { return InvoiceDocument.InvoiceBillingType; }
+            set { InvoiceDocument.InvoiceBillingType = value; }
         }
 
 
@@ -150,11 +151,11 @@ namespace BBS.UI
         {
             get
             {
-                return invoiceDocument.InvoiceDocumentType;
+                return InvoiceDocument.InvoiceDocumentType;
             }
             set
             {
-                invoiceDocument.InvoiceDocumentType = value;
+                InvoiceDocument.InvoiceDocumentType = value;
             }
         }
 
@@ -174,11 +175,11 @@ namespace BBS.UI
         {
             get
             {
-                return invoiceDocument.PaymentBy;
+                return InvoiceDocument.PaymentBy;
             }
             set
             {
-                invoiceDocument.PaymentBy = value;
+                InvoiceDocument.PaymentBy = value;
                 NotifyPropertyChanged("SelectedPaymentType");
             }
         }
@@ -190,11 +191,11 @@ namespace BBS.UI
         {
             get
             {
-                return invoiceDocument.Reference;
+                return InvoiceDocument.Reference;
             }
             set
             {
-                invoiceDocument.Reference = value;
+                InvoiceDocument.Reference = value;
             }
         }
         /// <summary>
@@ -204,11 +205,11 @@ namespace BBS.UI
         {
             get
             {
-                return invoiceDocument.CreditTermsOrValidity;
+                return InvoiceDocument.CreditTermsOrValidity;
             }
             set
             {
-                invoiceDocument.CreditTermsOrValidity = value;
+                InvoiceDocument.CreditTermsOrValidity = value;
                 PopulateFormOfPaymentOnCreditTermsOrValidityChange();
                 NotifyPropertyChanged("SelectedCreditTermsOrValidityType");
             }
@@ -246,7 +247,7 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
-        public IEnumerable<InvoiceItem> InvoiceItems { get { return invoiceDocument.InvoiceItems; } set { } }
+        public IEnumerable<InvoiceItem> InvoiceItems { get { return InvoiceDocument.InvoiceItems; } set { } }
         #endregion
 
         #region UserActionOrCommands
@@ -331,19 +332,17 @@ namespace BBS.UI
         /// </summary>
         private void CreateInvoiceDocumentTemplate()
         {
-            if (null == invoiceDocument)
+            if (null == InvoiceDocument)
             {
-                invoiceDocument = new InvoiceDocument
+                InvoiceDocument = new InvoiceDocument
                 {
-                    InvoiceItems = new List<InvoiceItem>(),
-                    DocDate = DateTime.Today,
                     InvoiceDocumentType = InvoiceDocumentTypes.FirstOrDefault(i => i.Key == "taxinvoice"),
                     InvoiceBillingType = InvoiceBillingTypes.FirstOrDefault(i => i.Key == "quantitybased"),
                 };
             }
             else
             {
-                invoiceDocument.InvoiceItems.ToList().Clear();
+                InvoiceDocument.InvoiceItems.Clear();
             }
         }
         /// <summary>
@@ -401,7 +400,7 @@ namespace BBS.UI
         {
             using (var invoiceDocumentManager = new InvoiceDocumentManager())
             {
-                invoiceDocument.Reference = invoiceDocumentManager.GenerateInvoiceReferenceForDateAsync(invoiceDocument.DocDate).Result;
+                InvoiceDocument.Reference = invoiceDocumentManager.GenerateInvoiceReferenceForDateAsync(InvoiceDocument.DocDate).Result;
             }
         }
 
@@ -521,9 +520,7 @@ namespace BBS.UI
             var isExist = SelectedItem.Customers.FirstOrDefault(i => i.Id == customer.Id);
             if (null == isExist)
             {
-                var customers = SelectedItem.Customers.ToList();
-                customers.Add(customer);
-                SelectedItem.Customers = customers;
+                SelectedItem.Customers.Add(customer);
             }
         }
         #endregion
@@ -591,10 +588,10 @@ namespace BBS.UI
         /// <param name="param"></param>
         public void OnCompanySelectionChangedHandler(object param)
         {
-            if (null == SelectedItem.Customers)
-            {
-                SelectedItem.Customers = new List<Customer>();
-            }
+            //if (null == SelectedItem.Customers)
+            //{
+            //    SelectedItem.Customers = new List<Customer>();
+            //}
             NotifySelectedItemChange();
         }
 
@@ -605,14 +602,14 @@ namespace BBS.UI
         public void OnCustomerSelectionChangedHandler(object param)
         {
             CreateInvoiceDocumentTemplate();
-            var invoice = (param as Customer).InvoiceDocuments.FirstOrDefault(i => i.Reference == invoiceDocument.Reference);
+            var invoice = (param as Customer).InvoiceDocuments.FirstOrDefault(i => i.Reference == InvoiceDocument.Reference);
             if (null == invoice)
             {
-                (param as Customer).InvoiceDocuments.Add(invoiceDocument);
+                (param as Customer).InvoiceDocuments.Add(InvoiceDocument);
             }
             else
             {
-                invoice = invoiceDocument;
+                invoice = InvoiceDocument;
             }
             NotifySelectedCustomerChange();
         }

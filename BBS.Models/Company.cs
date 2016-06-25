@@ -14,6 +14,13 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
+        public Company()
+        {
+            Customers = new List<Customer>();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Name { get; set; }
 
         /// <summary>
@@ -49,6 +56,6 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
-        public virtual IEnumerable<Customer> Customers { get; set; }
+        public virtual ICollection<Customer> Customers { get; set; }
     }
 }

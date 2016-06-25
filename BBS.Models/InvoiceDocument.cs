@@ -10,7 +10,14 @@ namespace BBS.Models
     [Table("InvoiceDocuments")]
     public class InvoiceDocument : ModelBase
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public InvoiceDocument()
+        {
+            InvoiceItems = new List<InvoiceItem>();
+            DocDate = DateTime.Today;
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -49,7 +56,28 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
-        public virtual IEnumerable<InvoiceItem> InvoiceItems { get; set; }
+        public virtual Customer Customer { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual ICollection<InvoiceItem> InvoiceItems { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [NotMapped]
+        public Double SubTotal
+        {
+            get
+            {
+                return InvoiceItems.Sum(i => i.Amount);
+            }
+            set
+            {
+
+            }
+        }
     }
 
 

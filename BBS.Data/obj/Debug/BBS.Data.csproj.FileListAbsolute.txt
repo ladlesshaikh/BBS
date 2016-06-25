@@ -1,0 +1,11 @@
+D:\Data\Me\Work\Projects\BBS\Code\BBS.Data\bin\Debug\BBS.Data.dll
+D:\Data\Me\Work\Projects\BBS\Code\BBS.Data\bin\Debug\BBS.Data.pdb
+D:\Data\Me\Work\Projects\BBS\Code\BBS.Data\bin\Debug\BBS.Models.dll
+D:\Data\Me\Work\Projects\BBS\Code\BBS.Data\bin\Debug\EntityFramework.dll
+D:\Data\Me\Work\Projects\BBS\Code\BBS.Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\Data\Me\Work\Projects\BBS\Code\BBS.Data\bin\Debug\BBS.Models.pdb
+D:\Data\Me\Work\Projects\BBS\Code\BBS.Data\bin\Debug\EntityFramework.xml
+D:\Data\Me\Work\Projects\BBS\Code\BBS.Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\Data\Me\Work\Projects\BBS\Code\BBS.Data\obj\Debug\BBS.Data.csprojResolveAssemblyReference.cache
+D:\Data\Me\Work\Projects\BBS\Code\BBS.Data\obj\Debug\BBS.Data.dll
+D:\Data\Me\Work\Projects\BBS\Code\BBS.Data\obj\Debug\BBS.Data.pdb

@@ -16,6 +16,13 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
+        public Customer()
+        {
+            InvoiceDocuments = new List<InvoiceDocument>();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Name { get; set; }
 
         /// <summary>
@@ -28,6 +35,10 @@ namespace BBS.Models
         /// </summary>
         public virtual TaxDetail TaxDetails { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual Company Company { get; set; }
         /// <summary>
         /// 
         /// </summary>
