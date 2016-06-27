@@ -16,6 +16,9 @@
             <MenuItem Header="Payment" Margin="0">
                 <MenuItem x:Name="menuPaymentCollection" Header="Collection" Background="#FFACDDE2" Click="menuPaymentCollection_Click" />
             </MenuItem>
+            <MenuItem Header="Reports" Margin="0">
+                <MenuItem x:Name="menuCustomerManagementReport" Header="Customer management" Background="#FFACDDE2" Click="menuCustomerManagementReport_Click" />
+            </MenuItem>
             <MenuItem Header="Configuration" Margin="0">
                 <MenuItem x:Name="menuProductManagement" Header="Products" Click="menuProductManagement_Click" Background="#FFACDDE2" />
                 <MenuItem x:Name="menuCompanyManagement" Header="Companies" Click="menuCompanyManagement_Click" Background="#FFACDDE2" />

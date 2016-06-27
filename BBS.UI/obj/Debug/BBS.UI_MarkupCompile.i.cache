@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\App.xaml
-7-585893320
+8-916298731
 
-251072185024
-191157668362
-MainWindow.xaml;Xamals\CompanyManagementUC.xaml;Xamals\CustomerManagementUC.xaml;Xamals\InvoiceManagementUC.xaml;Xamals\PaymentCollectionUC.xaml;Xamals\ProductManagementUC.xaml;Xamals\PureTestUC.xaml;
+30-1186028312
+30-500982922
+MainWindow.xaml;Xamals\CompanyManagementUC.xaml;Xamals\CustomerManagementReportUC.xaml;Xamals\CustomerManagementUC.xaml;Xamals\InvoiceManagementUC.xaml;Xamals\PaymentCollectionUC.xaml;Xamals\ProductManagementUC.xaml;Xamals\PureTestUC.xaml;
 
-False
+True
 

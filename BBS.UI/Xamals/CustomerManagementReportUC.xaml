@@ -1,0 +1,63 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BBS.UI.Xamals"
+             xmlns:Viewer="clr-namespace:SAPBusinessObjects.WPF.Viewer;assembly=SAPBusinessObjects.WPF.Viewer" x:Class="BBS.UI.Xamals.CustomerManagementReportUC"
+             mc:Ignorable="d" 
+            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" Background="#FFACDDE2"
+            d:DesignHeight="300" d:DesignWidth="300">
+    <Grid x:Name="grdCustomerManagementReport">
+        <StackPanel>
+            <GroupBox Header="Filters">
+                <WrapPanel >
+                    <WrapPanel>
+                        <Label Content="Company" ></Label>
+                        <ComboBox x:Name="ddCompanyList" MinWidth="150" ItemsSource="{Binding Path=DataContext.Items,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name}"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding OnCompanySelectionChanged}" CommandParameter="{Binding SelectedItem,ElementName=ddCompanyList}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <Label Content="Customer" ></Label>
+                        <ComboBox MinWidth="150" ItemsSource="{Binding DataContext.SelectedItem.Customers,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"
+                              SelectedItem="{Binding DataContext.SelectedCustomer,Mode=TwoWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGrid}}}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name}"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </WrapPanel>
+                    <WrapPanel Margin="0,5,0,0">
+                        <Label Content="Start date" ></Label>
+                        <DatePicker SelectedDate="{Binding DataContext.StartDate,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></DatePicker>
+                    </WrapPanel>
+                    <WrapPanel Margin="0,5,0,0">
+                        <Label Content="End Date" ></Label>
+                        <DatePicker SelectedDate="{Binding DataContext.EndDate,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></DatePicker>
+                    </WrapPanel>
+                    <WrapPanel Margin="0,5,0,0" HorizontalAlignment="Right">
+                        <Button Content="Generate Report" Command="{Binding DataContext.OnGenerateReportCommand,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
+                    </WrapPanel>
+                </WrapPanel>
+            </GroupBox>
+            <GroupBox Header="Report details">
+                <Viewer:CrystalReportsViewer x:Name="CrystalReportsViewer1"/>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</UserControl>

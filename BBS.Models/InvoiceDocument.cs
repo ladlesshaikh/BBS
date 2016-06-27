@@ -78,6 +78,25 @@ namespace BBS.Models
 
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [NotMapped]
+        public Double TaxRate { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [NotMapped]
+        public Double TotalAmount
+        {
+            get
+            {
+                return SubTotal + TaxRate;
+            }
+            set { }
+        }
     }
 
 

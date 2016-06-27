@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Data\Projects\Pilot\BBS\BBS.UI\obj\Release\
+D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\obj\Release\
 BBS.UI
 none
 false
 TRACE
-D:\Data\Projects\Pilot\BBS\BBS.UI\App.xaml
-7-585893320
+D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\App.xaml
+8-916298731
 
-21-461802888
-191579082409
-MainWindow.xaml;Xamals\CompanyManagementUC.xaml;Xamals\CustomerManagementUC.xaml;Xamals\InvoiceManagementUC.xaml;Xamals\PaymentCollectionUC.xaml;Xamals\ProductManagementUC.xaml;Xamals\PureTestUC.xaml;
+242118575411
+3078043829
+MainWindow.xaml;Xamals\CompanyManagementUC.xaml;Xamals\CustomerManagementReportUC.xaml;Xamals\CustomerManagementUC.xaml;Xamals\InvoiceManagementUC.xaml;Xamals\PaymentCollectionUC.xaml;Xamals\ProductManagementUC.xaml;Xamals\PureTestUC.xaml;
 
-False
+True
 

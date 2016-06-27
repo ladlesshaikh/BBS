@@ -497,6 +497,13 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
+        private void NotifyInvoiceDocumentChanged()
+        {
+            NotifyPropertyChanged("InvoiceDocument");
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         private void CalculateInvoiceTotals()
         {
@@ -592,7 +599,10 @@ namespace BBS.UI
             //{
             //    SelectedItem.Customers = new List<Customer>();
             //}
+            InvoiceDocument.TaxRate = (param as Company).Tax.Rate;
             NotifySelectedItemChange();
+            NotifyInvoiceDocumentChanged();
+            
         }
 
         /// <summary>
@@ -612,6 +622,7 @@ namespace BBS.UI
                 invoice = InvoiceDocument;
             }
             NotifySelectedCustomerChange();
+            NotifyInvoiceDocumentChanged();
         }
 
         /// <summary>

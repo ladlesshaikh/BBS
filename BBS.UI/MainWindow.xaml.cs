@@ -68,6 +68,16 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuCustomerManagementReport_Click(object sender, RoutedEventArgs e)
+        {
+            ccParentContainer.Content = new CustomerManagementReportUC();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         private void SetupData()
         {
             var testResult = false;

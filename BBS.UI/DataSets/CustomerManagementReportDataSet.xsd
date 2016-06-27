@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CustomerManagementReportDataSet" targetNamespace="http://tempuri.org/CustomerManagementReportDataSet.xsd" xmlns:mstns="http://tempuri.org/CustomerManagementReportDataSet.xsd" xmlns="http://tempuri.org/CustomerManagementReportDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CustomerManagementReportDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CustomerManagementReportDataSet" msprop:Generator_UserDSName="CustomerManagementReportDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CustomerManagementReportModels" msprop:Generator_TableClassName="CustomerManagementReportModelsDataTable" msprop:Generator_TableVarName="tableCustomerManagementReportModels" msprop:Generator_TablePropName="CustomerManagementReportModels" msprop:Generator_RowDeletingName="CustomerManagementReportModelsRowDeleting" msprop:Generator_RowChangingName="CustomerManagementReportModelsRowChanging" msprop:Generator_RowEvHandlerName="CustomerManagementReportModelsRowChangeEventHandler" msprop:Generator_RowDeletedName="CustomerManagementReportModelsRowDeleted" msprop:Generator_UserTableName="CustomerManagementReportModels" msprop:Generator_RowChangedName="CustomerManagementReportModelsRowChanged" msprop:Generator_RowEvArgName="CustomerManagementReportModelsRowChangeEvent" msprop:Generator_RowClassName="CustomerManagementReportModelsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Customer" msprop:Generator_ColumnVarNameInTable="columnCustomer" msprop:Generator_ColumnPropNameInRow="Customer" msprop:Generator_ColumnPropNameInTable="CustomerColumn" msprop:Generator_UserColumnName="Customer" type="xs:string" minOccurs="0" />
+              <xs:element name="DocNumber" msprop:Generator_ColumnVarNameInTable="columnDocNumber" msprop:Generator_ColumnPropNameInRow="DocNumber" msprop:Generator_ColumnPropNameInTable="DocNumberColumn" msprop:Generator_UserColumnName="DocNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:string" minOccurs="0" />
+              <xs:element name="DueDate" msprop:Generator_ColumnVarNameInTable="columnDueDate" msprop:Generator_ColumnPropNameInRow="DueDate" msprop:Generator_ColumnPropNameInTable="DueDateColumn" msprop:Generator_UserColumnName="DueDate" type="xs:string" minOccurs="0" />
+              <xs:element name="CreditTerms" msprop:Generator_ColumnVarNameInTable="columnCreditTerms" msprop:Generator_ColumnPropNameInRow="CreditTerms" msprop:Generator_ColumnPropNameInTable="CreditTermsColumn" msprop:Generator_UserColumnName="CreditTerms" type="xs:string" minOccurs="0" />
+              <xs:element name="NoOfItems" msprop:Generator_ColumnVarNameInTable="columnNoOfItems" msprop:Generator_ColumnPropNameInRow="NoOfItems" msprop:Generator_ColumnPropNameInTable="NoOfItemsColumn" msprop:Generator_UserColumnName="NoOfItems" type="xs:string" minOccurs="0" />
+              <xs:element name="AmountDue" msprop:Generator_ColumnVarNameInTable="columnAmountDue" msprop:Generator_ColumnPropNameInRow="AmountDue" msprop:Generator_ColumnPropNameInTable="AmountDueColumn" msprop:Generator_UserColumnName="AmountDue" type="xs:string" minOccurs="0" />
+              <xs:element name="AmountOutstanding" msprop:Generator_ColumnVarNameInTable="columnAmountOutstanding" msprop:Generator_ColumnPropNameInRow="AmountOutstanding" msprop:Generator_ColumnPropNameInTable="AmountOutstandingColumn" msprop:Generator_UserColumnName="AmountOutstanding" type="xs:string" minOccurs="0" />
+              <xs:element name="AmountPaid" msprop:Generator_ColumnVarNameInTable="columnAmountPaid" msprop:Generator_ColumnPropNameInRow="AmountPaid" msprop:Generator_ColumnPropNameInTable="AmountPaidColumn" msprop:Generator_UserColumnName="AmountPaid" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

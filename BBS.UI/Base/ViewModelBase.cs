@@ -65,6 +65,7 @@ namespace BBS.UI
             if (PropertyChanged != null) { PropertyChanged(this, new PropertyChangedEventArgs(propertyName)); }
         }
 
+        
         /// <summary>
         /// 
         /// </summary>

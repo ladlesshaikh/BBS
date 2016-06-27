@@ -12,3 +12,17 @@ D:\Data\Projects\Pilot\BBS\BBS.BL\bin\Release\EntityFramework.SqlServer.xml
 D:\Data\Projects\Pilot\BBS\BBS.BL\obj\Release\BBS.BL.csprojResolveAssemblyReference.cache
 D:\Data\Projects\Pilot\BBS\BBS.BL\obj\Release\BBS.BL.dll
 D:\Data\Projects\Pilot\BBS\BBS.BL\obj\Release\BBS.BL.pdb
+D:\Data\Me\Work\Projects\BBS\Code\BBS.BL\bin\Release\BBS.BL.dll.config
+D:\Data\Me\Work\Projects\BBS\Code\BBS.BL\bin\Release\BBS.BL.dll
+D:\Data\Me\Work\Projects\BBS\Code\BBS.BL\bin\Release\BBS.BL.pdb
+D:\Data\Me\Work\Projects\BBS\Code\BBS.BL\bin\Release\BBS.Data.dll
+D:\Data\Me\Work\Projects\BBS\Code\BBS.BL\bin\Release\BBS.Models.dll
+D:\Data\Me\Work\Projects\BBS\Code\BBS.BL\bin\Release\EntityFramework.dll
+D:\Data\Me\Work\Projects\BBS\Code\BBS.BL\bin\Release\EntityFramework.SqlServer.dll
+D:\Data\Me\Work\Projects\BBS\Code\BBS.BL\bin\Release\BBS.Data.pdb
+D:\Data\Me\Work\Projects\BBS\Code\BBS.BL\bin\Release\BBS.Models.pdb
+D:\Data\Me\Work\Projects\BBS\Code\BBS.BL\bin\Release\EntityFramework.xml
+D:\Data\Me\Work\Projects\BBS\Code\BBS.BL\bin\Release\EntityFramework.SqlServer.xml
+D:\Data\Me\Work\Projects\BBS\Code\BBS.BL\obj\Release\BBS.BL.csprojResolveAssemblyReference.cache
+D:\Data\Me\Work\Projects\BBS\Code\BBS.BL\obj\Release\BBS.BL.dll
+D:\Data\Me\Work\Projects\BBS\Code\BBS.BL\obj\Release\BBS.BL.pdb
