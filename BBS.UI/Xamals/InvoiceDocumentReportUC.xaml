@@ -8,13 +8,10 @@
              xmlns:Viewer="clr-namespace:SAPBusinessObjects.WPF.Viewer;assembly=SAPBusinessObjects.WPF.Viewer" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <StackPanel>
-        <GroupBox Header="Buutron">
-            <Button x:Name="bttnViewReport" Click="bttnViewReport_Click" Content="click" />
-        </GroupBox>
-        <GroupBox Header="Report details">
-            <Viewer:CrystalReportsViewer x:Name="CrystalReportsViewer1"/>
-        </GroupBox>
+        <StackPanel >
+            <GroupBox Header="Report details" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <Viewer:CrystalReportsViewer Height="700"  x:Name="CrystalReportsViewer1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+            </GroupBox>
         </StackPanel>
     </Grid>
 </UserControl>
