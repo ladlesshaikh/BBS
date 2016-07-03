@@ -21,6 +21,6 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
-        public Double Rate { get; set; }
+        public Decimal Rate { get; set; }
     }
 }

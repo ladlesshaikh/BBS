@@ -40,6 +40,7 @@ namespace BBS.UI
         {
             customerViewModel = new CustomerViewModel();
             InitializeInvoiceDocumentScreen();
+            OnInvoiceDocDateChanged = new UserActionOrCommand(OnInvoiceDocDateChangedHandler);
             OnCompanySelectionChanged = new UserActionOrCommand(OnCompanySelectionChangedHandler);
             OnCustomerSelectionChanged = new UserActionOrCommand(OnCustomerSelectionChangedHandler);
             OnInvoiceItemDescriptionChange = new UserActionOrCommand(OnInvoiceItemDescriptionChangeHandler);
@@ -50,11 +51,21 @@ namespace BBS.UI
             AddCustomerCommand = new UserActionOrCommand(AddCustomerCommandHandler);
             InvoiceBillingTypeSelectionChangedCommand = new UserActionOrCommand(InvoiceBillingTypeSelectionChangedCommandHandler);
             InvoiceItemDataGridHeaders = new InvoiceItemDataGridHeader { IsBillingTypeHourBased = false };
-            //DefaultSelectedCustomer();
         }
         #endregion
 
         #region Public properties
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event InvoiceSavedOrUpdated OnInvoiceSavedOrUpdated = null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="invoice"></param>
+        public delegate void InvoiceSavedOrUpdated(InvoiceDocument invoice);
         /// <summary>
         /// 
         /// </summary>
@@ -62,6 +73,17 @@ namespace BBS.UI
         {
             get; set;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime DocDate { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Reference { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -116,48 +138,8 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
-        public DateTime SelectedDocDate
-        {
-            get
-            {
-                return InvoiceDocument.DocDate;
-            }
-            set
-            {
-                InvoiceDocument.DocDate = value;
-                UpdateDocReference();
-                NotifyInvoiceReferenceChange();
-            }
-        }
-        /// <summary>
-        /// 
-        /// </summary>
         public InvoiceItemDataGridHeader InvoiceItemDataGridHeaders { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public InvoiceBillingType SelectedInvoiceBillingType
-        {
-            get { return InvoiceDocument.InvoiceBillingType; }
-            set { InvoiceDocument.InvoiceBillingType = value; }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public InvoiceDocumentType SelectedInvoiceDocumentType
-        {
-            get
-            {
-                return InvoiceDocument.InvoiceDocumentType;
-            }
-            set
-            {
-                InvoiceDocument.InvoiceDocumentType = value;
-            }
-        }
 
         /// <summary>
         /// 
@@ -184,20 +166,6 @@ namespace BBS.UI
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Reference
-        {
-            get
-            {
-                return InvoiceDocument.Reference;
-            }
-            set
-            {
-                InvoiceDocument.Reference = value;
-            }
-        }
         /// <summary>
         /// 
         /// </summary>
@@ -254,6 +222,10 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
+        public UserActionOrCommand OnInvoiceDocDateChanged { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public UserActionOrCommand OnCompanySelectionChanged { get; set; }
         /// <summary>
         /// 
@@ -304,9 +276,14 @@ namespace BBS.UI
         #region Overrirde methods
         public override void UpdateCommandHandler(object param)
         {
-            AddCustomerToSelectedCompany(SelectedCustomer);
+            PopulateInvoiceItemToSave();
             base.UpdateCommandHandler(param);
+            if (null != OnInvoiceSavedOrUpdated)
+            {
+                OnInvoiceSavedOrUpdated(InvoiceDocument);
+            }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -327,6 +304,14 @@ namespace BBS.UI
         #endregion
 
         #region Private helper methods
+        /// <summary>
+        /// 
+        /// </summary>
+        private void PopulateInvoiceItemToSave()
+        {
+            InvoiceDocument.Reference = Reference;
+            AddCustomerToSelectedCompany(SelectedCustomer);
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -396,12 +381,13 @@ namespace BBS.UI
         /// <summary>
         /// 
         /// </summary>
-        private void UpdateDocReference()
+        private void UpdateDocReferenceAndNotify(DateTime dateTime)
         {
             using (var invoiceDocumentManager = new InvoiceDocumentManager())
             {
-                InvoiceDocument.Reference = invoiceDocumentManager.GenerateInvoiceReferenceForDateAsync(InvoiceDocument.DocDate).Result;
+                Reference = invoiceDocumentManager.GenerateInvoiceReferenceForDateAsync(dateTime).Result;
             }
+            NotifyInvoiceReferenceChange();
         }
 
         /// <summary>
@@ -409,12 +395,13 @@ namespace BBS.UI
         /// </summary>
         private void InitializeInvoiceDocumentScreen()
         {
+            DocDate = DateTime.Today;
+            UpdateDocReferenceAndNotify(DocDate);
             CreateInvoiceDocumentTemplate();
             using (var manager = new ProductManager())
             {
                 ProductCatlauge = from i in manager.GetAllAsync().Result select i.Name;
             }
-            UpdateDocReference();
         }
         /// <summary>
         /// 
@@ -508,6 +495,7 @@ namespace BBS.UI
         private void CalculateInvoiceTotals()
         {
             NotifySelectedItemChange();
+            NotifyInvoiceDocumentChanged();
         }
 
         /// <summary>
@@ -595,14 +583,19 @@ namespace BBS.UI
         /// <param name="param"></param>
         public void OnCompanySelectionChangedHandler(object param)
         {
-            //if (null == SelectedItem.Customers)
-            //{
-            //    SelectedItem.Customers = new List<Customer>();
-            //}
             InvoiceDocument.TaxRate = (param as Company).Tax.Rate;
             NotifySelectedItemChange();
             NotifyInvoiceDocumentChanged();
-            
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="param"></param>
+        public void OnInvoiceDocDateChangedHandler(object param)
+        {
+            UpdateDocReferenceAndNotify((DateTime)param);
         }
 
         /// <summary>
@@ -621,6 +614,7 @@ namespace BBS.UI
             {
                 invoice = InvoiceDocument;
             }
+
             NotifySelectedCustomerChange();
             NotifyInvoiceDocumentChanged();
         }
@@ -648,7 +642,7 @@ namespace BBS.UI
         /// </summary>
         private void ResetInvoiceItemGridToSelectedBillingType()
         {
-            InvoiceItemDataGridHeaders.IsBillingTypeHourBased = SelectedInvoiceBillingType.IsHourlyBased;
+            InvoiceItemDataGridHeaders.IsBillingTypeHourBased = InvoiceDocument.InvoiceBillingType.IsHourlyBased;
             NotifyPropertyChanged("InvoiceItemDataGridHeaders");
         }
         #endregion

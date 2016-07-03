@@ -94,7 +94,7 @@ namespace BBS.UI
         /// <param name="e"></param>
         private void menuItemCreateInvoice_Click(object sender, RoutedEventArgs e)
         {
-            ccParentContainer.Content = new InvoiceManagementUC();
+            ccParentContainer.Content = new InvoiceManagementContainer();
         }
 
         /// <summary>
@@ -104,7 +104,9 @@ namespace BBS.UI
         /// <param name="e"></param>
         private void menuItemHome_Click(object sender, RoutedEventArgs e)
         {
-            ccParentContainer.Content = new PureTestUC();
+            var docManager = new InvoiceDocumentManager();
+            var inv = docManager.GetAllAsync().Result.First();
+            ccParentContainer.Content = new InvoiceDocumentReportUC(inv);
         }
     }
 }

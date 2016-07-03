@@ -23,12 +23,12 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
-        private Double quantity = 1.0;
+        private Decimal quantity = 1;
 
         /// <summary>
         /// 
         /// </summary>
-        private Double unitCost = 0.0;
+        private Decimal unitCost = 0;
 
         /// <summary>
         /// 
@@ -43,18 +43,18 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
-        public Double Quantity { get { return quantity; } set { quantity = value; UpdateAmount(); } }
+        public Decimal Quantity { get { return quantity; } set { quantity = value; UpdateAmount(); } }
 
         /// <summary>
         /// 
         /// </summary>
-        public Double UnitCost { get { return unitCost; } set { unitCost = value; UpdateAmount(); } }
+        public Decimal UnitCost { get { return unitCost; } set { unitCost = value; UpdateAmount(); } }
 
         /// <summary>
         /// 
         /// </summary>
         [NotMapped]
-        public Double Amount { get; set; }
+        public Decimal Amount { get; set; }
 
         /// <summary>
         /// 

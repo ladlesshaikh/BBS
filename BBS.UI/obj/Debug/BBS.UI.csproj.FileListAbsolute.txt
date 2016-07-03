@@ -52,6 +52,8 @@ D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\obj\Debug\MainWindow.g.cs
 D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\obj\Debug\Xamals\CompanyManagementUC.g.cs
 D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\obj\Debug\Xamals\CustomerManagementReportUC.g.cs
 D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\obj\Debug\Xamals\CustomerManagementUC.g.cs
+D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\obj\Debug\Xamals\InvoiceDocumentReportUC.g.cs
+D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\obj\Debug\Xamals\InvoiceManagementContainer.g.cs
 D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\obj\Debug\Xamals\InvoiceManagementUC.g.cs
 D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\obj\Debug\Xamals\PaymentCollectionUC.g.cs
 D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\obj\Debug\Xamals\ProductManagementUC.g.cs
@@ -64,6 +66,8 @@ D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\obj\Debug\MainWindow.baml
 D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\obj\Debug\Xamals\CompanyManagementUC.baml
 D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\obj\Debug\Xamals\CustomerManagementReportUC.baml
 D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\obj\Debug\Xamals\CustomerManagementUC.baml
+D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\obj\Debug\Xamals\InvoiceDocumentReportUC.baml
+D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\obj\Debug\Xamals\InvoiceManagementContainer.baml
 D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\obj\Debug\Xamals\ProductManagementUC.baml
 D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\obj\Debug\BBS.UI.g.resources
 D:\Data\Me\Work\Projects\BBS\Code\BBS.UI\obj\Debug\BBS.UI.Properties.Resources.resources

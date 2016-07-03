@@ -118,10 +118,15 @@
                                 <RowDefinition Height="1*" />
                             </Grid.RowDefinitions>
                             <Label Content="Doc Date:" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Right"/>
-                            <DatePicker x:Name="dateDocDate" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" 
-                                        SelectedDate="{ Binding SelectedDocDate,StringFormat='dd-MM-yyyy'}"
-                                        Text="{Binding DataContext.InvoiceDocument.DocDate,Mode=TwoWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" Height="24" VerticalAlignment="Top"
-                                        Validation.ErrorTemplate="{x:Null}" />
+                            <DatePicker x:Name="dateDocDate" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"  SelectedDate="{Binding DataContext.DocDate, StringFormat='dd-MM-yyyy', UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        Text="{Binding DataContext.DocDate, Mode=TwoWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" Height="24" VerticalAlignment="Top"
+                                        Validation.ErrorTemplate="{x:Null}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="LostFocus">
+                                        <i:InvokeCommandAction Command="{Binding OnInvoiceDocDateChanged}" CommandParameter="{Binding SelectedDate,ElementName=dateDocDate}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </DatePicker>
                             <Label Content="Reference :" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right"/>
                             <TextBox x:Name="txtReference"  Grid.Column="1" Grid.Row="1" Text="{Binding DataContext.Reference,Mode=TwoWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"/>
                             <Label Content="Credit terms/validity:" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right"/>
@@ -232,7 +237,7 @@
                         </Grid.RowDefinitions>
                         <GroupBox Header="Type" Grid.Column="0" Grid.Row="0">
                             <ListBox Margin="2" 
-                                ItemsSource="{Binding Path=DataContext.InvoiceDocumentTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" SelectedItem="{Binding SelectedInvoiceDocumentType}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Background="#FFACDDE2">
+                                ItemsSource="{Binding Path=DataContext.InvoiceDocumentTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" SelectedItem="{Binding InvoiceDocument.InvoiceDocumentType}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Background="#FFACDDE2">
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <WrapPanel IsItemsHost="True" />
@@ -253,7 +258,7 @@
                             </ListBox>
                         </GroupBox>
                         <GroupBox Header="Measurement and Charge" Grid.Column="1" Grid.Row="0">
-                            <ListBox ItemsSource="{Binding Path=DataContext.InvoiceBillingTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" SelectedItem="{Binding SelectedInvoiceBillingType}" BorderThickness="0" Background="#FFACDDE2">
+                            <ListBox ItemsSource="{Binding Path=DataContext.InvoiceBillingTypes,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" SelectedItem="{Binding InvoiceDocument.InvoiceBillingType}" BorderThickness="0" Background="#FFACDDE2">
                                 <ListBox.ItemContainerStyle>
                                     <Style TargetType="{x:Type ListBoxItem}">
                                         <Setter Property="Template">
@@ -416,9 +421,8 @@
                 <Label Content="Sub Total :" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Right"></Label>
                 <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="30" IsReadOnly="True" Text="{Binding DataContext.InvoiceDocument.SubTotal,Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>
                 <Label Content="Tax :" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right"></Label>
-                <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="30" IsReadOnly="True" Text="{Binding DataContext.InvoiceDocument.TaxRate,Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="30" IsReadOnly="True" Text="{Binding DataContext.InvoiceDocument.TaxAmount,Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>
                 <Label Content="Total" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right"></Label>
-                <!--<TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="30" IsReadOnly="True" Text="{Binding DataContext.SelectedItem.TotalAmount, Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>-->
                 <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="30" IsReadOnly="True" Text="{Binding DataContext.InvoiceDocument.TotalAmount, Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}"></TextBox>
             </Grid>
         </Grid>

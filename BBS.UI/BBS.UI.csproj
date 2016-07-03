@@ -84,11 +84,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomerManagementReportDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSets\InvoiceDocumentReportDataSet.cs">
+      <DependentUpon>InvoiceDocumentReportDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\InvoiceDocumentReportDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InvoiceDocumentReportDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\MethodExtensions.cs" />
     <Compile Include="ReportModels\CustomerManagementReportModel.cs" />
+    <Compile Include="ReportModels\InvoiceDocumentReportModel.cs" />
     <Compile Include="Reports\CustomerManagementReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomerManagementReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\InvoiceDocumentReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InvoiceDocumentReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Validators\RequiredFieldValidator.cs" />
@@ -106,6 +122,12 @@
     </Compile>
     <Compile Include="Xamals\CustomerManagementUC.xaml.cs">
       <DependentUpon>CustomerManagementUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Xamals\InvoiceDocumentReportUC.xaml.cs">
+      <DependentUpon>InvoiceDocumentReportUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Xamals\InvoiceManagementContainer.xaml.cs">
+      <DependentUpon>InvoiceManagementContainer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Xamals\InvoiceManagementUC.xaml.cs">
       <DependentUpon>InvoiceManagementUC.xaml</DependentUpon>
@@ -140,6 +162,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Xamals\CustomerManagementUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Xamals\InvoiceDocumentReportUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Xamals\InvoiceManagementContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -182,6 +212,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CustomerManagementReport.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\InvoiceDocumentReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InvoiceDocumentReport.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="DataSets\CustomerManagementReportDataSet.xsc">
       <DependentUpon>CustomerManagementReportDataSet.xsd</DependentUpon>
     </None>
@@ -192,6 +226,17 @@
     </None>
     <None Include="DataSets\CustomerManagementReportDataSet.xss">
       <DependentUpon>CustomerManagementReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\InvoiceDocumentReportDataSet.xsc">
+      <DependentUpon>InvoiceDocumentReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\InvoiceDocumentReportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InvoiceDocumentReportDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\InvoiceDocumentReportDataSet.xss">
+      <DependentUpon>InvoiceDocumentReportDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -24,7 +24,7 @@ namespace BBS.UnitTest
                     Bank = new BankDetail { BranchCode = "branch", Name = "Nedbank" },
                     CKRegNo = "1121212",
                     Name = "TestComapny",
-                    Tax = new TaxDetail { TaxNo = "122345", Rate = 14.5 },
+                    Tax = new TaxDetail { TaxNo = "122345", Rate = 14.5M },
                 };
 
                 ctx.Companies.Add(company);

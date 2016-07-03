@@ -67,7 +67,7 @@ namespace BBS.Models
         /// 
         /// </summary>
         [NotMapped]
-        public Double SubTotal
+        public Decimal SubTotal
         {
             get
             {
@@ -82,21 +82,63 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
-        [NotMapped]
-        public Double TaxRate { get; set; }
+        public Decimal TaxRate { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         [NotMapped]
-        public Double TotalAmount
+        public Decimal TaxAmount
         {
             get
             {
-                return SubTotal + TaxRate;
+                return SubTotal * (TaxRate / 100);
             }
             set { }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        [NotMapped]
+        public Decimal TotalAmount
+        {
+            get
+            {
+                return SubTotal + TaxAmount;
+            }
+            set { }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [NotMapped]
+        public string Title
+        {
+            get { return InvoiceDocumentType.Value; }
+            set { }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [NotMapped]
+        public string CreditTermsTitle
+        {
+            get
+            {
+                var retVal = "NA";
+                retVal = null == CreditTermsOrValidity ? "NA" : CreditTermsOrValidity.Key.ToUpper();
+                return retVal;
+            }
+            set { }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [NotMapped]
+        public int TotalItems { get { return InvoiceItems.Count; } set { } }
     }
 
 

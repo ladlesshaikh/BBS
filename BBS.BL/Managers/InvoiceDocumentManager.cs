@@ -68,10 +68,11 @@ namespace BBS.BL
             var formattedInputDate = dateTime.ToString("yyyyMM");
             using (var repository = new InvoiceDocumentRepository())
             {
-                var invoicesForGivenDate = (await repository.GetAsync()).Where(i => i.DocDate.ToString("yyyyMM") == formattedInputDate);
+                var result = await repository.GetAsync();
+                var invoicesForGivenDate = result.Where(i => i.DocDate.ToString("yyyyMM") == formattedInputDate);
                 if (null != invoicesForGivenDate && invoicesForGivenDate.Count() > 0)
                 {
-                    invoiceOffset = invoiceOffset + invoicesForGivenDate.Count();
+                    invoiceOffset = invoiceOffset + result.Count;
                 }
 
                 retVal = retVal + invoiceOffset.ToString();

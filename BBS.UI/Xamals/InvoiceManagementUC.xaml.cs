@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BBS.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +21,41 @@ namespace BBS.UI.Xamals
     /// </summary>
     public partial class InvoiceManagementUC : UserControl
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        private InvoiceDocumentViewModel invoiceDocumentViewModel = null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event InvoiceSaved OnInvoiceSaved = null;
+
+        /// <summary>
+        /// /
+        /// </summary>
+        /// <param name="result"></param>
+        public delegate void InvoiceSaved(InvoiceDocument invoice);
+
         public InvoiceManagementUC()
         {
             InitializeComponent();
-            grdInvoiceManagement.DataContext = new InvoiceDocumentViewModel();
+            invoiceDocumentViewModel = new InvoiceDocumentViewModel();
+            invoiceDocumentViewModel.OnInvoiceSavedOrUpdated += InvoiceDocumentViewModel_OnInvoiceSavedOrUpdated;
+            grdInvoiceManagement.DataContext = invoiceDocumentViewModel;
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="invoice"></param>
+        private void InvoiceDocumentViewModel_OnInvoiceSavedOrUpdated(InvoiceDocument invoice)
+        {
+            if (null != OnInvoiceSaved)
+            {
+                OnInvoiceSaved(invoice);
+            }
         }
     }
 }

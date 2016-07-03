@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,10 +53,24 @@ namespace BBS.Models
         /// 
         /// </summary>
         public string LogoImage { get; set; }
-
+      
         /// <summary>
         /// 
         /// </summary>
         public virtual ICollection<Customer> Customers { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public Byte[] GetLogoImageBytes()
+        {
+            Byte[] retVal = null;
+            if (File.Exists(LogoImage))
+            {
+                retVal = File.ReadAllBytes(LogoImage);
+            }
+            return retVal;
+        }
     }
 }

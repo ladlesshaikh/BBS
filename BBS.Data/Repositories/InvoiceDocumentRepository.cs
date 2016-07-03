@@ -17,7 +17,7 @@ namespace BBS.Data
         /// 
         /// </summary>
         public InvoiceDocumentRepository()
-            : base(Helper.GetDataContext())
+            : base(new DataContext())
         {
 
         }

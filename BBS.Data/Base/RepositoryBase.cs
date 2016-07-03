@@ -142,10 +142,10 @@ namespace BBS.Data
 
         public virtual void Dispose()
         {
-            if (null != dataContext)
-            {
-                dataContext = null;
-            }
+            //if (null != dataContext)
+            //{
+            //    dataContext = null;
+            //}
         }
     }
 }

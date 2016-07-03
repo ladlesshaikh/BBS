@@ -36,6 +36,7 @@ namespace BBS.UI
         /// 
         /// </summary>
         public int ErrorCount = 0;
+
         #endregion
 
         #region Object constructions
@@ -65,7 +66,7 @@ namespace BBS.UI
             if (PropertyChanged != null) { PropertyChanged(this, new PropertyChangedEventArgs(propertyName)); }
         }
 
-        
+
         /// <summary>
         /// 
         /// </summary>
