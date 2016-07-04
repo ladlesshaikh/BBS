@@ -55,7 +55,7 @@ namespace BBS.UI.Xamals
             ReportDocument report = new InvoiceDocumentReport();
             // CrystalReportsViewer1.Owner = Window.GetWindow(this);
             var company = new List<Company> { invoiceDocumentToRender.Customer.Company };
-            report.Database.Tables[0].SetDataSource(company.ToCompanyReportModel());
+            report.Database.Tables[0].SetDataSource(company);
             report.Database.Tables[1].SetDataSource(new List<Customer> { invoiceDocumentToRender.Customer });
             report.Database.Tables[2].SetDataSource(new List<InvoiceDocument> { invoiceDocumentToRender });
             report.Database.Tables[3].SetDataSource(invoiceDocumentToRender.InvoiceItems);

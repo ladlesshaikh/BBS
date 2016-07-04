@@ -394,7 +394,7 @@ namespace BBS.UI.DataSets {
             
             private global::System.Data.DataColumn columnPostalCode;
             
-            private global::System.Data.DataColumn columnCKNo;
+            private global::System.Data.DataColumn columnCKRegNo;
             
             private global::System.Data.DataColumn columnTaxNo;
             
@@ -404,9 +404,13 @@ namespace BBS.UI.DataSets {
             
             private global::System.Data.DataColumn columnFax;
             
-            private global::System.Data.DataColumn columnLogoImageBytes;
-            
             private global::System.Data.DataColumn columnLogoImage;
+            
+            private global::System.Data.DataColumn columnAccount;
+            
+            private global::System.Data.DataColumn columnBankName;
+            
+            private global::System.Data.DataColumn columnBankBranch;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -483,9 +487,9 @@ namespace BBS.UI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CKNoColumn {
+            public global::System.Data.DataColumn CKRegNoColumn {
                 get {
-                    return this.columnCKNo;
+                    return this.columnCKRegNo;
                 }
             }
             
@@ -523,17 +527,33 @@ namespace BBS.UI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn LogoImageBytesColumn {
+            public global::System.Data.DataColumn LogoImageColumn {
                 get {
-                    return this.columnLogoImageBytes;
+                    return this.columnLogoImage;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn LogoImageColumn {
+            public global::System.Data.DataColumn AccountColumn {
                 get {
-                    return this.columnLogoImage;
+                    return this.columnAccount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn BankNameColumn {
+                get {
+                    return this.columnBankName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn BankBranchColumn {
+                get {
+                    return this.columnBankBranch;
                 }
             }
             
@@ -574,7 +594,7 @@ namespace BBS.UI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CompanyRow AddCompanyRow(string Name, string Street, string SubUrb, string City, string PostalCode, string CKNo, string TaxNo, string Tel, string Email, string Fax, byte[] LogoImageBytes, string LogoImage) {
+            public CompanyRow AddCompanyRow(string Name, string Street, string SubUrb, string City, string PostalCode, string CKRegNo, string TaxNo, string Tel, string Email, string Fax, string LogoImage, string Account, string BankName, string BankBranch) {
                 CompanyRow rowCompanyRow = ((CompanyRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Name,
@@ -582,13 +602,15 @@ namespace BBS.UI.DataSets {
                         SubUrb,
                         City,
                         PostalCode,
-                        CKNo,
+                        CKRegNo,
                         TaxNo,
                         Tel,
                         Email,
                         Fax,
-                        LogoImageBytes,
-                        LogoImage};
+                        LogoImage,
+                        Account,
+                        BankName,
+                        BankBranch};
                 rowCompanyRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCompanyRow);
                 return rowCompanyRow;
@@ -616,13 +638,15 @@ namespace BBS.UI.DataSets {
                 this.columnSubUrb = base.Columns["SubUrb"];
                 this.columnCity = base.Columns["City"];
                 this.columnPostalCode = base.Columns["PostalCode"];
-                this.columnCKNo = base.Columns["CKNo"];
+                this.columnCKRegNo = base.Columns["CKRegNo"];
                 this.columnTaxNo = base.Columns["TaxNo"];
                 this.columnTel = base.Columns["Tel"];
                 this.columnEmail = base.Columns["Email"];
                 this.columnFax = base.Columns["Fax"];
-                this.columnLogoImageBytes = base.Columns["LogoImageBytes"];
                 this.columnLogoImage = base.Columns["LogoImage"];
+                this.columnAccount = base.Columns["Account"];
+                this.columnBankName = base.Columns["BankName"];
+                this.columnBankBranch = base.Columns["BankBranch"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -638,8 +662,8 @@ namespace BBS.UI.DataSets {
                 base.Columns.Add(this.columnCity);
                 this.columnPostalCode = new global::System.Data.DataColumn("PostalCode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPostalCode);
-                this.columnCKNo = new global::System.Data.DataColumn("CKNo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCKNo);
+                this.columnCKRegNo = new global::System.Data.DataColumn("CKRegNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCKRegNo);
                 this.columnTaxNo = new global::System.Data.DataColumn("TaxNo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTaxNo);
                 this.columnTel = new global::System.Data.DataColumn("Tel", typeof(string), null, global::System.Data.MappingType.Element);
@@ -648,10 +672,14 @@ namespace BBS.UI.DataSets {
                 base.Columns.Add(this.columnEmail);
                 this.columnFax = new global::System.Data.DataColumn("Fax", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFax);
-                this.columnLogoImageBytes = new global::System.Data.DataColumn("LogoImageBytes", typeof(byte[]), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLogoImageBytes);
                 this.columnLogoImage = new global::System.Data.DataColumn("LogoImage", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLogoImage);
+                this.columnAccount = new global::System.Data.DataColumn("Account", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAccount);
+                this.columnBankName = new global::System.Data.DataColumn("BankName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBankName);
+                this.columnBankBranch = new global::System.Data.DataColumn("BankBranch", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBankBranch);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1769,17 +1797,17 @@ namespace BBS.UI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CKNo {
+            public string CKRegNo {
                 get {
                     try {
-                        return ((string)(this[this.tableCompany.CKNoColumn]));
+                        return ((string)(this[this.tableCompany.CKRegNoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CKNo\' in table \'Company\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'CKRegNo\' in table \'Company\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCompany.CKNoColumn] = value;
+                    this[this.tableCompany.CKRegNoColumn] = value;
                 }
             }
             
@@ -1849,22 +1877,6 @@ namespace BBS.UI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte[] LogoImageBytes {
-                get {
-                    try {
-                        return ((byte[])(this[this.tableCompany.LogoImageBytesColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'LogoImageBytes\' in table \'Company\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCompany.LogoImageBytesColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string LogoImage {
                 get {
                     try {
@@ -1876,6 +1888,54 @@ namespace BBS.UI.DataSets {
                 }
                 set {
                     this[this.tableCompany.LogoImageColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Account {
+                get {
+                    try {
+                        return ((string)(this[this.tableCompany.AccountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Account\' in table \'Company\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCompany.AccountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string BankName {
+                get {
+                    try {
+                        return ((string)(this[this.tableCompany.BankNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BankName\' in table \'Company\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCompany.BankNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string BankBranch {
+                get {
+                    try {
+                        return ((string)(this[this.tableCompany.BankBranchColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BankBranch\' in table \'Company\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCompany.BankBranchColumn] = value;
                 }
             }
             
@@ -1941,14 +2001,14 @@ namespace BBS.UI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCKNoNull() {
-                return this.IsNull(this.tableCompany.CKNoColumn);
+            public bool IsCKRegNoNull() {
+                return this.IsNull(this.tableCompany.CKRegNoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCKNoNull() {
-                this[this.tableCompany.CKNoColumn] = global::System.Convert.DBNull;
+            public void SetCKRegNoNull() {
+                this[this.tableCompany.CKRegNoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2001,18 +2061,6 @@ namespace BBS.UI.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsLogoImageBytesNull() {
-                return this.IsNull(this.tableCompany.LogoImageBytesColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetLogoImageBytesNull() {
-                this[this.tableCompany.LogoImageBytesColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsLogoImageNull() {
                 return this.IsNull(this.tableCompany.LogoImageColumn);
             }
@@ -2021,6 +2069,42 @@ namespace BBS.UI.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetLogoImageNull() {
                 this[this.tableCompany.LogoImageColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAccountNull() {
+                return this.IsNull(this.tableCompany.AccountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAccountNull() {
+                this[this.tableCompany.AccountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsBankNameNull() {
+                return this.IsNull(this.tableCompany.BankNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetBankNameNull() {
+                this[this.tableCompany.BankNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsBankBranchNull() {
+                return this.IsNull(this.tableCompany.BankBranchColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetBankBranchNull() {
+                this[this.tableCompany.BankBranchColumn] = global::System.Convert.DBNull;
             }
         }
         

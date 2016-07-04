@@ -53,7 +53,7 @@ namespace BBS.Models
         /// 
         /// </summary>
         public string LogoImage { get; set; }
-      
+
         /// <summary>
         /// 
         /// </summary>
@@ -62,15 +62,51 @@ namespace BBS.Models
         /// <summary>
         /// 
         /// </summary>
-        /// <returns></returns>
-        public Byte[] GetLogoImageBytes()
-        {
-            Byte[] retVal = null;
-            if (File.Exists(LogoImage))
-            {
-                retVal = File.ReadAllBytes(LogoImage);
-            }
-            return retVal;
-        }
+        public string Street { get { return AddressDetails.StreetNo; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string SubUrb { get { return AddressDetails.SubUrb; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string City { get { return AddressDetails.CityOrTown; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string PostalCode { get { return AddressDetails.PostalCode; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string TaxNo { get { return Tax.TaxNo; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Tel { get { return AddressDetails.Telephone; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Email { get { return AddressDetails.Email; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Fax { get { return AddressDetails.Fax; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string BankName { get { return Bank.Name; } }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string BankBranch { get { return Bank.BranchCode; } }
     }
 }
