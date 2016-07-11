@@ -118,9 +118,9 @@
                                 <RowDefinition Height="1*" />
                             </Grid.RowDefinitions>
                             <Label Content="Doc Date:" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Right"/>
-                            <DatePicker x:Name="dateDocDate" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"  SelectedDate="{Binding DataContext.DocDate, StringFormat='dd-MM-yyyy', UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                        Text="{Binding DataContext.DocDate, Mode=TwoWay,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}}" Height="24" VerticalAlignment="Top"
-                                        Validation.ErrorTemplate="{x:Null}">
+                            <DatePicker x:Name="dateDocDate" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"  SelectedDate="{Binding DataContext.DocDate,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Grid}}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        Text="{Binding SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}, StringFormat={}{0:dd-MM-yyyy}}"
+                                        Height="24" VerticalAlignment="Top" Validation.ErrorTemplate="{x:Null}" >
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="LostFocus">
                                         <i:InvokeCommandAction Command="{Binding OnInvoiceDocDateChanged}" CommandParameter="{Binding SelectedDate,ElementName=dateDocDate}"/>
